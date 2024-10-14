@@ -1,4 +1,3 @@
-// vite.config.js
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -7,20 +6,18 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     define: {
-      'process.env': {
-        // Puedes mantener otras variables de entorno necesarias aquí
-        NOMBRE_BACKEND: env.NOMBRE_BACKEND,
-      },
+      'import.meta.env.VITE_NOMBRE_BACKEND': JSON.stringify(env.NOMBRE_BACKEND),
+      // Otros variables de entorno prefijadas con VITE_
     },
     plugins: [react()],
     base: '/',
     build: {
-      outDir: 'dist', // Directorio de salida simplificado
+      outDir: 'dist',
       assetsInlineLimit: 0,
       manifest: true,
       emptyOutDir: true,
       rollupOptions: {
-        input: '/src/main.jsx',
+        input: 'src/main.jsx', // Ruta corregida
         output: {
           entryFileNames: 'assets/[name].js',
         },
