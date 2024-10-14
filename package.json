@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --mode produccion && vite build --mode testing",
+    "vercel-deploy": "vercel --prod",
     "build:prod": "vite build --mode produccion",
     "build:testing": "vite build --mode testing",
     "template": "node template.js",

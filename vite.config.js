@@ -6,7 +6,7 @@ export default defineConfig(async ({ command, mode }) => {
 	const env = loadEnv(mode, process.cwd(), '')
 
 	let jwt = null
-	if (command === 'serve') {
+	if (command != 'serve' && process.env.NODE_ENV !== 'production') {
 		const response = await axios.get(
 			`http://10.0.214.9:8030/ms-frontend-auth/generar/${env.USUPRODEF_PRUEBA}/${env.NOMBRE_BACKEND}/24`,
 		)
