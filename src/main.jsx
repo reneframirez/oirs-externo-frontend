@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 		<QueryClientProvider client={client}>
 			<SesionExpiradaProvider>
 				<ScopedCssBaseline>
-					<BrowserRouter basename={window?.basename || ''}>
+					<BrowserRouter>
 						<App />
 					</BrowserRouter>
 				</ScopedCssBaseline>

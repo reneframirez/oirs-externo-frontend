@@ -6,8 +6,11 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     define: {
-      'import.meta.env.VITE_NOMBRE_BACKEND': JSON.stringify(env.NOMBRE_BACKEND),
-      // Otros variables de entorno prefijadas con VITE_
+      'import.meta.env.VITE_NOMBRE_BACKEND': JSON.stringify(env.VITE_NOMBRE_BACKEND),
+      'import.meta.env.VITE_USUPRODEF_PRUEBA': JSON.stringify(env.VITE_USUPRODEF_PRUEBA),
+      'import.meta.env.VITE_APP_VERSION': JSON.stringify(env.VITE_APP_VERSION),
+      'import.meta.env.VITE_APP_ENTORNO': JSON.stringify(env.VITE_APP_ENTORNO),
+      'import.meta.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL),
     },
     plugins: [react()],
     base: '/',
@@ -16,8 +19,8 @@ export default defineConfig(({ command, mode }) => {
       assetsInlineLimit: 0,
       manifest: true,
       emptyOutDir: true,
+      // Eliminar rollupOptions.input para permitir que Vite procese index.html
       rollupOptions: {
-        input: 'src/main.jsx', // Ruta corregida
         output: {
           entryFileNames: 'assets/[name].js',
         },
