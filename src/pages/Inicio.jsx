@@ -2,6 +2,8 @@
 import { Box, Button, Card, CardContent, Typography } from '@mui/material'
 import { Login, Keyboard, Badge } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+import { TecladoIcono } from '../assets/svg/teclado_icono'
+import { CedulaIcon } from '../assets/svg/cedula'
 
 export default function Component() {
 	return (
@@ -39,7 +41,7 @@ export default function Component() {
 							<Button
 								variant="outlined"
 								color="primary"
-								startIcon={<Keyboard />}
+								startIcon={<TecladoIcono />}
 								className="mb-4 w-full h-9"
 							>
 								{' '}
@@ -55,7 +57,7 @@ export default function Component() {
 							<Button
 								variant="outlined"
 								color="primary"
-								startIcon={<Badge />}
+								startIcon={<CedulaIcon />}
 								className="mb-4 w-full h-9"
 							>
 								{' '}
