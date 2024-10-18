@@ -1,6 +1,7 @@
 // src/pages/Inicio.jsx
 import { Box, Button, Card, CardContent, Typography } from '@mui/material'
-import { Login, Keyboard, Badge } from '@mui/icons-material'
+import { Login } from '@mui/icons-material'
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos'
 import { Link } from 'react-router-dom'
 import { TecladoIcono } from '../assets/svg/teclado_icono'
 import { CedulaIcon } from '../assets/svg/cedula'
@@ -22,7 +23,7 @@ export default function Component() {
 						<CardContent>
 							<Button
 								component={Link}
-								to="/datosbasicos"
+								to="/datos-basicos"
 								variant="contained"
 								color="primary"
 								startIcon={<Login />}
@@ -64,6 +65,42 @@ export default function Component() {
 							</Button>
 							<Typography variant="body2" className="text-center pt-3">
 								Ingreso con Cédula de Identidad
+							</Typography>
+						</CardContent>
+					</Card>
+
+					<Card className="flex flex-col items-center p-4">
+						<CardContent>
+							<Button
+								variant="contained"
+								color="secondary"
+								component={Link}
+								to="/ingreso-solicitud-interno"
+								startIcon={<AddToPhotosIcon />}
+								className="mb-4 w-full h-9"
+							>
+								{' '}
+							</Button>
+							<Typography variant="body2" className="text-center pt-3">
+								Solicitud Ciudadana Interna
+							</Typography>
+						</CardContent>
+					</Card>
+
+					<Card className="flex flex-col items-center p-4">
+						<CardContent>
+							<Button
+								variant="contained"
+								color="warning"
+								component={Link}
+								to="/solicitudes-pendientes"
+								startIcon={<AddToPhotosIcon />}
+								className="mb-4 w-full h-9"
+							>
+								{' '}
+							</Button>
+							<Typography variant="body2" className="text-center pt-3">
+								Solicitudes Pendientes
 							</Typography>
 						</CardContent>
 					</Card>

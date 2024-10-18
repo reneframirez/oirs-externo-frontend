@@ -7,9 +7,8 @@ import Home from './pages/home.jsx'
 import DatosBasicos from './pages/DatosBasicos.jsx'
 import DatosCausa from './pages/DatosCausa.jsx'
 import Encuesta from './pages/Encuesta.jsx'
-import SolicitudesPendientes from './pages/SolicitudesPendientes.jsx';
-import IngresoSolicitudInterno from './pages/IngresoSolicitudInterno.jsx';
-
+import SolicitudesPendientes from './pages/SolicitudesPendientes.jsx'
+import IngresoSolicitudInterno from './pages/IngresoSolicitudInterno.jsx'
 
 function App() {
 	useSesionExpiradaCheck()
@@ -19,11 +18,11 @@ function App() {
 			<Route element={<DefaultLayout />}>
 				<Route index element={<Inicio />} />
 				<Route path="/home" element={<Home />} />
-				<Route path="/datosbasicos" element={<DatosBasicos />} />
-				<Route path="/datoscausa" element={<DatosCausa />} />
+				<Route path="/datos-basicos" element={<DatosBasicos />} />
+				<Route path="/datos-causa" element={<DatosCausa />} />
 				<Route path="/encuesta" element={<Encuesta />} />
-                <Route path="/solicitudespendientes" element={<SolicitudesPendientes />} />
-                <Route path="/IngresoSolicitudInterno" element={<IngresoSolicitudInterno />} />
+				<Route path="/solicitudes-pendientes" element={<SolicitudesPendientes />} />
+				<Route path="/ingreso-solicitud-interno" element={<IngresoSolicitudInterno />} />
 			</Route>
 		</Routes>
 	)

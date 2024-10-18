@@ -1,115 +1,95 @@
-import { Select, MenuItem, TextField, Button, FormControl, InputLabel } from '@mui/material'
-import { Person, Description, LocationOn, Home, Assignment, Email } from '@mui/icons-material'
+import { Button, Box, Typography, Rating, TextareaAutosize } from '@mui/material'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+const StarRating = ({ title, value, onChange }) => (
+	<Box>
+		<Typography variant="subtitle1">{title}</Typography>
+		<Rating
+			name={title}
+			value={value}
+			onChange={(event, newValue) => {
+				onChange(newValue)
+			}}
+			max={7}
+		/>
+	</Box>
+)
+StarRating.propTypes = {
+	title: PropTypes.string.isRequired,
+	value: PropTypes.number.isRequired,
+	onChange: PropTypes.func.isRequired,
+}
 
 export default function CitizenRequestForm() {
+	const navigate = useNavigate()
+	const [accessRating, setAccessRating] = useState(0)
+	const [easeRating, setEaseRating] = useState(0)
+	const [utilityRating, setUtilityRating] = useState(0)
+	const [suggestion, setSuggestion] = useState('')
+
+	const handleSubmit = (event) => {
+		event.preventDefault()
+		console.log({
+			accessRating,
+			easeRating,
+			utilityRating,
+			suggestion,
+		})
+		navigate('/')
+	}
+
 	return (
-		<div className="flex bg-gray-100">
-			{/* Sidebar */}
-			<div className="w-64 bg-blue-700 text-white p-6">
-				<div className="mb-8">
-					<img src="/placeholder.svg" alt="Defensoría Logo" className="w-32 h-32" />
-					<h2 className="text-xl font-bold mt-4">Defensoría</h2>
-					<p className="text-sm">Sin defensa no hay Justicia</p>
-				</div>
-				<nav>
-					<ul className="space-y-4">
-						<li className="flex items-center space-x-2">
-							<Person />
-							<span>Antecedentes personales</span>
-						</li>
-						<li className="flex items-center space-x-2 font-bold">
-							<Description />
-							<span>Antecedentes del requerimiento</span>
-						</li>
-						<li className="flex items-center space-x-2 text-blue-300">
-							<Assignment />
-							<span>Evalúe nuestra atención</span>
-						</li>
-					</ul>
-				</nav>
-				<div className="mt-auto">
-					<div className="bg-blue-600 h-2 w-full rounded-full mt-8">
-						<div className="bg-blue-400 h-full w-2/3 rounded-full"></div>
-					</div>
-					<p className="text-sm mt-2">Paso 2 de 3</p>
-				</div>
-			</div>
-
-			{/* Main Content */}
-			<div className="flex-1 p-8">
-				<h1 className="text-2xl font-bold text-blue-700 mb-2">
-					Formulario de Ingreso de Solicitudes Ciudadanas.
-				</h1>
-				<p className="text-sm text-gray-600 mb-6">
-					Para que la Defensoría trámite sus solicitudes, es obligatorio que llene los
-					espacios con asteriscos *
+		<>
+			<Box>
+				<h1 className="text-2xl font-bold text-blue-700 mb-2">Evalúe nuestra atención</h1>
+				<p className="text-sm text-gray-600 mb-5">
+					1: Muy malo, 2: Malo, 3: Menos que regular, 4: Regular, 5: Más que regular, 6:
+					Bueno, 7: Muy bueno
 				</p>
+			</Box>
+			<Box
+				component="form"
+				onSubmit={handleSubmit}
+				sx={{ p: 2, border: '1px solid #ccc', borderRadius: '8px' }}
+			>
+				<StarRating
+					title="1.- Acceso al formulario"
+					value={accessRating}
+					onChange={setAccessRating}
+				/>
+				<StarRating
+					title="2.- Facilidad para completar el formulario"
+					value={easeRating}
+					onChange={setEaseRating}
+				/>
+				<StarRating
+					title="3.- Utilidad del formulario"
+					value={utilityRating}
+					onChange={setUtilityRating}
+				/>
 
-				<h2 className="text-xl font-semibold text-blue-700 mb-4">
-					Antecedentes del requerimiento
-				</h2>
-
-				<form className="space-y-6">
-					<div className="grid grid-cols-2 gap-6">
-						<FormControl fullWidth>
-							<InputLabel>Región a la cual dirige su solicitud *</InputLabel>
-							<Select
-								label="Región a la cual dirige su solicitud *"
-								startAdornment={<LocationOn className="mr-2" />}
-							>
-								<MenuItem value="">Seleccione</MenuItem>
-							</Select>
-						</FormControl>
-
-						<FormControl fullWidth>
-							<InputLabel>Comuna a la cual dirige su solicitud *</InputLabel>
-							<Select
-								label="Comuna a la cual dirige su solicitud *"
-								startAdornment={<Home className="mr-2" />}
-							>
-								<MenuItem value="">Seleccione</MenuItem>
-							</Select>
-						</FormControl>
-
-						<FormControl fullWidth>
-							<InputLabel>Tipo solicitud *</InputLabel>
-							<Select
-								label="Tipo solicitud *"
-								startAdornment={<Assignment className="mr-2" />}
-							>
-								<MenuItem value="">Seleccione</MenuItem>
-							</Select>
-						</FormControl>
-
-						<FormControl fullWidth>
-							<InputLabel>¿Cómo desea recibir la respuesta? *</InputLabel>
-							<Select
-								label="¿Cómo desea recibir la respuesta? *"
-								startAdornment={<Email className="mr-2" />}
-							>
-								<MenuItem value="">Seleccione</MenuItem>
-							</Select>
-						</FormControl>
-					</div>
-
-					<TextField
-						fullWidth
-						multiline
-						rows={4}
-						label="Detalle solicitud *"
-						variant="outlined"
+				<Box sx={{ mt: 2 }}>
+					<Typography variant="subtitle1">Sugerencias</Typography>
+					<TextareaAutosize
+						minRows={3}
+						placeholder="Escribe tu sugerencia aquí..."
+						value={suggestion}
+						onChange={(e) => setSuggestion(e.target.value)}
+						style={{ width: '100%', borderRadius: '4px', padding: '8px' }}
 					/>
+				</Box>
 
-					<div className="flex justify-between">
-						<Button variant="contained" color="inherit">
-							Volver
-						</Button>
-						<Button variant="contained" color="primary">
-							Siguiente
-						</Button>
-					</div>
-				</form>
-			</div>
-		</div>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+					<Button variant="outlined" onClick={() => navigate(-1)}>
+						Volver
+					</Button>
+					<Button type="submit" variant="contained">
+						Enviar
+					</Button>
+				</Box>
+			</Box>
+		</>
 	)
 }
