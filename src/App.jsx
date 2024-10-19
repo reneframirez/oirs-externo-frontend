@@ -10,7 +10,7 @@ import DatosBasicos from './pages/oirs/solicitud-ciudadana-externa/DatosBasicos.
 import DatosCausa from './pages/oirs/solicitud-ciudadana-externa/DatosCausa.jsx'
 import Encuesta from './pages/oirs/solicitud-ciudadana-externa/Encuesta.jsx'
 import Inicio from './pages/Inicio.jsx'
-import IngresoSolicitudInterno from './pages/oirs/solicitud-ciudadana-funcionario/IngresoSolicitudInterno.jsx'
+import IngresoSolicitudInterno from './pages/oirs/solicitud-ciudadana-funcionario/ingreso-solicitud/index.jsx'
 import SolicitudesPendientes from './pages/oirs/solicitud-ciudadana-funcionario/SolicitudesPendientes.jsx'
 
 function App() {
