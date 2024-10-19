@@ -1,4 +1,4 @@
-import { Mail, Phone } from '@mui/icons-material'
+import { Mail, Phone } from '@mui/icons-material';
 import {
 	FormControl,
 	FormControlLabel,
@@ -10,17 +10,17 @@ import {
 	RadioGroup,
 	Select,
 	TextField,
-} from '@mui/material'
-import { Calendar, FileText, MapPin, User } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
+} from '@mui/material';
+import { Calendar, FileText, MapPin, User } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const AntecedentesUsuario = ({ datosIniciales = {} }) => {
-	const [tipoIdentificacion, setTipoIdentificacion] = useState('')
-	const [regionResidencia, setRegionResidencia] = useState('')
-	const [comunaResidencia, setComunaResidencia] = useState('')
-	const [escolaridad, setEscolaridad] = useState('')
-	const [etnia, setEtnia] = useState('')
+	const [tipoIdentificacion, setTipoIdentificacion] = useState('');
+	const [regionResidencia, setRegionResidencia] = useState('');
+	const [comunaResidencia, setComunaResidencia] = useState('');
+	const [escolaridad, setEscolaridad] = useState('');
+	const [etnia, setEtnia] = useState('');
 
 	const regionsOfChile = [
 		'Arica y Parinacota',
@@ -39,7 +39,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 		'Los Lagos',
 		'Aysén del General Carlos Ibáñez del Campo',
 		'Magallanes y de la Antártica Chilena',
-	]
+	];
 
 	const comunas = [
 		'Santiago',
@@ -54,7 +54,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 		'Chillán',
 		'Iquique',
 		'Puerto Montt',
-	]
+	];
 
 	const escolaridades = [
 		'Educación Básica Incompleta',
@@ -66,7 +66,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 		'Educación Universitaria Incompleta',
 		'Educación Universitaria Completa',
 		'Postgrado',
-	]
+	];
 
 	const etnias = [
 		'Mapuche',
@@ -79,17 +79,17 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 		'Kawésqar',
 		'Yagán',
 		'No pertenece a ningún pueblo indígena',
-	]
+	];
 
 	useEffect(() => {
 		if (datosIniciales) {
-			setTipoIdentificacion(datosIniciales.tipoIdentificacion || '')
-			setRegionResidencia(datosIniciales.regionResidencia || '')
-			setComunaResidencia(datosIniciales.comunaResidencia || '')
-			setEscolaridad(datosIniciales.escolaridad || '')
-			setEtnia(datosIniciales.etnia || '')
+			setTipoIdentificacion(datosIniciales.tipoIdentificacion || '');
+			setRegionResidencia(datosIniciales.regionResidencia || '');
+			setComunaResidencia(datosIniciales.comunaResidencia || '');
+			setEscolaridad(datosIniciales.escolaridad || '');
+			setEtnia(datosIniciales.etnia || '');
 		}
-	}, [datosIniciales])
+	}, [datosIniciales]);
 	return (
 		<>
 			<Grid container spacing={2} pb={1}>
@@ -157,6 +157,19 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						InputProps={{
 							startAdornment: <User className="mr-2 text-muted-foreground" />,
 						}}
+						sx={{
+							'& .Mui-disabled': {
+								color: '#000000', // Cambia el color del texto
+								'-webkit-text-fill-color': '#000000', // Asegura que el color del texto sea negro en todos los navegadores
+							},
+							'& .MuiInputLabel-root.Mui-disabled': {
+								color: '#000000', // Cambia el color del label
+							},
+							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
+								{
+									borderColor: '#000000', // Cambia el color del borde
+								},
+						}}
 					/>
 				</Grid>
 				<Grid item xs={12} md={4}>
@@ -172,6 +185,19 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						InputProps={{
 							startAdornment: <User className="mr-2 text-muted-foreground" />,
 						}}
+						sx={{
+							'& .Mui-disabled': {
+								color: '#000000', // Cambia el color del texto
+								'-webkit-text-fill-color': '#000000', // Asegura que el color del texto sea negro en todos los navegadores
+							},
+							'& .MuiInputLabel-root.Mui-disabled': {
+								color: '#000000', // Cambia el color del label
+							},
+							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
+								{
+									borderColor: '#000000', // Cambia el color del borde
+								},
+						}}
 					/>
 				</Grid>
 				<Grid item xs={12} md={4}>
@@ -185,6 +211,19 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						disabled={!!datosIniciales.apellidoMaterno}
 						InputProps={{
 							startAdornment: <User className="mr-2 text-muted-foreground" />,
+						}}
+						sx={{
+							'& .Mui-disabled': {
+								color: '#000000', // Cambia el color del texto
+								'-webkit-text-fill-color': '#000000', // Asegura que el color del texto sea negro en todos los navegadores
+							},
+							'& .MuiInputLabel-root.Mui-disabled': {
+								color: '#000000', // Cambia el color del label
+							},
+							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
+								{
+									borderColor: '#000000', // Cambia el color del borde
+								},
 						}}
 					/>
 				</Grid>
@@ -205,6 +244,19 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						InputProps={{
 							startAdornment: <Calendar className="mr-2 text-muted-foreground" />,
 						}}
+						sx={{
+							'& .Mui-disabled': {
+								color: '#000000', // Cambia el color del texto
+								'-webkit-text-fill-color': '#000000', // Asegura que el color del texto sea negro en todos los navegadores
+							},
+							'& .MuiInputLabel-root.Mui-disabled': {
+								color: '#000000', // Cambia el color del label
+							},
+							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
+								{
+									borderColor: '#000000', // Cambia el color del borde
+								},
+						}}
 					/>
 				</Grid>
 				<Grid item xs={12} md={4}>
@@ -218,6 +270,19 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						disabled={!!datosIniciales.telefono}
 						InputProps={{
 							startAdornment: <Phone className="mr-2 text-muted-foreground" />,
+						}}
+						sx={{
+							'& .Mui-disabled': {
+								color: '#000000', // Cambia el color del texto
+								'-webkit-text-fill-color': '#000000', // Asegura que el color del texto sea negro en todos los navegadores
+							},
+							'& .MuiInputLabel-root.Mui-disabled': {
+								color: '#000000', // Cambia el color del label
+							},
+							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
+								{
+									borderColor: '#000000', // Cambia el color del borde
+								},
 						}}
 					/>
 				</Grid>
@@ -233,6 +298,19 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						disabled={!!datosIniciales.email}
 						InputProps={{
 							startAdornment: <Mail className="mr-2 text-muted-foreground" />,
+						}}
+						sx={{
+							'& .Mui-disabled': {
+								color: '#000000', // Cambia el color del texto
+								'-webkit-text-fill-color': '#000000', // Asegura que el color del texto sea negro en todos los navegadores
+							},
+							'& .MuiInputLabel-root.Mui-disabled': {
+								color: '#000000', // Cambia el color del label
+							},
+							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
+								{
+									borderColor: '#000000', // Cambia el color del borde
+								},
 						}}
 					/>
 				</Grid>
@@ -250,6 +328,19 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						disabled={!!datosIniciales.direccion}
 						InputProps={{
 							startAdornment: <MapPin className="mr-2 text-muted-foreground" />,
+						}}
+						sx={{
+							'& .Mui-disabled': {
+								color: '#000000', // Cambia el color del texto
+								'-webkit-text-fill-color': '#000000', // Asegura que el color del texto sea negro en todos los navegadores
+							},
+							'& .MuiInputLabel-root.Mui-disabled': {
+								color: '#000000', // Cambia el color del label
+							},
+							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
+								{
+									borderColor: '#000000', // Cambia el color del borde
+								},
 						}}
 					/>
 				</Grid>
@@ -334,8 +425,8 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 				</Grid>
 			</Grid>
 		</>
-	)
-}
+	);
+};
 AntecedentesUsuario.propTypes = {
 	datosIniciales: PropTypes.shape({
 		tipoIdentificacion: PropTypes.string,
@@ -352,6 +443,6 @@ AntecedentesUsuario.propTypes = {
 		email: PropTypes.string,
 		direccion: PropTypes.string,
 	}),
-}
+};
 
-export default AntecedentesUsuario
+export default AntecedentesUsuario;

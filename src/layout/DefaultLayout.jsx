@@ -1,18 +1,39 @@
-import { Outlet, useLocation } from 'react-router-dom'
-import { Box, IconButton, useMediaQuery, useTheme, Card, CardContent } from '@mui/material'
-import { Assignment, Description, Person } from '@mui/icons-material'
+import { Outlet, useLocation, Link } from 'react-router-dom';
+import {
+	Box,
+	IconButton,
+	useMediaQuery,
+	useTheme,
+	Card,
+	CardContent,
+	Breadcrumbs,
+	Typography,
+} from '@mui/material';
+import { Assignment, Description, Person } from '@mui/icons-material';
 
 const DefaultLayout = () => {
-	const location = useLocation()
-	const theme = useTheme()
-	const isMobile = useMediaQuery(theme.breakpoints.down('sm')) // Detectar si es una pantalla pequeña (móvil)
+	const location = useLocation();
+	const theme = useTheme();
+	const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Detectar si es una pantalla pequeña (móvil)
+
+	// Lógica para ocultar el menú lateral
 	const hideNav =
 		location.pathname === '/' ||
 		location.pathname === '/home' ||
-		location.pathname === '/oirs/solicitud-ciudadana-externa' ||
-		location.pathname === '/oirs/solicitud-ciudadana-funcionario'
+		location.pathname.startsWith('/oirs/solicitud-ciudadana-funcionario'); // Ocultar si la ruta es oirs/solicitud-ciudadana-funcionario o sus hijos
 
-	const isActive = (path) => location.pathname === path
+	const isActive = (path) => location.pathname === path;
+
+	// Función para crear los breadcrumbs
+	const getBreadcrumbs = () => {
+		const pathParts = location.pathname.split('/').filter(Boolean);
+		const breadcrumbs = pathParts.map((part, index) => {
+			const path = `/${pathParts.slice(0, index + 1).join('/')}`;
+			return { label: part.replace(/-/g, ' '), path }; // Reemplazar guiones con espacios para mejorar la legibilidad
+		});
+
+		return breadcrumbs;
+	};
 
 	return (
 		<Box
@@ -23,7 +44,7 @@ const DefaultLayout = () => {
 		>
 			<Card variant="outlined" sx={{ flex: 1, width: '100%', margin: 0 }}>
 				<CardContent sx={{ display: 'flex', height: '100%' }}>
-					{' '}
+					{/* Menú lateral */}
 					{!hideNav && (
 						<Box
 							sx={{
@@ -146,14 +167,33 @@ const DefaultLayout = () => {
 							</Box>
 						</Box>
 					)}
-					{/* Main content */}
+
+					{/* Contenedor para Breadcrumbs y Main content */}
 					<Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', p: 2 }}>
-						<Outlet />
+						{/* Breadcrumbs */}
+						{hideNav && ( // Mostrar Breadcrumbs solo si el menú lateral está oculto
+							<Box sx={{ mb: 2 }} pb={3}>
+								<Breadcrumbs aria-label="breadcrumb">
+									{getBreadcrumbs().map((breadcrumb, index) => (
+										<Link key={index} to={breadcrumb.path}>
+											<Typography color="text.primary">
+												{breadcrumb.label}
+											</Typography>
+										</Link>
+									))}
+								</Breadcrumbs>
+							</Box>
+						)}
+
+						{/* Main content */}
+						<Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+							<Outlet />
+						</Box>
 					</Box>
 				</CardContent>
 			</Card>
 		</Box>
-	)
-}
+	);
+};
 
-export default DefaultLayout
+export default DefaultLayout;
