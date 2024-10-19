@@ -10,6 +10,8 @@ import DatosBasicos from './pages/oirs/solicitud-ciudadana-externa/DatosBasicos.
 import DatosCausa from './pages/oirs/solicitud-ciudadana-externa/DatosCausa.jsx'
 import Encuesta from './pages/oirs/solicitud-ciudadana-externa/Encuesta.jsx'
 import Inicio from './pages/Inicio.jsx'
+import IngresoSolicitudInterno from './pages/oirs/solicitud-ciudadana-funcionario/IngresoSolicitudInterno.jsx'
+import SolicitudesPendientes from './pages/oirs/solicitud-ciudadana-funcionario/SolicitudesPendientes.jsx'
 
 function App() {
 	useSesionExpiradaCheck()
@@ -32,8 +34,11 @@ function App() {
 						path="solicitud-ciudadana-funcionario"
 						element={<SolicitudCiudadanaFuncionario />}
 					>
-						<Route path="ingreso-solicitud-interno" element={<DatosBasicos />} />
-						<Route path="solicitudes-pendientes" element={<DatosCausa />} />
+						<Route
+							path="ingreso-solicitud-interno"
+							element={<IngresoSolicitudInterno />}
+						/>
+						<Route path="solicitudes-pendientes" element={<SolicitudesPendientes />} />
 					</Route>
 				</Route>
 			</Routes>
