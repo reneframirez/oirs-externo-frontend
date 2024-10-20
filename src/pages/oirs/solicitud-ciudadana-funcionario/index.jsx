@@ -1,19 +1,13 @@
 // src/pages/Inicio.jsx
-import {
-	Box,
-	Button,
-	Card,
-	CardContent,
-	Typography
-} from '@mui/material'
-import AddToPhotosIcon from '@mui/icons-material/AddToPhotos'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import { Link, Outlet, useLocation } from 'react-router-dom'
+import { Box, Button, Card, CardContent, Typography } from '@mui/material';
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const SolicitudCiudadanaFuncionario = () => {
-	const location = useLocation()
+	const location = useLocation();
 
-	const isBasePath = location.pathname === '/oirs/solicitud-ciudadana-funcionario'
+	const isBasePath = location.pathname === '/oirs/solicitud-ciudadana-funcionario';
 	return (
 		<Box className="flex flex-col items-center justify-center">
 			{isBasePath && (
@@ -35,7 +29,10 @@ const SolicitudCiudadanaFuncionario = () => {
 					</Typography>
 
 					<Box className="flex flex-col md:flex-row items-center justify-center gap-8 pt-16">
-						<Card variant="outlined" className="flex flex-col items-center p-4 relative">
+						<Card
+							variant="outlined"
+							className="flex flex-col items-center p-4 relative"
+						>
 							<CardContent>
 								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
 									<Typography variant="caption" className="text-gray-500">
@@ -64,7 +61,10 @@ const SolicitudCiudadanaFuncionario = () => {
 						</Box>
 
 						{/* Nueva tarjeta de Tipificación de solicitud */}
-						<Card variant="outlined" className="flex flex-col items-center p-4 relative">
+						<Card
+							variant="outlined"
+							className="flex flex-col items-center p-4 relative"
+						>
 							<CardContent>
 								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
 									<Typography variant="caption" className="text-gray-500">
@@ -92,7 +92,10 @@ const SolicitudCiudadanaFuncionario = () => {
 							<ArrowForwardIcon fontSize="large" className="text-blue-700" />
 						</Box>
 
-						<Card variant="outlined" className="flex flex-col items-center p-4 relative">
+						<Card
+							variant="outlined"
+							className="flex flex-col items-center p-4 relative"
+						>
 							<CardContent>
 								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
 									<Typography variant="caption" className="text-gray-500">
@@ -114,6 +117,38 @@ const SolicitudCiudadanaFuncionario = () => {
 								</Typography>
 							</CardContent>
 						</Card>
+					</Box>
+
+					<Box className="flex flex-col md:flex-row items-center justify-center gap-8 pt-16">
+						<Card
+							variant="outlined"
+							className="flex flex-col items-center p-4 relative"
+						>
+							<CardContent>
+								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+									<Typography variant="caption" className="text-gray-500">
+										4
+									</Typography>
+								</Box>
+								<Button
+									variant="contained"
+									color="warning"
+									component={Link}
+									to="/oirs/solicitud-ciudadana-funcionario/secciones"
+									startIcon={<AddToPhotosIcon />}
+									className="mb-4 w-full h-9"
+								>
+									{' '}
+								</Button>
+								<Typography variant="body2" className="text-center pt-3">
+									Secciones
+								</Typography>
+							</CardContent>
+						</Card>
+
+						<Box className="flex items-center justify-center">
+							<ArrowForwardIcon fontSize="large" className="text-blue-700" />
+						</Box>
 					</Box>
 
 					<Box className="flex flex-col items-center justify-center py-10">
@@ -141,7 +176,7 @@ const SolicitudCiudadanaFuncionario = () => {
 			{/* Aquí se renderizan las rutas hijas */}
 			<Outlet />
 		</Box>
-	)
-}
+	);
+};
 
-export default SolicitudCiudadanaFuncionario
+export default SolicitudCiudadanaFuncionario;
