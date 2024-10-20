@@ -21,7 +21,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 	const [comunaResidencia, setComunaResidencia] = useState('');
 	const [escolaridad, setEscolaridad] = useState('');
 	const [etnia, setEtnia] = useState('');
-
+	const [genero, setGenero] = useState('');
 	const regionsOfChile = [
 		'Arica y Parinacota',
 		'Tarapacá',
@@ -81,6 +81,8 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 		'No pertenece a ningún pueblo indígena',
 	];
 
+	const generos = ['Masculino', 'Femenino','Otro'];
+
 	useEffect(() => {
 		if (datosIniciales) {
 			setTipoIdentificacion(datosIniciales.tipoIdentificacion || '');
@@ -88,25 +90,29 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 			setComunaResidencia(datosIniciales.comunaResidencia || '');
 			setEscolaridad(datosIniciales.escolaridad || '');
 			setEtnia(datosIniciales.etnia || '');
+			setGenero(datosIniciales.genero || '');
 		}
 	}, [datosIniciales]);
 	return (
 		<>
-			<Grid container spacing={2} pb={1}>
-				<Grid item xs={12} md={2}>
-					<FormControl component="fieldset" fullWidth>
-						<FormLabel component="legend">Tipo de Persona</FormLabel>
-						<RadioGroup row defaultValue="natural">
-							<FormControlLabel value="natural" control={<Radio />} label="Natural" />
-							<FormControlLabel
-								value="juridica"
-								control={<Radio />}
-								label="Jurídica"
-							/>
-						</RadioGroup>
-					</FormControl>
-				</Grid>
-			</Grid>
+<Grid container spacing={2} pb={1}>
+  <Grid item xs={12}>
+    <FormControl component="fieldset" fullWidth>
+      <Grid container alignItems="center">
+        <Grid item xs={3} md={2}>
+          <FormLabel component="legend">Tipo de Persona</FormLabel>
+        </Grid>
+        <Grid item xs={9} md={10}>
+          <RadioGroup row defaultValue="natural">
+            <FormControlLabel value="natural" control={<Radio />} label="Natural" />
+            <FormControlLabel value="juridica" control={<Radio />} label="Jurídica" />
+          </RadioGroup>
+        </Grid>
+      </Grid>
+    </FormControl>
+  </Grid>
+</Grid>
+
 
 			<Grid container spacing={2} pb={3}>
 				<Grid item xs={12} md={2}>
@@ -227,9 +233,26 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						}}
 					/>
 				</Grid>
-			</Grid>
 
-			<Grid container spacing={2} pb={3}>
+				<Grid item xs={12} md={4}>
+					<FormControl fullWidth size="small">
+						<InputLabel id="genero-label">Genero</InputLabel>
+						<Select
+							labelId="genero-label"
+							id="genero"
+							value={genero}
+							label="Genero"
+							onChange={(e) => setGenero(e.target.value)}
+							disabled={!!datosIniciales.genero}
+						>
+							{generos.map((genero) => (
+								<MenuItem key={genero} value={genero}>
+									{genero}
+								</MenuItem>
+							))}
+						</Select>
+					</FormControl>
+				</Grid>
 				<Grid item xs={12} md={4}>
 					<TextField
 						id="fecha-nacimiento"
@@ -259,6 +282,10 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						}}
 					/>
 				</Grid>
+			</Grid>
+
+			<Grid container spacing={2} pb={3}>
+
 				<Grid item xs={12} md={4}>
 					<TextField
 						id="telefono"
@@ -314,9 +341,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						}}
 					/>
 				</Grid>
-			</Grid>
 
-			<Grid container spacing={2} pb={3}>
 				<Grid item xs={12} md={4}>
 					<TextField
 						id="direccion"
@@ -344,6 +369,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						}}
 					/>
 				</Grid>
+
 				<Grid item xs={12} md={4}>
 					<FormControl fullWidth size="small">
 						<InputLabel id="region-residencia-label">Región residencia</InputLabel>
@@ -363,6 +389,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						</Select>
 					</FormControl>
 				</Grid>
+
 				<Grid item xs={12} md={4}>
 					<FormControl fullWidth size="small">
 						<InputLabel id="comuna-residencia-label">Comuna residencia</InputLabel>
@@ -382,9 +409,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						</Select>
 					</FormControl>
 				</Grid>
-			</Grid>
 
-			<Grid container spacing={2} pb={3}>
 				<Grid item xs={12} md={4}>
 					<FormControl fullWidth size="small">
 						<InputLabel id="escolaridad-label">Escolaridad</InputLabel>
