@@ -13,6 +13,8 @@ import Inicio from './pages/Inicio.jsx'
 import IngresoSolicitudInterno from './pages/oirs/solicitud-ciudadana-funcionario/ingreso-solicitud/index.jsx'
 import SolicitudesPendientes from './pages/oirs/solicitud-ciudadana-funcionario/SolicitudesPendientes.jsx'
 import SeccionesOrdenadas from './pages/oirs/solicitud-ciudadana-funcionario/secciones/index.jsx'
+import AntUsuario from './pages/oirs/solicitud-ciudadana-funcionario/secciones/AntUsuario.jsx'
+import IndexSecciones from './pages/oirs/solicitud-ciudadana-funcionario/secciones/index.jsx'
 
 function App() {
 	useSesionExpiradaCheck()
@@ -41,6 +43,8 @@ function App() {
 						/>
 						<Route path="solicitudes-pendientes" element={<SolicitudesPendientes />} />
 						<Route path="secciones" element={<SeccionesOrdenadas />} />
+						<Route path="ant-usuario" element={<AntUsuario />} />
+						<Route path="index-secciones" element={<IndexSecciones />} />
 					</Route>
 				</Route>
 			</Routes>
