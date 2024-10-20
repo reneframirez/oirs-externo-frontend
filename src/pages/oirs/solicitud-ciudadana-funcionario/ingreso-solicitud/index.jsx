@@ -13,7 +13,7 @@ import { Grid, TextField } from '@mui/material';
 import { CalendarMonth } from '@mui/icons-material';
 import InformacionAdicional from './InformacionAdicional';
 
-const datosIniciales = {
+/*const datosIniciales = {
 	tipoIdentificacion: 'RUT',
 	regionResidencia: 'Metropolitana de Santiago',
 	comunaResidencia: 'Santiago',
@@ -27,8 +27,11 @@ const datosIniciales = {
 	telefono: '+56912345678',
 	email: 'prueba@prueba.cl',
 	direccion: 'Calle Falsa 123',
+};*/
+
+const Finalizacion = () => {
+	return <Typography>¡Gracias por ingresar la solicitud! Se ha creado con éxito.</Typography>;
 };
-// Arreglo de steps que contiene componentes en vez de cadenas de texto
 const steps = [
 	{
 		label: 'Antecedentes del Usuario',
@@ -41,6 +44,10 @@ const steps = [
 	{
 		label: 'Información Adicional',
 		content: <InformacionAdicional />,
+	},
+	{
+		label: 'Finalizado',
+		content: <Finalizacion />,
 	},
 ];
 
@@ -94,32 +101,26 @@ export default function IngresoSolicitudInterno() {
 			<Stepper activeStep={activeStep} orientation="vertical">
 				{steps.map((step, index) => (
 					<Step key={step.label}>
-						<StepLabel
-							optional={
-								index === steps.length - 1 ? (
-									<Typography variant="caption">Last step</Typography>
-								) : null
-							}
-						>
-							{step.label}
-						</StepLabel>
+						<StepLabel>{step.label}</StepLabel>
 						<StepContent>
-							{step.content}
-							<Box sx={{ mb: 2 }}>
-								<Button
-									variant="contained"
-									onClick={handleNext}
-									sx={{ mt: 1, mr: 1 }}
-								>
-									{index === steps.length - 1 ? 'Terminar' : 'Continuar'}
-								</Button>
-								<Button
-									disabled={index === 0}
-									onClick={handleBack}
-									sx={{ mt: 1, mr: 1 }}
-								>
-									Volver
-								</Button>
+							<Box sx={{ m: 2 }}>
+								{step.content}
+								<Box sx={{ mb: 2 }}>
+									<Button
+										variant="contained"
+										onClick={handleNext}
+										sx={{ mt: 1, mr: 1 }}
+									>
+										{index === steps.length - 1 ? 'Terminar' : 'Continuar'}
+									</Button>
+									<Button
+										disabled={index === 0}
+										onClick={handleBack}
+										sx={{ mt: 1, mr: 1 }}
+									>
+										Volver
+									</Button>
+								</Box>
 							</Box>
 						</StepContent>
 					</Step>

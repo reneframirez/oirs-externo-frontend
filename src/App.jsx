@@ -1,21 +1,21 @@
 // src/App.jsx
-import { useSesionExpiradaCheck } from './utils/SesionExpiradaProvider'
-import { Route, Routes } from 'react-router-dom'
-import DefaultLayout from './layout/DefaultLayout.jsx'
+import { useSesionExpiradaCheck } from './utils/SesionExpiradaProvider';
+import { Route, Routes } from 'react-router-dom';
+import DefaultLayout from './layout/DefaultLayout.jsx';
 
-import SolicitudCiudadanaExterna from './pages/oirs/solicitud-ciudadana-externa/index.jsx'
-import SolicitudCiudadanaFuncionario from './pages/oirs/solicitud-ciudadana-funcionario/index.jsx'
-import Oirs from './pages/Inicio.jsx'
-import DatosBasicos from './pages/oirs/solicitud-ciudadana-externa/DatosBasicos.jsx'
-import DatosCausa from './pages/oirs/solicitud-ciudadana-externa/DatosCausa.jsx'
-import Encuesta from './pages/oirs/solicitud-ciudadana-externa/Encuesta.jsx'
-import Inicio from './pages/Inicio.jsx'
-import IngresoSolicitudInterno from './pages/oirs/solicitud-ciudadana-funcionario/ingreso-solicitud/index.jsx'
-import SolicitudesPendientes from './pages/oirs/solicitud-ciudadana-funcionario/SolicitudesPendientes.jsx'
-import SeccionesOrdenadas from './pages/oirs/solicitud-ciudadana-funcionario/secciones/index.jsx'
+import SolicitudCiudadanaExterna from './pages/oirs/solicitud-ciudadana-externa/index.jsx';
+import SolicitudCiudadanaFuncionario from './pages/oirs/solicitud-ciudadana-funcionario/index.jsx';
+import Oirs from './pages/Inicio.jsx';
+import DatosBasicos from './pages/oirs/solicitud-ciudadana-externa/DatosBasicos.jsx';
+import DatosCausa from './pages/oirs/solicitud-ciudadana-externa/DatosCausa.jsx';
+import Encuesta from './pages/oirs/solicitud-ciudadana-externa/Encuesta.jsx';
+import Inicio from './pages/Inicio.jsx';
+import IngresoSolicitudInterno from './pages/oirs/solicitud-ciudadana-funcionario/ingreso-solicitud/index.jsx';
+import SolicitudesPendientes from './pages/oirs/solicitud-ciudadana-funcionario/SolicitudesPendientes.jsx';
+import SeccionesOrdenadas from './pages/oirs/solicitud-ciudadana-funcionario/secciones/index.jsx';
 
 function App() {
-	useSesionExpiradaCheck()
+	useSesionExpiradaCheck();
 
 	return (
 		<>
@@ -45,7 +45,7 @@ function App() {
 				</Route>
 			</Routes>
 		</>
-	)
+	);
 }
 
-export default App
+export default App;
