@@ -1,7 +1,7 @@
 import AntUsuario from './AntUsuario';
 import { useState } from 'react';
 
-const SeccionesOrdenadas = () => {
+export default function SeccionesOrdenadas() {
 	const [seccionActual, setSeccionActual] = useState(0);
 
 	const datosDelUsuario = {
@@ -54,6 +54,4 @@ const SeccionesOrdenadas = () => {
 			</div>
 		</>
 	);
-};
-
-export default SeccionesOrdenadas;
+}
