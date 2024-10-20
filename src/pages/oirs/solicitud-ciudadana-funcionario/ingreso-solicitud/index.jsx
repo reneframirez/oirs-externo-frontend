@@ -1,18 +1,17 @@
-import Box from '@mui/material/Box'
-import Stepper from '@mui/material/Stepper'
-import Step from '@mui/material/Step'
-import StepLabel from '@mui/material/StepLabel'
-import StepContent from '@mui/material/StepContent'
-import Button from '@mui/material/Button'
-import Paper from '@mui/material/Paper'
-import Typography from '@mui/material/Typography'
-import { useState } from 'react'
-import AntecedentesUsuario from './AntecedentesUsuario'
-import AntecedentesRequerimiento from './AntecedentesRequerimiento'
-import { Grid, TextField } from '@mui/material'
-import { CalendarMonth } from '@mui/icons-material'
-
-const CreateAd = () => <Typography>Tu mamita esta aquí</Typography>
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import { useState } from 'react';
+import AntecedentesUsuario from './AntecedentesUsuario';
+import AntecedentesRequerimiento from './AntecedentesRequerimiento';
+import { Grid, TextField } from '@mui/material';
+import { CalendarMonth } from '@mui/icons-material';
+import InformacionAdicional from './InformacionAdicional';
 
 const datosIniciales = {
 	tipoIdentificacion: 'RUT',
@@ -28,37 +27,37 @@ const datosIniciales = {
 	telefono: '+56912345678',
 	email: 'prueba@prueba.cl',
 	direccion: 'Calle Falsa 123',
-}
+};
 // Arreglo de steps que contiene componentes en vez de cadenas de texto
 const steps = [
 	{
 		label: 'Antecedentes del Usuario',
-		content: <AntecedentesUsuario datosIniciales={datosIniciales} />,
+		content: <AntecedentesUsuario />,
 	},
 	{
 		label: 'Antecedentes del Requerimiento',
 		content: <AntecedentesRequerimiento />,
 	},
 	{
-		label: 'Tu mamita',
-		content: <CreateAd />,
+		label: 'Información Adicional',
+		content: <InformacionAdicional />,
 	},
-]
+];
 
 export default function IngresoSolicitudInterno() {
-	const [activeStep, setActiveStep] = useState(0)
+	const [activeStep, setActiveStep] = useState(0);
 
 	const handleNext = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep + 1)
-	}
+		setActiveStep((prevActiveStep) => prevActiveStep + 1);
+	};
 
 	const handleBack = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep - 1)
-	}
+		setActiveStep((prevActiveStep) => prevActiveStep - 1);
+	};
 
 	const handleReset = () => {
-		setActiveStep(0)
-	}
+		setActiveStep(0);
+	};
 
 	return (
 		<Box sx={{ width: '100%' }}>
@@ -135,5 +134,5 @@ export default function IngresoSolicitudInterno() {
 				</Paper>
 			)}
 		</Box>
-	)
+	);
 }
