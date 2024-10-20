@@ -35,10 +35,59 @@ export default function ModalBusquedaCausa({ open, onClose, onSearch, onSelectRe
   const handleSearch = () => {
     // Simulating a search operation
     const results = [
-      { estado: 'Abierta', run: '13022798-8', nombreImputado: 'René Francisco Ramírez Ulloa', nombreDefensor: 'Gonzalo Berrios Díaz', roid: 'DPP-00008-19' },
-      { estado: 'Abierta', run: '13022798-8', nombreImputado: 'Elva De Las Mercedes Valdes Alegría', nombreDefensor: 'Álvaro Lara Vidal', roid: 'DPP-00008-11' },
-      { estado: 'Cerrada', run: '13022799-6', nombreImputado: 'Alexis Antonio Calderón Cruz', nombreDefensor: 'Marco Carlos Martínez Lezcano', roid: 'QLP-01526-12' },
-    ];
+        {
+          estado: 'Abierta',
+          run: '13022798-8',
+          nombreImputado: 'René Francisco Ramírez Ulloa',
+          apellidoPaterno: 'Ramírez',
+          apellidoMaterno: 'Ulloa',
+          fechaNacimiento: '15-05-1985',
+          genero: 'Masculino',
+          nivelEscolaridad: 'Universitario',
+          nacionalidad: 'Chilena',
+          rudPeticion: 'RUD-001',
+          ruc: 'RUC-001',
+          tribunal: 'Tribunal Santiago',
+          rit: 'RIT-001',
+          nombreDefensor: 'Gonzalo Berrios Díaz',
+          roid: 'DPP-00008-19',
+        },
+        {
+          estado: 'Abierta',
+          run: '13022798-8',
+          nombreImputado: 'Elva De Las Mercedes Valdes Alegría',
+          apellidoPaterno: 'Valdes',
+          apellidoMaterno: 'Alegría',
+          fechaNacimiento: '22-08-1979',
+          genero: 'Femenino',
+          nivelEscolaridad: 'Secundario Completo',
+          nacionalidad: 'Chilena',
+          rudPeticion: 'RUD-002',
+          ruc: 'RUC-002',
+          tribunal: 'Tribunal Valparaíso',
+          rit: 'RIT-002',
+          nombreDefensor: 'Álvaro Lara Vidal',
+          roid: 'DPP-00008-11',
+        },
+        {
+          estado: 'Cerrada',
+          run: '13022799-6',
+          nombreImputado: 'Alexis Antonio Calderón Cruz',
+          apellidoPaterno: 'Calderón',
+          apellidoMaterno: 'Cruz',
+          fechaNacimiento: '10-10-1980',
+          genero: 'Masculino',
+          nivelEscolaridad: 'Técnico Superior',
+          nacionalidad: 'Chilena',
+          rudPeticion: 'RUD-003',
+          ruc: 'RUC-003',
+          tribunal: 'Tribunal Concepción',
+          rit: 'RIT-003',
+          nombreDefensor: 'Marco Carlos Martínez Lezcano',
+          roid: 'QLP-01526-12',
+        },
+      ];
+      
     setSearchResults(results);
     onSearch(results);
   };
