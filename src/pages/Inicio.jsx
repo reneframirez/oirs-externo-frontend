@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardContent, Typography } from '@mui/material'
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Link } from 'react-router-dom'
 
 const Inicio = () => {
@@ -34,6 +35,9 @@ const Inicio = () => {
 						<Box className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-16">
 							<Card className="flex flex-col items-center p-4">
 								<CardContent>
+                                <Typography variant="body1" className="text-center pt-3">
+										Usuario Beneficiario
+									</Typography>                                    
 									<Button
 										variant="contained"
 										color="primary"
@@ -45,13 +49,16 @@ const Inicio = () => {
 										{' '}
 									</Button>
 									<Typography variant="body2" className="text-center pt-3">
-										Solicitud Ciudadana Externa
+										Solicitud Ciudadana
 									</Typography>
 								</CardContent>
 							</Card>
 
 							<Card className="flex flex-col items-center p-4">
 								<CardContent>
+                                <Typography variant="body1" className="text-center pt-3">
+										Usuario Funcionario
+									</Typography>                                        
 									<Button
 										variant="contained"
 										color="success"
@@ -63,7 +70,7 @@ const Inicio = () => {
 										{' '}
 									</Button>
 									<Typography variant="body2" className="text-center pt-3">
-										Solicitud Ciudadana Funcionario
+										Solicitud Ciudadana
 									</Typography>
 								</CardContent>
 							</Card>

@@ -38,7 +38,7 @@ export default function ModalBusquedaCausa({ open, onClose, onSearch, onSelectRe
         {
           estado: 'Abierta',
           run: '13022798-8',
-          nombreImputado: 'René Francisco Ramírez Ulloa',
+          nombreImputado: 'René Francisco ',
           apellidoPaterno: 'Ramírez',
           apellidoMaterno: 'Ulloa',
           fechaNacimiento: '15-05-1985',
@@ -55,7 +55,7 @@ export default function ModalBusquedaCausa({ open, onClose, onSearch, onSelectRe
         {
           estado: 'Abierta',
           run: '13022798-8',
-          nombreImputado: 'Elva De Las Mercedes Valdes Alegría',
+          nombreImputado: 'Elva De Las Mercedes ',
           apellidoPaterno: 'Valdes',
           apellidoMaterno: 'Alegría',
           fechaNacimiento: '22-08-1979',
@@ -72,7 +72,7 @@ export default function ModalBusquedaCausa({ open, onClose, onSearch, onSelectRe
         {
           estado: 'Cerrada',
           run: '13022799-6',
-          nombreImputado: 'Alexis Antonio Calderón Cruz',
+          nombreImputado: 'Alexis Antonio ',
           apellidoPaterno: 'Calderón',
           apellidoMaterno: 'Cruz',
           fechaNacimiento: '10-10-1980',

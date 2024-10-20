@@ -1,6 +1,13 @@
 // src/pages/Inicio.jsx
-import { Box, Button, Card, CardContent, Typography } from '@mui/material'
+import {
+	Box,
+	Button,
+	Card,
+	CardContent,
+	Typography
+} from '@mui/material'
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 const SolicitudCiudadanaFuncionario = () => {
@@ -16,7 +23,7 @@ const SolicitudCiudadanaFuncionario = () => {
 						component="h2"
 						className="text-center mb-8 text-blue-700"
 					>
-						Ingreso de Solicitudes Ciudadanas.
+						Solicitudes Ciudadanas.
 					</Typography>
 
 					<Typography
@@ -24,12 +31,17 @@ const SolicitudCiudadanaFuncionario = () => {
 						component="h3"
 						className="text-center mb-8 text-gray-600"
 					>
-						¿Cómo desea realizar la solicitud?
+						Flujo de Solicitudes.
 					</Typography>
 
-					<Box className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16">
-						<Card variant="outlined" className="flex flex-col items-center p-4">
+					<Box className="flex flex-col md:flex-row items-center justify-center gap-8 pt-16">
+						<Card variant="outlined" className="flex flex-col items-center p-4 relative">
 							<CardContent>
+								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+									<Typography variant="caption" className="text-gray-500">
+										1
+									</Typography>
+								</Box>
 								<Button
 									variant="contained"
 									color="secondary"
@@ -41,13 +53,52 @@ const SolicitudCiudadanaFuncionario = () => {
 									{' '}
 								</Button>
 								<Typography variant="body2" className="text-center pt-3">
-									Solicitud Ciudadana Interna
+									Ingreso de Solicitud Ciudadana
 								</Typography>
 							</CardContent>
 						</Card>
 
-						<Card variant="outlined" className="flex flex-col items-center p-4">
+						{/* Flecha entre las tarjetas */}
+						<Box className="flex items-center justify-center">
+							<ArrowForwardIcon fontSize="large" className="text-blue-700" />
+						</Box>
+
+						{/* Nueva tarjeta de Tipificación de solicitud */}
+						<Card variant="outlined" className="flex flex-col items-center p-4 relative">
 							<CardContent>
+								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+									<Typography variant="caption" className="text-gray-500">
+										2
+									</Typography>
+								</Box>
+								<Button
+									variant="contained"
+									color="primary"
+									component={Link}
+									to="/oirs/solicitud-ciudadana-funcionario/tipificacion-solicitud"
+									startIcon={<AddToPhotosIcon />}
+									className="mb-4 w-full h-9"
+								>
+									{' '}
+								</Button>
+								<Typography variant="body2" className="text-center pt-3">
+									Tipificación de Solicitud
+								</Typography>
+							</CardContent>
+						</Card>
+
+						{/* Flecha entre las tarjetas */}
+						<Box className="flex items-center justify-center">
+							<ArrowForwardIcon fontSize="large" className="text-blue-700" />
+						</Box>
+
+						<Card variant="outlined" className="flex flex-col items-center p-4 relative">
+							<CardContent>
+								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+									<Typography variant="caption" className="text-gray-500">
+										3
+									</Typography>
+								</Box>
 								<Button
 									variant="contained"
 									color="warning"
@@ -59,11 +110,12 @@ const SolicitudCiudadanaFuncionario = () => {
 									{' '}
 								</Button>
 								<Typography variant="body2" className="text-center pt-3">
-									Solicitudes Pendientes
+									Revisión Encargado Regional
 								</Typography>
 							</CardContent>
 						</Card>
 					</Box>
+
 					<Box className="flex flex-col items-center justify-center py-10">
 						<Typography
 							variant="subtitle2"
