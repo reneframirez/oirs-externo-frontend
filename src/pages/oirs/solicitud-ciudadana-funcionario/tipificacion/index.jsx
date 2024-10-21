@@ -1,13 +1,14 @@
-import AntUsuario from './AntUsuario';
-import AntRequerimiento from './AntRequerimiento'; 
-import AntImputado from './AntImputado';
+import AntUsuario from '../secciones/AntUsuario';
+import AntRequerimiento from '../secciones/AntRequerimiento'; 
+import AntImputado from '../secciones/AntImputado';
+import IngresoTipificacion from './IngresoTipificacion';
 
 import { useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
 
-const SeccionesOrdenadas = () => {
+export default function Tipificaciones(){
   const datosDelUsuario = {
     nombres: "Juan",
     apellidoPaterno: "Pérez",
@@ -49,9 +50,10 @@ const SeccionesOrdenadas = () => {
   };
 
   const secciones = [
+    { titulo: 'Ingreso de Tipificación',        componente: <IngresoTipificacion /> },
     { titulo: 'Antecedentes del Usuario',       componente: <AntUsuario datosUsuario={datosDelUsuario} /> },
     { titulo: 'Antecedentes del Requerimiento', componente: <AntRequerimiento datosRequerimiento={datosDelRequerimiento} /> },
-    { titulo: 'Antecedentes del Imputado',      componente: <AntImputado imputadoData={imputadoData} /> }
+    { titulo: 'Antecedentes del Imputado',      componente: <AntImputado imputadoData={imputadoData} /> },
   ];
 
   return (
@@ -75,5 +77,3 @@ const SeccionesOrdenadas = () => {
     </div>
   );
 };
-
-export default SeccionesOrdenadas;

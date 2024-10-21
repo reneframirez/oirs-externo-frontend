@@ -75,7 +75,7 @@ const SolicitudCiudadanaFuncionario = () => {
 									variant="contained"
 									color="primary"
 									component={Link}
-									to="/oirs/solicitud-ciudadana-funcionario/tipificacion-solicitud"
+									to="/oirs/solicitud-ciudadana-funcionario/tipificaciones"
 									startIcon={<AddToPhotosIcon />}
 									className="mb-4 w-full h-9"
 								>
