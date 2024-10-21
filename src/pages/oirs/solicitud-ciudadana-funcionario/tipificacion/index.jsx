@@ -6,8 +6,11 @@ import IngresoTipificacion from './IngresoTipificacion';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Tipificaciones() {
+	const [expanded, setExpanded] = useState(false);
+
 	const datosDelUsuario = {
 		nombres: 'Juan',
 		apellidoPaterno: 'Pérez',
@@ -24,6 +27,7 @@ export default function Tipificaciones() {
 		etnia: 'Mapuche',
 		genero: 'Masculino',
 	};
+
 	const datosDelRequerimiento = {
 		region: 'Región Metropolitana',
 		comuna: 'Santiago',
@@ -33,6 +37,7 @@ export default function Tipificaciones() {
 		institucionPublica: 'Ministerio de Salud',
 		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
 	};
+
 	const imputadoData = {
 		run: '12345678-9',
 		nombreImputado: 'Carlos',
@@ -64,10 +69,20 @@ export default function Tipificaciones() {
 		},
 	];
 
+	const handleChange = (panel) => (event, isExpanded) => {
+		setExpanded(isExpanded ? panel : false);
+	};
+
 	return (
 		<div>
 			{secciones.map((seccion, index) => (
-				<Accordion key={index} defaultExpanded={true}>
+				<Accordion
+					key={index}
+					defaultExpanded={true}
+					expanded={expanded === `panel-${index}`}
+					onChange={handleChange(`panel-${index}`)}
+					sx={{ my: 1 }}
+				>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls={`panel${index}-content`}
