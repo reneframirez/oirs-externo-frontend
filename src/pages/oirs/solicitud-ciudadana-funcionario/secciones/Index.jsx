@@ -1,6 +1,8 @@
 import AntUsuario from './AntUsuario';
 import AntRequerimiento from './AntRequerimiento';
 import AntImputado from './AntImputado';
+import InfoAdicional from './InfoAdicional';
+
 
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -61,6 +63,10 @@ const SeccionesOrdenadas = () => {
 		{
 			titulo: 'Antecedentes del Imputado',
 			componente: <AntImputado imputadoData={imputadoData} />,
+		},
+		{
+			titulo: 'Información Adicional',
+			componente: <InfoAdicional />,
 		},
 	];
 
