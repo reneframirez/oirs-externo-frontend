@@ -141,7 +141,37 @@ const SolicitudCiudadanaFuncionario = () => {
 									{' '}
 								</Button>
 								<Typography variant="body2" className="text-center pt-3">
-									Secciones
+									Secciones de Solicitudes
+								</Typography>
+							</CardContent>
+						</Card>
+
+						<Box className="flex items-center justify-center">
+							<ArrowForwardIcon fontSize="large" className="text-blue-700" />
+						</Box>
+
+						<Card
+							variant="outlined"
+							className="flex flex-col items-center p-4 relative"
+						>
+							<CardContent>
+								<Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+									<Typography variant="caption" className="text-gray-500">
+										5
+									</Typography>
+								</Box>
+								<Button
+									variant="contained"
+									color="warning"
+									component={Link}
+									to="busqueda"
+									startIcon={<AddToPhotosIcon />}
+									className="mb-4 w-full h-9"
+								>
+									{' '}
+								</Button>
+								<Typography variant="body2" className="text-center pt-3">
+									Búsqueda Solicitudes
 								</Typography>
 							</CardContent>
 						</Card>

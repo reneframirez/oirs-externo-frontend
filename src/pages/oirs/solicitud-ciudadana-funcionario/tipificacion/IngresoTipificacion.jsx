@@ -103,7 +103,7 @@ const IngresoTipificacion = () => {
 		console.log('Tipo Solicitud:', tipoSolicitud);
 		console.log('Especificación:', especificacion);
 		console.log('Justificación:', justificacion);
-		alert('Grabado con éxito, solicitud pasa a estado _____');
+		alert('Grabado con éxito, solicitud pasa a estado Solicitud Derivada');
 	};
 
 	const handleBack = () => {
