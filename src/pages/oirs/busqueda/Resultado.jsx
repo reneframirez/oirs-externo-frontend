@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TextField, Typography, IconButton } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
@@ -21,23 +21,25 @@ const StyledTypography = styled(Typography)({
 });
 
 const Resultado = ({ data }) => {
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(data);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(20);
   const [filter, setFilter] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const handleFilterChange = (event) => {
+    const value = event.target.value;
+    setFilter(value);
     if (Array.isArray(data)) {
       setFilteredData(
         data.filter(
           (item) =>
-            item.tipoSolicitud.toLowerCase().includes(filter.toLowerCase()) ||
-            item.estado.toLowerCase().includes(filter.toLowerCase())
+            item.tipoSolicitud.toLowerCase().includes(value.toLowerCase()) ||
+            item.estado.toLowerCase().includes(value.toLowerCase())
         )
       );
     }
-  }, [filter, data]);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -46,10 +48,6 @@ const Resultado = ({ data }) => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
-
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
   };
 
   const handleViewClick = (id) => {
@@ -155,18 +153,7 @@ const ResultadoBusquedaOirs = () => {
     { id: 30, fechaSolicitud: '24-10-2024', tipoSolicitud: 'Petición Otro', estado: 'Nueva Solicitud' },
   ]);
 
-  useEffect(() => {
-    // Example API call to fetch data
-    axios.get('/api/oirs/results')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
   return <Resultado data={data} />;
 };
 
-export default Resultado;
+export default ResultadoBusquedaOirs;
