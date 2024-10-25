@@ -73,7 +73,11 @@ const SeccionesOrdenadas = () => {
 	return (
 		<div>
 			{secciones.map((seccion, index) => (
-				<Accordion key={index} defaultExpanded={true}>
+				<Accordion
+                    key={index} 
+                    defaultExpanded={true}
+                    sx={{ my: 1 }}
+                >
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls={`panel${index}-content`}

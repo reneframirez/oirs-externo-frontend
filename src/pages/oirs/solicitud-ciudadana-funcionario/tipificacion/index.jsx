@@ -3,6 +3,7 @@ import AntRequerimiento from '../secciones/AntRequerimiento';
 import AntImputado from '../secciones/AntImputado';
 import IngresoTipificacion from './IngresoTipificacion';
 
+
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
@@ -76,13 +77,7 @@ export default function Tipificaciones() {
 	return (
 		<div>
 			{secciones.map((seccion, index) => (
-				<Accordion
-					key={index}
-					defaultExpanded={true}
-					expanded={expanded === `panel-${index}`}
-					onChange={handleChange(`panel-${index}`)}
-					sx={{ my: 1 }}
-				>
+                <Accordion key={index} defaultExpanded={index === 0} sx={{ my: 1 }}>    
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls={`panel${index}-content`}
