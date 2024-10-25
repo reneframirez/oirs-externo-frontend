@@ -28,7 +28,7 @@ const Resultado = ({ data }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data) {
+    if (Array.isArray(data)) {
       setFilteredData(
         data.filter(
           (item) =>
@@ -162,11 +162,11 @@ const ResultadoBusquedaOirs = () => {
         setData(response.data);
       })
       .catch(error => {
-        console.error('prueba', error);
+        console.error('Error fetching data:', error);
       });
   }, []);
 
   return <Resultado data={data} />;
 };
 
-export default ResultadoBusquedaOirs;
+export default Resultado;
