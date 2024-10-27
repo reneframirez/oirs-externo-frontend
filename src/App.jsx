@@ -17,6 +17,8 @@ import Tipificaciones from './pages/oirs/solicitud-ciudadana-funcionario/tipific
 import Busqueda from './pages/oirs/busqueda';
 import DerivarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/derivar-respuesta';
 import EntrevistaBeneficiario from './pages/oirs/solicitud-ciudadana-funcionario/entrevista-beneficiario'
+import RespuestaDefensor from './pages/oirs/solicitud-ciudadana-funcionario/respuesta-defensor';
+
 
 function App() {
 	useSesionExpiradaCheck();
@@ -49,6 +51,7 @@ function App() {
                         <Route path="busqueda" element={<Busqueda />} />
 						<Route path="derivar-respuesta" element={<DerivarRespuesta />} />
 						<Route path="entrevista-beneficiario" element={<EntrevistaBeneficiario />} />
+                        <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
 					</Route>
 				</Route>
 			</Routes>

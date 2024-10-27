@@ -143,6 +143,9 @@ const Derivar = () => {
 
         content="¿Está seguro de que desea realizar esta acción?"
         onConfirm={handleConfirm}
+        title="Advertencia"
+        description="Por favor, complete el campo de respuesta antes de continuar."
+
         onCancel={() => setConfirmOpen(false)}
       />
 
@@ -150,6 +153,8 @@ const Derivar = () => {
         open={alertOpen}
         content={alertContent}
         onClose={() => setAlertOpen(false)}
+        description="¿Está seguro que desea cancelar?"
+
       />
     </Container>
   );
