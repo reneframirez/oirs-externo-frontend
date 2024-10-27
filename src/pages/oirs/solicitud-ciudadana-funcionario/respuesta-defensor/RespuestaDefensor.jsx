@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, TextField, Typography } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import ConfirmDialog from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { AlertCircle, CheckCircle } from 'lucide-react';
+import { CancelButton, SaveButton } from '../../../../components/CustomButtons';
 
 const RespuestaDefensor = () => {
   const [respuesta, setRespuesta] = useState('');
@@ -66,24 +67,10 @@ const RespuestaDefensor = () => {
         error={showError && respuesta.trim() === ''}
         helperText={showError && respuesta.trim() === '' ? 'Este campo es obligatorio' : ''}
       />
-      <UploadButton />
+      <UploadButton size="small" sx={{ width: '200px', alignSelf: 'flex-start' }} />
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={<AlertCircle />}
-          onClick={handleCancel}
-        >
-          Cancelar
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<CheckCircle />}
-          onClick={handleSave}
-        >
-          Grabar
-        </Button>
+        <CancelButton onClick={handleCancel} />
+        <SaveButton onClick={handleSave} />
       </Box>
       <AlertDialog
         open={isAlertOpen}

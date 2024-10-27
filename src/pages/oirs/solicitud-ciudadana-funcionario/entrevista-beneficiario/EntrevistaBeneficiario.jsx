@@ -15,7 +15,7 @@ import {
   Grid,
   InputAdornment
 } from '@mui/material';
-import UploadButton from '../../../../components/UploadButton'; // Suponiendo que hay un componente reutilizable para la subida de archivos
+import UploadButton from '../../../../components/UploadButton';
 import { CalendarIcon, FileTextIcon } from 'lucide-react';
 import ConfirmDialog from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';

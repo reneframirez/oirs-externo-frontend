@@ -39,7 +39,14 @@ const SolicitudCiudadanaFuncionario = () => {
       titulo: 'Respuesta del Defensor',
       rol: '[Defensor]',
       color: 'info'
-    }
+    },
+    {
+        url: 'generar-respuesta',
+        titulo: 'Generar respuesta',
+        rol: '[AJ - Periodista]',
+        color: 'secondary'
+    },
+      
   ];
 
   const apoyoCardsData = [
