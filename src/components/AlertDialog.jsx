@@ -4,7 +4,7 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, B
 const AlertDialog = ({ open, content, onClose }) => {
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle style={{ backgroundColor: '#00274d', color: 'white' }}>DEFENSORÍA PENAL PÚBLICA</DialogTitle>
+      <DialogTitle style={{ backgroundColor: '#00274d', color: 'white' }}>Defensoría Penal Pública</DialogTitle>
       <DialogContent>
         <DialogContentText style={{ textAlign: 'center', marginTop: '20px' }}>{content}</DialogContentText>
       </DialogContent>

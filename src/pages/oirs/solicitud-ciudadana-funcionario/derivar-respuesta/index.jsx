@@ -6,7 +6,7 @@ import AntUsuario from '../secciones/AntUsuario';
 import AntRequerimiento from '../secciones/AntRequerimiento';
 import AntImputado from '../secciones/AntImputado';
 import InfoAdicional from '../secciones/InfoAdicional';
-import DerivarGenerar from './derivar-generar';
+import Derivar from './derivar';
 
 const Index = () => {
     const datosDelUsuario = {
@@ -53,8 +53,8 @@ const Index = () => {
   
     const secciones = [
       {
-            titulo: 'Generación o Derivación de Respuesta',
-            componente: <DerivarGenerar />,
+            titulo: 'Derivación solcitud',
+            componente: <Derivar />,
       },
       {
         titulo: 'Antecedentes del Usuario',

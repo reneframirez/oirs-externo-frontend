@@ -17,7 +17,7 @@ const SolicitudCiudadanaFuncionario = () => {
             component="h2"
             className="text-center mb-8 text-blue-700"
           >
-            Solicitudes Ciudadanas.
+            Gestión de OIRS en Portal Único.
           </Typography>
 
           <Typography
@@ -25,7 +25,7 @@ const SolicitudCiudadanaFuncionario = () => {
             component="h3"
             className="text-center mb-8 text-gray-600"
           >
-            Flujo de Solicitudes.
+            Módulo SIGO - Portal Único
           </Typography>
 
           
@@ -34,10 +34,10 @@ const SolicitudCiudadanaFuncionario = () => {
             <Card
               variant="outlined"
               className="flex flex-col items-center p-4 relative"
-              sx={{ width: '250px', height: '150px' }}
+              sx={{ width: '250px', height: '160px' }}
             >
               <CardContent>
-                <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+                <Box className="absolute top-1 left-1 w-6 h-7 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
                   <Typography variant="caption" className="text-gray-500">
                     1
                   </Typography>
@@ -55,6 +55,10 @@ const SolicitudCiudadanaFuncionario = () => {
                 <Typography variant="body2" className="text-center pt-3">
                   Ingreso de Solicitud Ciudadana
                 </Typography>
+                <Typography variant="body2" className="text-center pt-3">
+                  [Todos los funcionarios]
+                </Typography>
+
               </CardContent>
             </Card>
 
@@ -67,7 +71,7 @@ const SolicitudCiudadanaFuncionario = () => {
             <Card
               variant="outlined"
               className="flex flex-col items-center p-4 relative"
-              sx={{ width: '250px', height: '150px' }}
+              sx={{ width: '250px', height: '160px' }}
             >
               <CardContent>
                 <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
@@ -88,6 +92,10 @@ const SolicitudCiudadanaFuncionario = () => {
                 <Typography variant="body2" className="text-center pt-3">
                   Tipificación de Solicitud
                 </Typography>
+                <Typography variant="body2" className="text-center pt-3">
+                  [Asesor jurídico]
+                </Typography>
+
               </CardContent>
             </Card>
 
@@ -100,7 +108,7 @@ const SolicitudCiudadanaFuncionario = () => {
             <Card
               variant="outlined"
               className="flex flex-col items-center p-4 relative"
-              sx={{ width: '250px', height: '150px' }}
+              sx={{ width: '250px', height: '160px' }}
             >
               <CardContent>
                 <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
@@ -119,24 +127,67 @@ const SolicitudCiudadanaFuncionario = () => {
                   {' '}
                 </Button>
                 <Typography variant="body2" className="text-center pt-3">
-                  Generar Respuesta / Derivar Solicitud
+                  Derivar Solicitud
+                </Typography>
+
+                <Typography variant="body2" className="text-center pt-3">
+                [AJ - Periodista]
                 </Typography>
               </CardContent>
             </Card>
+
+            {/* Flecha entre las tarjetas */}
+            <Box className="flex items-center justify-center">
+              <ArrowForwardIcon fontSize="large" className="text-blue-700" />
+            </Box>
+
+            {/* Entrevista con beneficiario */}
+            <Card
+              variant="outlined"
+              className="flex flex-col items-center p-4 relative"
+              sx={{ width: '250px', height: '160px' }}
+            >
+              <CardContent>
+                <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+                  <Typography variant="caption" className="text-gray-500">
+                    4
+                  </Typography>
+                </Box>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  component={Link}
+                  to="entrevista-beneficiario"
+                  startIcon={<AddToPhotosIcon />}
+                  className="mb-4 w-full h-9"
+                >
+                  {' '}
+                </Button>
+                <Typography variant="body2" className="text-center pt-3">
+                  Entrevista Beneficiario
+                </Typography>
+                <Typography variant="body2" className="text-center pt-3">
+                  [AJ - Periodista]
+                </Typography>                
+              </CardContent>
+            </Card>
+
           </Box>
 
-          
+
+
+            {/*  [[[[  APOYO AL FLUJO   ]]]]] */}
 
           <Box className="flex flex-col md:flex-row items-center justify-center gap-8 pt-16">
           <Card
               variant="outlined"
               className="flex flex-col items-center p-4 relative"
-              sx={{ width: '250px', height: '150px' }}
+              sx={{ width: '250px', height: '160px' }}
             >
                     <CardContent>
                         <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
                             <Typography variant="caption" className="text-gray-500">
-                                4
+                                1
                             </Typography>
                         </Box>
                         <Button
@@ -152,6 +203,10 @@ const SolicitudCiudadanaFuncionario = () => {
                         <Typography variant="body2" className="text-center pt-3">
                             Solicitudes Pendientes
                         </Typography>
+
+                        <Typography variant="body2" className="text-center pt-3">
+                             [AJ - Periodista]
+                        </Typography>                        
                     </CardContent>
                 </Card>
 
@@ -164,12 +219,12 @@ const SolicitudCiudadanaFuncionario = () => {
             <Card
               variant="outlined"
               className="flex flex-col items-center p-4 relative"
-              sx={{ width: '250px', height: '150px' }}
+              sx={{ width: '250px', height: '160px' }}
             >
               <CardContent>
                 <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
                   <Typography variant="caption" className="text-gray-500">
-                    5
+                    2
                   </Typography>
                 </Box>
                 <Button
@@ -185,6 +240,9 @@ const SolicitudCiudadanaFuncionario = () => {
                 <Typography variant="body2" className="text-center pt-3">
                   Búsqueda Solicitudes
                 </Typography>
+                <Typography variant="body2" className="text-center pt-3">
+                  [Todos los funcionarios]
+                </Typography>
               </CardContent>
             </Card>
 
@@ -197,12 +255,12 @@ const SolicitudCiudadanaFuncionario = () => {
             <Card
               variant="outlined"
               className="flex flex-col items-center p-4 relative"
-              sx={{ width: '250px', height: '150px' }}
+              sx={{ width: '250px', height: '160px' }}
             >
               <CardContent>
                 <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
                   <Typography variant="caption" className="text-gray-500">
-                    6
+                    3
                   </Typography>
                 </Box>
                 <Button
@@ -218,8 +276,14 @@ const SolicitudCiudadanaFuncionario = () => {
                 <Typography variant="body2" className="text-center pt-3">
                   Secciones de Solicitudes
                 </Typography>
+                <Typography variant="body2" className="text-center pt-3">
+                  [Manejo Interno Sistema]
+                </Typography>                
               </CardContent>
             </Card>
+
+
+          
           </Box>
 
           <Box className="flex flex-col items-center justify-center py-10">

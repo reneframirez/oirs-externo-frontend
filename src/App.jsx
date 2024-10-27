@@ -16,6 +16,7 @@ import SeccionesOrdenadas from './pages/oirs/solicitud-ciudadana-funcionario/sec
 import Tipificaciones from './pages/oirs/solicitud-ciudadana-funcionario/tipificacion/index.jsx';
 import Busqueda from './pages/oirs/busqueda';
 import DerivarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/derivar-respuesta';
+import EntrevistaBeneficiario from './pages/oirs/solicitud-ciudadana-funcionario/entrevista-beneficiario'
 
 function App() {
 	useSesionExpiradaCheck();
@@ -47,6 +48,7 @@ function App() {
                         <Route path="tipificaciones" element ={<Tipificaciones/>} />
                         <Route path="busqueda" element={<Busqueda />} />
 						<Route path="derivar-respuesta" element={<DerivarRespuesta />} />
+						<Route path="entrevista-beneficiario" element={<EntrevistaBeneficiario />} />
 					</Route>
 				</Route>
 			</Routes>

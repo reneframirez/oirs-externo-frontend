@@ -249,7 +249,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 							labelId="genero-label"
 							id="genero"
 							value={genero}
-							label="Genero"
+							label="Género"
 							onChange={(e) => setGenero(e.target.value)}
 							disabled={!!datosIniciales.genero}
 						>
