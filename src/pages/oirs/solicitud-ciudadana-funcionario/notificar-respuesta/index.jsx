@@ -56,6 +56,22 @@ const Index = () => {
         titulo: 'Notificar Respuesta',
         componente: <NotificarRespuesta />,
       },
+      {
+        titulo: 'Antecedentes del Usuario',
+        componente: <AntUsuario datosUsuario={datosDelUsuario} />,
+      },
+      {
+        titulo: 'Antecedentes del Requerimiento',
+        componente: <AntRequerimiento datosRequerimiento={datosDelRequerimiento} />,
+      },
+      {
+        titulo: 'Antecedentes del Imputado',
+        componente: <AntImputado imputadoData={imputadoData} />,
+      },
+      {
+        titulo: 'Información Adicional',
+        componente: <InfoAdicional />,
+      },
     ];
   
     return (
