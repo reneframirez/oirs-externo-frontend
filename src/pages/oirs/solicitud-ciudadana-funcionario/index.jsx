@@ -55,7 +55,7 @@ const SolicitudCiudadanaFuncionario = () => {
     {
       url: 'notificar-respuesta',
       titulo: 'Notificar Respuesta al Usuario',
-      rol: '[Defensor]',
+      rol: '[AJ]',
       color: 'info'
     },
   ];
