@@ -19,13 +19,8 @@ import DerivarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/deriv
 import EntrevistaBeneficiario from './pages/oirs/solicitud-ciudadana-funcionario/entrevista-beneficiario'
 import RespuestaDefensor from './pages/oirs/solicitud-ciudadana-funcionario/respuesta-defensor';
 import GenerarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/generar-respuesta';
-<<<<<<< HEAD
 import EmitirRespuesta  from './pages/oirs/solicitud-ciudadana-funcionario/emitir-respuesta';
-=======
-import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/notificar-respuesta';
-
->>>>>>> e1bbc3710ef8c4a3516c5c98a67a8d1d06d69d6b
-
+import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/notificar-respuesta'
 function App() {
 	useSesionExpiradaCheck();
 
@@ -59,11 +54,9 @@ function App() {
 						<Route path="entrevista-beneficiario" element={<EntrevistaBeneficiario />} />
                         <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
-<<<<<<< HEAD
                         <Route path='emitir-respuesta' element= {<EmitirRespuesta />} />
-=======
-                        <Route path="notificar-respuesta" element= {<NotificarRespuesta/>} />
->>>>>>> e1bbc3710ef8c4a3516c5c98a67a8d1d06d69d6b
+                        <Route path='notificar-respuesta' element= {<NotificarRespuesta />} />
+                        
 					</Route>
 				</Route>
 			</Routes>
