@@ -19,6 +19,7 @@ import DerivarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/deriv
 import EntrevistaBeneficiario from './pages/oirs/solicitud-ciudadana-funcionario/entrevista-beneficiario'
 import RespuestaDefensor from './pages/oirs/solicitud-ciudadana-funcionario/respuesta-defensor';
 import GenerarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/generar-respuesta';
+import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/notificar-respuesta';
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
 						<Route path="entrevista-beneficiario" element={<EntrevistaBeneficiario />} />
                         <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
+                        <Route path="notificar-respuesta" element= {<NotificarRespuesta/>} />
 					</Route>
 				</Route>
 			</Routes>
