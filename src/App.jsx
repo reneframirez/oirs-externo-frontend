@@ -19,7 +19,7 @@ import DerivarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/deriv
 import EntrevistaBeneficiario from './pages/oirs/solicitud-ciudadana-funcionario/entrevista-beneficiario'
 import RespuestaDefensor from './pages/oirs/solicitud-ciudadana-funcionario/respuesta-defensor';
 import GenerarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/generar-respuesta';
-
+import EmitirRespuesta  from './pages/oirs/solicitud-ciudadana-funcionario/emitir-respuesta';
 
 function App() {
 	useSesionExpiradaCheck();
@@ -54,6 +54,7 @@ function App() {
 						<Route path="entrevista-beneficiario" element={<EntrevistaBeneficiario />} />
                         <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
+                        <Route path='emitir-respuesta' element= {<EmitirRespuesta />} />
 					</Route>
 				</Route>
 			</Routes>

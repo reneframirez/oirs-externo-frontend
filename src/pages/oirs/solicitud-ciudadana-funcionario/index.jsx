@@ -23,16 +23,16 @@ const SolicitudCiudadanaFuncionario = () => {
       color: 'primary'
     },
     {
+        url: 'entrevista-beneficiario',
+        titulo: 'Entrevista Beneficiario',
+        rol: '[AJ - Periodista]',
+        color: 'warning'
+      },
+    {
       url: 'derivar-respuesta',
       titulo: 'Derivar Solicitud',
       rol: '[AJ - Periodista]',
       color: 'success'
-    },
-    {
-      url: 'entrevista-beneficiario',
-      titulo: 'Entrevista Beneficiario',
-      rol: '[AJ - Periodista]',
-      color: 'warning'
     },
     {
       url: 'respuesta-defensor',
@@ -45,6 +45,12 @@ const SolicitudCiudadanaFuncionario = () => {
         titulo: 'Generar respuesta',
         rol: '[AJ - Periodista]',
         color: 'secondary'
+    },
+    {
+        url: 'emitir-respuesta',
+        titulo: 'Emitir respuesta',
+        rol: '[AJ - Periodista]',
+        color: 'primary'
     },
       
   ];
