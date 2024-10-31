@@ -52,7 +52,12 @@ const SolicitudCiudadanaFuncionario = () => {
         rol: '[AJ - Periodista]',
         color: 'primary'
     },
-      
+    {
+      url: 'notificar-respuesta',
+      titulo: 'Notificar Respuesta al Usuario',
+      rol: '[Defensor]',
+      color: 'info'
+    },
   ];
 
   const apoyoCardsData = [
