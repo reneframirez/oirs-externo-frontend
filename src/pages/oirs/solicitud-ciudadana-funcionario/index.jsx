@@ -23,16 +23,16 @@ const SolicitudCiudadanaFuncionario = () => {
       color: 'primary'
     },
     {
+        url: 'entrevista-beneficiario',
+        titulo: 'Entrevista Beneficiario',
+        rol: '[AJ - Periodista]',
+        color: 'warning'
+      },
+    {
       url: 'derivar-respuesta',
       titulo: 'Derivar Solicitud',
       rol: '[AJ - Periodista]',
       color: 'success'
-    },
-    {
-      url: 'entrevista-beneficiario',
-      titulo: 'Entrevista Beneficiario',
-      rol: '[AJ - Periodista]',
-      color: 'warning'
     },
     {
       url: 'respuesta-defensor',
@@ -45,6 +45,12 @@ const SolicitudCiudadanaFuncionario = () => {
         titulo: 'Generar respuesta',
         rol: '[AJ - Periodista]',
         color: 'secondary'
+    },
+    {
+        url: 'emitir-respuesta',
+        titulo: 'Emitir respuesta',
+        rol: '[AJ - Periodista]',
+        color: 'primary'
     },
     {
       url: 'notificar-respuesta',
@@ -89,9 +95,32 @@ const SolicitudCiudadanaFuncionario = () => {
       url: '/oirs/solicitud-ciudadana-funcionario/secciones',
       titulo: 'Secciones de Solicitudes',
       rol: '[Manejo Interno Sistema]',
-      color: 'warning'
+      color: 'secondary'
     }
   ];
+
+  const apelacionCardsData = [
+    {
+      url: 'apelaciones-busqueda-registro',
+      titulo: 'Buscar Registro Para Apelaciones',
+      rol: '[AJ - Periodista]',
+      color: 'warning'
+    },
+    {
+      url: 'busqueda-apelaciones-vigentes',
+      titulo: 'Buscar Apelaciones Vigentes',
+      rol: '[Todos los funcionarios]',
+      color: 'secondary'
+    },
+    {
+      url: 'registrar-antecedentes-apelacion',
+      titulo: 'Registrar Antecedentes de Apelación',
+      rol: '[Profesional DECR]',
+      color: 'primary'
+    },
+    
+  ];
+
 
   return (
     <Box className="flex flex-col items-center justify-center px-4">
@@ -157,6 +186,52 @@ const SolicitudCiudadanaFuncionario = () => {
             ))}
           </Box>
 
+          {/*  [[[[  FLUJO APELACIONES   ]]]]] */}
+          <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-16">
+            {apelacionCardsData.map((card, index) => (
+              <>
+                <Card
+                  key={index}
+                  variant="outlined"
+                  className="flex flex-col items-center p-4 relative"
+                  sx={{ width: { xs: '100%', sm: '250px' }, height: '160px' }}
+                >
+                  <CardContent>
+                    <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+                      <Typography variant="caption" className="text-gray-500">
+                        {index + 1}
+                      </Typography>
+                    </Box>
+                    <Button
+                      variant="contained"
+                      color={card.color}
+                      component={Link}
+                      to={card.url}
+                      startIcon={<AddToPhotosIcon />}
+                      className="mb-4 w-full h-9"
+                    >
+                      {' '}
+                    </Button>
+                    <Typography variant="body2" className="text-center pt-3">
+                      {card.titulo}
+                    </Typography>
+                    <Typography variant="body2" className="text-center pt-3">
+                      {card.rol}
+                    </Typography>
+                  </CardContent>
+                </Card>
+                {index < apelacionCardsData.length - 1 && (
+                  <Box className="flex items-center justify-center">
+                    <ArrowForwardIcon fontSize="large" className="text-blue-700 hidden md:block" />
+                  </Box>
+                )}
+              </>
+            ))}
+          </Box>
+
+
+
+
           {/*  [[[[  APOYO AL FLUJO   ]]]]] */}
           <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-16">
             {apoyoCardsData.map((card, index) => (
@@ -199,6 +274,8 @@ const SolicitudCiudadanaFuncionario = () => {
               </>
             ))}
           </Box>
+
+
 
           <Box className="flex flex-col items-center justify-center py-10">
             <Typography

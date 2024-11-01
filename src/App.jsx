@@ -19,7 +19,12 @@ import DerivarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/deriv
 import EntrevistaBeneficiario from './pages/oirs/solicitud-ciudadana-funcionario/entrevista-beneficiario'
 import RespuestaDefensor from './pages/oirs/solicitud-ciudadana-funcionario/respuesta-defensor';
 import GenerarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/generar-respuesta';
-import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/notificar-respuesta';
+import EmitirRespuesta  from './pages/oirs/solicitud-ciudadana-funcionario/emitir-respuesta';
+import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/notificar-respuesta'
+import BusquedaRegistro from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/busqueda-registro'
+import IngresarApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/ingresar-apelacion'
+import BusquedaApelacionesVigentes from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/busqueda-apelaciones-vigentes'
+import RegistrarAntecedentesApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/registrar-antecedentes-apelacion'
 import RecepcionNotificacion from './pages/oirs/solicitud-ciudadana-funcionario/recepcion-notificacion';
 import AsignarProfesional from './pages/oirs/solicitud-ciudadana-funcionario/asignar-profesional';
 import MejorResolver from './pages/oirs/solicitud-ciudadana-funcionario/mejor-resolver';
@@ -60,9 +65,6 @@ function App() {
                         <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
                         <Route path="notificar-respuesta" element= {<NotificarRespuesta/>} />
-                        <Route path="recepcion-notificacion" element= {<RecepcionNotificacion/>} />
-                        <Route path="asignar-profesional" element= {<AsignarProfesional/>} />
-                        <Route path="mejor-resolver" element= {<MejorResolver/>} />
 					</Route>
 				</Route>
 			</Routes>

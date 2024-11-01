@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { TextField, MenuItem, Grid, Typography, Box, DialogActions, Button, Modal } from '@mui/material';
+import { TextField, MenuItem, Grid, Typography, Box } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
-import UploadResButton from '../../../../components/ResolucionRespuestaButton';
 import ConfirmDialog from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { CancelButton, SaveButton } from '../../../../components/CustomButtons';
-import DocumentEditor from '../../../../components/DocumentEditor';
 import LoadingModal from '../../../../components/LoadingModal';
+import ResolucionSection from '../../../../components/ResolucionSection';
 import axios from 'axios';
 
 const buttonStyles = {
@@ -27,7 +26,6 @@ const GenerarRespuesta = () => {
   const [confirmAction, setConfirmAction] = useState(null);
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertContent, setAlertContent] = useState('');
-  const [modalOpen, setModalOpen] = useState(false);
   const [showResolutionInfo, setShowResolutionInfo] = useState(false);
   const [showResolutionInfo2, setShowResolutionInfo2] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -63,16 +61,7 @@ const GenerarRespuesta = () => {
 
   const handleConfirm = async () => {
     try {
-      // Lógica para guardar la respuesta en el backend
-      await axios.post('/api/saveResponse', {
-        numeroDocumento,
-        fechaDocumento,
-        decision,
-        fundamento,
-        adjunto,
-        expediente,
-        otroArchivo,
-      });
+      await saveResponse();
       console.log('Respuesta guardada con éxito');
       setConfirmOpen(false);
       setAlertContent('La respuesta ha sido guardada exitosamente.');
@@ -85,24 +74,21 @@ const GenerarRespuesta = () => {
     }
   };
 
+  const saveResponse = async () => {
+    await axios.post('/api/saveResponse', {
+      numeroDocumento,
+      fechaDocumento,
+      decision,
+      fundamento,
+      adjunto,
+      expediente,
+      otroArchivo,
+    });
+  };
+
   const handleCancel = () => {
     setConfirmAction(() => () => setConfirmOpen(false));
     setConfirmOpen(true);
-  };
-
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setModalOpen(false);
-  };
-
-  const handleModalSave = () => {
-    // Lógica para guardar el documento desde el editor
-    console.log('Documento editado guardado');
-    setModalOpen(false);
-    setShowResolutionInfo(true);
   };
 
   const handleSendResolution = () => {
@@ -116,38 +102,14 @@ const GenerarRespuesta = () => {
   return (
     <Box component="form" noValidate autoComplete="off" sx={{ p: 3, backgroundColor: 'white', borderRadius: 2, boxShadow: 3 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} container spacing={2} alignItems="center">
-          <Grid item>
-            <Typography variant="body1">
-              Gestión resolución de respuesta <Typography component="span" color="error">*</Typography>
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Button variant="outlined" color="primary" onClick={handleModalOpen} sx={buttonStyles}>
-              Editar Resolución
-            </Button>
-          </Grid>
-          <Grid item>
-            {showResolutionInfo && (
-              <Button variant="outlined" color="primary" onClick={handleSendResolution} sx={buttonStyles}>
-                Enviar resolución al Gestor
-              </Button>
-            )}
-          </Grid>
-        </Grid>
-        {showResolutionInfo2 && (
-          <Grid item>
-            <Button variant="outlined" color="primary" sx={{ ...buttonStyles, ml: 2 }}>
-              Descargar
-            </Button>
-          </Grid>
-        )}
-        {showResolutionInfo2 && (
-          <Grid item xs={12} sx={{ display: 'flex', gap: 2 }}>
-            <Typography variant="body">Número resolución: 1205</Typography>
-            <Typography variant="body">Fecha: 28-10-2024</Typography>
-          </Grid>
-        )}
+        <ResolucionSection
+          showResolutionInfo={showResolutionInfo}
+          setShowResolutionInfo={setShowResolutionInfo}
+          showResolutionInfo2={showResolutionInfo2}
+          setShowResolutionInfo2={setShowResolutionInfo2}
+          handleSendResolution={handleSendResolution}
+          buttonStyles={buttonStyles}
+        />
         <Grid item xs={12}>
           <TextField
             select
@@ -214,22 +176,6 @@ const GenerarRespuesta = () => {
         onCancel={() => setConfirmOpen(false)}
       />
       <LoadingModal open={loading} />
-      <Modal open={modalOpen} onClose={handleModalClose}>
-        <Box sx={{ p: 4, backgroundColor: 'white', borderRadius: 2, boxShadow: 3, width: '80%', margin: 'auto', mt: 5 }}>
-          <Typography variant="h6" gutterBottom>
-            Editor de Documento
-          </Typography>
-          <DocumentEditor />
-          <DialogActions sx={{ mt: 3 }}>
-            <Button onClick={handleModalClose} color="secondary" sx={buttonStyles}>
-              Cancelar
-            </Button>
-            <Button onClick={handleModalSave} color="primary" variant="contained" sx={buttonStyles}>
-              Grabar
-            </Button>
-          </DialogActions>
-        </Box>
-      </Modal>
     </Box>
   );
 };
