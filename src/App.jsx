@@ -65,6 +65,13 @@ function App() {
                         <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
                         <Route path="notificar-respuesta" element= {<NotificarRespuesta/>} />
+                        <Route path="recepcion-notificacion" element= {<RecepcionNotificacion/>} />
+                        <Route path="asignar-profesional" element= {<AsignarProfesional/>} />
+                        <Route path="mejor-resolver" element= {<MejorResolver/>} />
+                        <Route path='apelaciones-busqueda-registro' element= {<BusquedaRegistro />} />
+                        <Route path='ingresar-apelacion' element= {<IngresarApelacion />} />
+						<Route path='busqueda-apelaciones-vigentes' element= {<BusquedaApelacionesVigentes />} />
+						<Route path='registrar-antecedentes-apelacion' element= {<RegistrarAntecedentesApelacion />} />
 					</Route>
 				</Route>
 			</Routes>
