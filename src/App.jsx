@@ -21,6 +21,11 @@ import RespuestaDefensor from './pages/oirs/solicitud-ciudadana-funcionario/resp
 import GenerarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/generar-respuesta';
 import EmitirRespuesta  from './pages/oirs/solicitud-ciudadana-funcionario/emitir-respuesta';
 import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/notificar-respuesta'
+import BusquedaRegistro from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/busqueda-registro'
+import IngresarApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/ingresar-apelacion'
+
+
+
 function App() {
 	useSesionExpiradaCheck();
 
@@ -56,7 +61,8 @@ function App() {
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
                         <Route path='emitir-respuesta' element= {<EmitirRespuesta />} />
                         <Route path='notificar-respuesta' element= {<NotificarRespuesta />} />
-                        
+                        <Route path='apelaciones-busqueda-registro' element= {<BusquedaRegistro />} />
+                        <Route path='ingresar-apelacion' element= {<IngresarApelacion />} />
 					</Route>
 				</Route>
 			</Routes>

@@ -66,7 +66,7 @@ const ResolucionSection = ({
       <Modal open={modalOpen} onClose={handleModalClose}>
         <Box sx={{ p: 4, backgroundColor: 'white', borderRadius: 2, boxShadow: 3, width: '80%', margin: 'auto', mt: 5 }}>
           <Typography variant="h6" gutterBottom>
-            Editor de Documento
+            Editar Documento Oficial Resolución / Oficio
           </Typography>
           <DocumentEditor />
           <DialogActions sx={{ mt: 3 }}>

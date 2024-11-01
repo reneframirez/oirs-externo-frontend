@@ -28,4 +28,17 @@ export const SaveButton = ({ onClick }) => {
   );
 };
 
+export const BackButton = ({ onClick }) => {
+  return (
+    <Button
+      variant="outlined"
+      color="primary"
+      startIcon={<XCircleIcon />}
+      onClick={() => window.history.back()}
+      >
+      Volver
+    </Button>
+  );
+};
+
 export default { CancelButton, SaveButton };
