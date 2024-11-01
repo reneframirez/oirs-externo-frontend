@@ -87,6 +87,12 @@ const SolicitudCiudadanaFuncionario = () => {
       titulo: 'Buscar Registro Para Apelaciones',
       rol: '[AJ - Periodista]',
       color: 'warning'
+    },
+    {
+      url: 'busqueda-apelaciones-vigentes',
+      titulo: 'Buscar Apelaciones Vigentes',
+      rol: '[Todos los funcionarios]',
+      color: 'warning'
     }
   ];
 
