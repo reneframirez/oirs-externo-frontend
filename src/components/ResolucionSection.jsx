@@ -50,14 +50,14 @@ const ResolucionSection = ({
       </Grid>
       {showResolutionInfo2 && (
         <Grid item>
-          <Button variant="outlined" color="primary" sx={{ ...buttonStyles, ml: 2 }}>
+          <Button gutterBottom variant="outlined" color="primary" sx={{ ...buttonStyles, ml: 2 }}>
             Descargar documento
           </Button>
         </Grid>
       )}
       {showResolutionInfo2 && (
-        <Grid item xs={12} sx={{ display: 'flex', gap: 2 }}>
-          <Typography variant="body" sx={{ fontWeight: 'bold' }}>Número resolución:</Typography>
+        <Grid item xs={12} sx={{ display: 'flex', gap: 2 ,mt: 4 }} gutterBottom >
+          <Typography variant="body" sx={{ fontWeight: 'bold' }}>Número documeto:</Typography>
           <Typography variant="body">1205</Typography>
           <Typography variant="body" sx={{ fontWeight: 'bold' }}>Fecha:</Typography>
           <Typography variant="body">28-10-2024</Typography>

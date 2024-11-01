@@ -77,7 +77,7 @@ const SolicitudCiudadanaFuncionario = () => {
       url: '/oirs/solicitud-ciudadana-funcionario/secciones',
       titulo: 'Secciones de Solicitudes',
       rol: '[Manejo Interno Sistema]',
-      color: 'warning'
+      color: 'secondary'
     }
   ];
 
@@ -92,8 +92,15 @@ const SolicitudCiudadanaFuncionario = () => {
       url: 'busqueda-apelaciones-vigentes',
       titulo: 'Buscar Apelaciones Vigentes',
       rol: '[Todos los funcionarios]',
-      color: 'warning'
-    }
+      color: 'secondary'
+    },
+    {
+      url: 'registrar-antecedentes-apelacion',
+      titulo: 'Registrar Antecedentes de Apelación',
+      rol: '[Profesional DECR]',
+      color: 'primary'
+    },
+    
   ];
 
 

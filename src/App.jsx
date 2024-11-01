@@ -24,7 +24,7 @@ import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/not
 import BusquedaRegistro from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/busqueda-registro'
 import IngresarApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/ingresar-apelacion'
 import BusquedaApelacionesVigentes from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/busqueda-apelaciones-vigentes'
-
+import RegistrarAntecedentesApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/registrar-antecedentes-apelacion'
 
 function App() {
 	useSesionExpiradaCheck();
@@ -64,6 +64,7 @@ function App() {
                         <Route path='apelaciones-busqueda-registro' element= {<BusquedaRegistro />} />
                         <Route path='ingresar-apelacion' element= {<IngresarApelacion />} />
 						<Route path='busqueda-apelaciones-vigentes' element= {<BusquedaApelacionesVigentes />} />
+						<Route path='registrar-antecedentes-apelacion' element= {<RegistrarAntecedentesApelacion />} />
 					</Route>
 				</Route>
 			</Routes>
