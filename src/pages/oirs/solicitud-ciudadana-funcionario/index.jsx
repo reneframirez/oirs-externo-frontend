@@ -49,7 +49,25 @@ const SolicitudCiudadanaFuncionario = () => {
     {
       url: 'notificar-respuesta',
       titulo: 'Notificar Respuesta al Usuario',
-      rol: '[Defensor]',
+      rol: '[Asesor Juridico]',
+      color: 'info'
+    },
+    {
+      url: 'recepcion-notificacion',
+      titulo: 'Forma de Notificacion Respuesta al Usuario',
+      rol: '[Asesor Juridico]',
+      color: 'info'
+    },
+    {
+      url: 'asignar-profesional',
+      titulo: 'Profesional a Asignar',
+      rol: '[Asesor Juridico]',
+      color: 'info'
+    },
+    {
+      url: 'mejor-resolver',
+      titulo: 'Media por Mejor Resolver',
+      rol: '[Asesor Juridico]',
       color: 'info'
     },
   ];

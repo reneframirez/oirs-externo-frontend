@@ -20,6 +20,9 @@ import EntrevistaBeneficiario from './pages/oirs/solicitud-ciudadana-funcionario
 import RespuestaDefensor from './pages/oirs/solicitud-ciudadana-funcionario/respuesta-defensor';
 import GenerarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/generar-respuesta';
 import NotificarRespuesta from './pages/oirs/solicitud-ciudadana-funcionario/notificar-respuesta';
+import RecepcionNotificacion from './pages/oirs/solicitud-ciudadana-funcionario/recepcion-notificacion';
+import AsignarProfesional from './pages/oirs/solicitud-ciudadana-funcionario/asignar-profesional';
+import MejorResolver from './pages/oirs/solicitud-ciudadana-funcionario/mejor-resolver';
 
 
 function App() {
@@ -29,6 +32,7 @@ function App() {
 		<>
 			<Routes>
 				<Route path="/" element={<Inicio />} />
+				
 				<Route path="/oirs" element={<DefaultLayout />}>
 					<Route index element={<Oirs />} />
 					<Route
@@ -56,6 +60,9 @@ function App() {
                         <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
                         <Route path="notificar-respuesta" element= {<NotificarRespuesta/>} />
+                        <Route path="recepcion-notificacion" element= {<RecepcionNotificacion/>} />
+                        <Route path="asignar-profesional" element= {<AsignarProfesional/>} />
+                        <Route path="mejor-resolver" element= {<MejorResolver/>} />
 					</Route>
 				</Route>
 			</Routes>
