@@ -76,6 +76,12 @@ const SolicitudCiudadanaFuncionario = () => {
       rol: '[Asesor Juridico]',
       color: 'info'
     },
+    {
+      url: 'responder-mmr',
+      titulo: 'Media por Mejor Resolver a Responder',
+      rol: '[Asesor Juridico]',
+      color: 'info'
+    },
   ];
 
   const apoyoCardsData = [
