@@ -28,6 +28,7 @@ import RegistrarAntecedentesApelacion from './pages/oirs/solicitud-ciudadana-fun
 import RecepcionNotificacion from './pages/oirs/solicitud-ciudadana-funcionario/recepcion-notificacion';
 import AsignarProfesional from './pages/oirs/solicitud-ciudadana-funcionario/asignar-profesional';
 import MejorResolver from './pages/oirs/solicitud-ciudadana-funcionario/mejor-resolver';
+import DerivarApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/derivar-apelacion';
 
 
 function App() {
@@ -72,6 +73,8 @@ function App() {
                         <Route path='ingresar-apelacion' element= {<IngresarApelacion />} />
 						<Route path='busqueda-apelaciones-vigentes' element= {<BusquedaApelacionesVigentes />} />
 						<Route path='registrar-antecedentes-apelacion' element= {<RegistrarAntecedentesApelacion />} />
+						<Route path="emitir-respuesta" element={<EmitirRespuesta />} />
+						<Route path="derivar-apelacion" element={<DerivarApelacion />} />
 					</Route>
 				</Route>
 			</Routes>
