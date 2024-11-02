@@ -2,10 +2,10 @@ import React from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
-import AntUsuario from '../secciones/AntUsuario';
-import AntRequerimiento from '../secciones/AntRequerimiento';
-import AntImputado from '../secciones/AntImputado';
-import InfoAdicional from '../secciones/InfoAdicional';
+import AntUsuario from '../../secciones/AntUsuario';
+import AntRequerimiento from '../../secciones/AntRequerimiento';
+import AntImputado from '../../secciones/AntImputado';
+import InfoAdicional from '../../secciones/InfoAdicional';
 import MejorResolver from './MejorResolver';
 
 const Index = () => {

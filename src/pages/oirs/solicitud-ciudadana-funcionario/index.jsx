@@ -104,7 +104,7 @@ const SolicitudCiudadanaFuncionario = () => {
       color: 'secondary'
     }
   ];
-
+  
   const apelacionCardsData = [
     {
       url: 'apelaciones-busqueda-registro',

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { TextField, MenuItem, Grid, Typography, Box, DialogActions, Button, Modal, FormControlLabel, FormGroup } from '@mui/material';
 import Checkbox from "@mui/material/Checkbox";
-import UploadButton from '../../../../components/UploadButton';
-import UploadResButton from '../../../../components/ResolucionRespuestaButton';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
-import AlertDialog from '../../../../components/AlertDialog';
-import { CancelButton, SaveButton } from '../../../../components/CustomButtons';
-import DocumentEditor from '../../../../components/DocumentEditor';
-import LoadingModal from '../../../../components/LoadingModal';
+import UploadButton from '../../../../../components/UploadButton';
+import UploadResButton from '../../../../../components/ResolucionRespuestaButton';
+import ConfirmDialog from '../../../../../components/ConfirmDialog';
+import AlertDialog from '../../../../../components/AlertDialog';
+import { CancelButton, SaveButton } from '../../../../../components/CustomButtons';
+import DocumentEditor from '../../../../../components/DocumentEditor';
+import LoadingModal from '../../../../../components/LoadingModal';
 import axios from 'axios';
 
 const buttonStyles = {
