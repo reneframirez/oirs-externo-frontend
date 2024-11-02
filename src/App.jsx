@@ -27,7 +27,8 @@ import BusquedaApelacionesVigentes from './pages/oirs/solicitud-ciudadana-funcio
 import RegistrarAntecedentesApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/registrar-antecedentes-apelacion'
 import RecepcionNotificacion from './pages/oirs/solicitud-ciudadana-funcionario/recepcion-notificacion';
 import AsignarProfesional from './pages/oirs/solicitud-ciudadana-funcionario/asignar-profesional';
-import MejorResolver from './pages/oirs/solicitud-ciudadana-funcionario/mejor-resolver';
+import MejorResolver from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/mejor-resolver';
+import ResponderMmr from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/responder-mmr';
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
                         <Route path='ingresar-apelacion' element= {<IngresarApelacion />} />
 						<Route path='busqueda-apelaciones-vigentes' element= {<BusquedaApelacionesVigentes />} />
 						<Route path='registrar-antecedentes-apelacion' element= {<RegistrarAntecedentesApelacion />} />
+                        <Route path="responder-mmr" element= {<ResponderMmr/>} />
 					</Route>
 				</Route>
 			</Routes>
