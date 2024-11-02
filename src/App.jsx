@@ -29,8 +29,7 @@ import RecepcionNotificacion from './pages/oirs/solicitud-ciudadana-funcionario/
 import AsignarProfesional from './pages/oirs/solicitud-ciudadana-funcionario/asignar-profesional';
 import MejorResolver from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/mejor-resolver';
 import ResponderMmr from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/responder-mmr';
-
-
+import DerivarApelacion from './pages/oirs/solicitud-ciudadana-funcionario/Apelaciones/derivar-apelacion';
 
 function App() {
 	useSesionExpiradaCheck();
@@ -75,6 +74,7 @@ function App() {
 						<Route path='busqueda-apelaciones-vigentes' element= {<BusquedaApelacionesVigentes />} />
 						<Route path='registrar-antecedentes-apelacion' element= {<RegistrarAntecedentesApelacion />} />
                         <Route path="responder-mmr" element= {<ResponderMmr/>} />
+						<Route path="derivar-apelacion" element= {<DerivarApelacion/>} />
 					</Route>
 				</Route>
 			</Routes>

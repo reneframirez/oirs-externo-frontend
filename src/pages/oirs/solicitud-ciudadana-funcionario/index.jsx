@@ -1,7 +1,9 @@
 // src/pages/Inicio.jsx
-import { Box, Button, Card, CardContent, Typography } from '@mui/material';
+import React from 'react';
+import { Box, Button, Card, CardContent, Typography, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const SolicitudCiudadanaFuncionario = () => {
@@ -27,7 +29,7 @@ const SolicitudCiudadanaFuncionario = () => {
         titulo: 'Entrevista Beneficiario',
         rol: '[AJ - Periodista]',
         color: 'warning'
-      },
+    },
     {
       url: 'derivar-respuesta',
       titulo: 'Derivar Solicitud',
@@ -44,44 +46,71 @@ const SolicitudCiudadanaFuncionario = () => {
         url: 'generar-respuesta',
         titulo: 'Generar respuesta',
         rol: '[AJ - Periodista]',
-        color: 'secondary'
+        color: 'error'
     },
     {
         url: 'emitir-respuesta',
         titulo: 'Emitir respuesta',
         rol: '[AJ - Periodista]',
-        color: 'primary'
+        color: 'secondary'
     },
     {
       url: 'notificar-respuesta',
       titulo: 'Notificar Respuesta al Usuario',
       rol: '[Asesor Juridico]',
-      color: 'info'
+      color: 'primary'
     },
     {
       url: 'recepcion-notificacion',
       titulo: 'Forma de Notificacion Respuesta al Usuario',
       rol: '[Asesor Juridico]',
+      color: 'warning'
+    },
+  ];
+
+  const apelacionCardsData = [
+    {
+      url: 'apelaciones-busqueda-registro',
+      titulo: 'Ingresar Apelacion',
+      rol: '[AJ - Periodista]',
+      color: 'secondary'
+    },
+    {
+      url: 'derivar-apelacion',
+      titulo: 'Derivar Apelación',
+      rol: '[Jefe Gabinete]',
       color: 'info'
     },
     {
       url: 'asignar-profesional',
       titulo: 'Profesional a Asignar',
-      rol: '[Asesor Juridico]',
-      color: 'info'
+      rol: '[Jefe DECR]',
+      color: 'success'
     },
     {
       url: 'mejor-resolver',
-      titulo: 'Media por Mejor Resolver',
-      rol: '[Asesor Juridico]',
-      color: 'info'
+      titulo: 'Solicitar Media por Mejor Resolver',
+      rol: '[Profesional DECR]',
+      color: 'error'
     },
     {
       url: 'responder-mmr',
-      titulo: 'Media por Mejor Resolver a Responder',
+      titulo: 'Responder Media por Mejor Resolver',
       rol: '[Asesor Juridico]',
-      color: 'info'
+      color: 'primary'
     },
+    {
+      url: 'registrar-antecedentes-apelacion',
+      titulo: 'Registrar Antecedentes de Apelación',
+      rol: '[Profesional DECR]',
+      color: 'warning'
+    },
+    {
+      url: 'busqueda-apelaciones-vigentes',
+      titulo: 'Buscar Apelaciones Vigentes',
+      rol: '[Todos los funcionarios]',
+      color: 'info'
+    },  
   ];
 
   const apoyoCardsData = [
@@ -89,7 +118,7 @@ const SolicitudCiudadanaFuncionario = () => {
       url: '/oirs/solicitud-ciudadana-funcionario/solicitudes-pendientes',
       titulo: 'Solicitudes Pendientes',
       rol: '[AJ - Periodista]',
-      color: 'warning'
+      color: 'secondary'
     },
     {
       url: 'busqueda',
@@ -101,32 +130,10 @@ const SolicitudCiudadanaFuncionario = () => {
       url: '/oirs/solicitud-ciudadana-funcionario/secciones',
       titulo: 'Secciones de Solicitudes',
       rol: '[Manejo Interno Sistema]',
-      color: 'secondary'
-    }
-  ];
-  
-  const apelacionCardsData = [
-    {
-      url: 'apelaciones-busqueda-registro',
-      titulo: 'Buscar Registro Para Apelaciones',
-      rol: '[AJ - Periodista]',
-      color: 'warning'
-    },
-    {
-      url: 'busqueda-apelaciones-vigentes',
-      titulo: 'Buscar Apelaciones Vigentes',
-      rol: '[Todos los funcionarios]',
-      color: 'secondary'
-    },
-    {
-      url: 'registrar-antecedentes-apelacion',
-      titulo: 'Registrar Antecedentes de Apelación',
-      rol: '[Profesional DECR]',
       color: 'primary'
     },
-    
   ];
-
+  
 
   return (
     <Box className="flex flex-col items-center justify-center px-4">
@@ -147,141 +154,156 @@ const SolicitudCiudadanaFuncionario = () => {
           >
             Módulo SIGO - Portal Único
           </Typography>
-                    <Typography variant="body2" className="text-center pt-3">
-                      "Proceso Reclamo"
-                    </Typography>
-          <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-16">
-            {cardsData.map((card, index) => (
-              <>
-                <Card
-                  key={index}
-                  variant="outlined"
-                  className="flex flex-col items-center p-4 relative"
-                  sx={{ width: { xs: '100%', sm: '250px' }, height: '160px' }}
-                >
-                  <CardContent>
-                    <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
-                      <Typography variant="caption" className="text-gray-500">
-                        {index + 1}
-                      </Typography>
-                    </Box>
-                    <Button
-                      variant="contained"
-                      color={card.color}
-                      component={Link}
-                      to={card.url}
-                      startIcon={<AddToPhotosIcon />}
-                      className="mb-4 w-full h-9"
+
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="h5" className="text-blue-700">
+                Proceso Reclamo
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-4">
+                {cardsData.map((card, index) => (
+                  <React.Fragment key={index}>
+                    <Card
+                      variant="outlined"
+                      className="flex flex-col items-center p-4 relative"
+                      sx={{ width: { xs: '100%', sm: '250px' }, height: '160px', borderRadius: '16px' }}
                     >
-                      {' '}
-                    </Button>
-                    <Typography variant="body2" className="text-center pt-3">
-                      {card.titulo}
-                    </Typography>
-                    <Typography variant="body2" className="text-center pt-3">
-                      {card.rol}
-                    </Typography>
-                  </CardContent>
-                </Card>
-                {index < cardsData.length - 1 && (
-                  <Box className="flex items-center justify-center">
-                    <ArrowForwardIcon fontSize="large" className="text-blue-700 hidden md:block" />
-                  </Box>
-                )}
-              </>
-            ))}
-          </Box>
+                      <CardContent>
+                        <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+                          <Typography variant="caption" className="text-gray-500">
+                            {index + 1}
+                          </Typography>
+                        </Box>
+                        <Button
+                          variant="contained"
+                          color={card.color}
+                          component={Link}
+                          to={card.url}
+                          startIcon={<AddToPhotosIcon />}
+                          className="mb-4 w-full h-9"
+                        >
+                          {' '}
+                        </Button>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.titulo}
+                        </Typography>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.rol}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                    {index < cardsData.length - 1 && (
+                      <Box className="flex items-center justify-center">
+                        <ArrowForwardIcon fontSize="large" className="text-blue-700 hidden md:block" />
+                      </Box>
+                    )}
+                  </React.Fragment>
+                ))}
+              </Box>
+            </AccordionDetails>
+          </Accordion>
 
-          {/*  [[[[  FLUJO APELACIONES   ]]]]] */}
-          <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-16">
-            {apelacionCardsData.map((card, index) => (
-              <>
-                <Card
-                  key={index}
-                  variant="outlined"
-                  className="flex flex-col items-center p-4 relative"
-                  sx={{ width: { xs: '100%', sm: '250px' }, height: '160px' }}
-                >
-                  <CardContent>
-                    <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
-                      <Typography variant="caption" className="text-gray-500">
-                        {index + 1}
-                      </Typography>
-                    </Box>
-                    <Button
-                      variant="contained"
-                      color={card.color}
-                      component={Link}
-                      to={card.url}
-                      startIcon={<AddToPhotosIcon />}
-                      className="mb-4 w-full h-9"
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="h5" className="text-green-700">
+                Proceso de Apelación
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-4">
+                {apelacionCardsData.map((card, index) => (
+                  <React.Fragment key={index}>
+                    <Card
+                      variant="outlined"
+                      className="flex flex-col items-center p-4 relative"
+                      sx={{ width: { xs: '100%', sm: '250px' }, height: '160px', borderRadius: '16px' }}
                     >
-                      {' '}
-                    </Button>
-                    <Typography variant="body2" className="text-center pt-3">
-                      {card.titulo}
-                    </Typography>
-                    <Typography variant="body2" className="text-center pt-3">
-                      {card.rol}
-                    </Typography>
-                  </CardContent>
-                </Card>
-                {index < apelacionCardsData.length - 1 && (
-                  <Box className="flex items-center justify-center">
-                    <ArrowForwardIcon fontSize="large" className="text-blue-700 hidden md:block" />
-                  </Box>
-                )}
-              </>
-            ))}
-          </Box>
+                      <CardContent>
+                        <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+                          <Typography variant="caption" className="text-gray-500">
+                            {index + 1}
+                          </Typography>
+                        </Box>
+                        <Button
+                          variant="contained"
+                          color={card.color}
+                          component={Link}
+                          to={card.url}
+                          startIcon={<AddToPhotosIcon />}
+                          className="mb-4 w-full h-9"
+                        >
+                          {' '}
+                        </Button>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.titulo}
+                        </Typography>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.rol}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                    {index < apelacionCardsData.length - 1 && (
+                      <Box className="flex items-center justify-center">
+                        <ArrowForwardIcon fontSize="large" className="text-green-700 hidden md:block" />
+                      </Box>
+                    )}
+                  </React.Fragment>
+                ))}
+              </Box>
+            </AccordionDetails>
+          </Accordion>
 
-
-
-
-          {/*  [[[[  APOYO AL FLUJO   ]]]]] */}
-          <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-16">
-            {apoyoCardsData.map((card, index) => (
-              <>
-                <Card
-                  key={index}
-                  variant="outlined"
-                  className="flex flex-col items-center p-4 relative"
-                  sx={{ width: { xs: '100%', sm: '250px' }, height: '160px' }}
-                >
-                  <CardContent>
-                    <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
-                      <Typography variant="caption" className="text-gray-500">
-                        {index + 1}
-                      </Typography>
-                    </Box>
-                    <Button
-                      variant="contained"
-                      color={card.color}
-                      component={Link}
-                      to={card.url}
-                      startIcon={<AddToPhotosIcon />}
-                      className="mb-4 w-full h-9"
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="h5" className="text-purple-700">
+                Apoyo al Proceso
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-4">
+                {apoyoCardsData.map((card, index) => (
+                  <React.Fragment key={index}>
+                    <Card
+                      variant="outlined"
+                      className="flex flex-col items-center p-4 relative"
+                      sx={{ width: { xs: '100%', sm: '250px' }, height: '160px', borderRadius: '16px' }}
                     >
-                      {' '}
-                    </Button>
-                    <Typography variant="body2" className="text-center pt-3">
-                      {card.titulo}
-                    </Typography>
-                    <Typography variant="body2" className="text-center pt-3">
-                      {card.rol}
-                    </Typography>
-                  </CardContent>
-                </Card>
-                {index < apoyoCardsData.length - 1 && (
-                  <Box className="flex items-center justify-center">
-                    <ArrowForwardIcon fontSize="large" className="text-blue-700 hidden md:block" />
-                  </Box>
-                )}
-              </>
-            ))}
-          </Box>
-
-
+                      <CardContent>
+                        <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+                          <Typography variant="caption" className="text-gray-500">
+                            {index + 1}
+                          </Typography>
+                        </Box>
+                        <Button
+                          variant="contained"
+                          color={card.color}
+                          component={Link}
+                          to={card.url}
+                          startIcon={<AddToPhotosIcon />}
+                          className="mb-4 w-full h-9"
+                        >
+                          {' '}
+                        </Button>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.titulo}
+                        </Typography>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.rol}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                    {index < apoyoCardsData.length - 1 && (
+                      <Box className="flex items-center justify-center">
+                        <ArrowForwardIcon fontSize="large" className="text-purple-700 hidden md:block" />
+                      </Box>
+                    )}
+                  </React.Fragment>
+                ))}
+              </Box>
+            </AccordionDetails>
+          </Accordion>
 
           <Box className="flex flex-col items-center justify-center py-10">
             <Typography
