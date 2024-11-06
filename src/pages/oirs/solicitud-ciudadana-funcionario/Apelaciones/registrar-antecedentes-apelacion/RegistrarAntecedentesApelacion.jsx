@@ -86,7 +86,7 @@ const RegistrarAntecedentesApelacion = () => {
       <Grid container spacing={3}>
       <Grid item xs={12}>
             <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
-                Ingresar Resolución
+                Ingresar Oficio
             </Typography>
         </Grid>
         <Grid item xs={12}>
