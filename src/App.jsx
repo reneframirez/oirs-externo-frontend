@@ -66,6 +66,7 @@ function App() {
 						<Route path="entrevista-beneficiario" element={<EntrevistaBeneficiario />} />
                         <Route path="respuesta-defensor" element={<RespuestaDefensor />} />
                         <Route path="generar-respuesta" element= {<GenerarRespuesta/>} />
+                        <Route path="emitir-respuesta" element= {<EmitirRespuesta/>} />
                         <Route path="notificar-respuesta" element= {<NotificarRespuesta/>} />
                         <Route path="recepcion-notificacion" element= {<RecepcionNotificacion/>} />
                         <Route path="asignar-profesional" element= {<AsignarProfesional/>} />
