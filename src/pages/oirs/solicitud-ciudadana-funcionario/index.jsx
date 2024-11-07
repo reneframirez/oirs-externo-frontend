@@ -88,12 +88,6 @@ const SolicitudCiudadanaFuncionario = () => {
       color: 'success'
     },
     {
-      url: 'mejor-resolver',
-      titulo: 'Solicitar Media por Mejor Resolver',
-      rol: '[Profesional DECR]',
-      color: 'error'
-    },
-    {
       url: 'responder-mmr',
       titulo: 'Responder Media por Mejor Resolver',
       rol: '[Asesor Juridico]',
