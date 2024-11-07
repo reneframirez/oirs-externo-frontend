@@ -148,7 +148,6 @@ const handleSendResolution2 = () => {
             buttonStyles={buttonStyles}
           />
 
-
       </section>
 
       <Modal
@@ -158,92 +157,102 @@ const handleSendResolution2 = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            MEDIDAS MEJOR RESOLVER
-          </Typography>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+            Medidas Mejor Resolver 
+        </Typography>
+        <Grid container spacing={2}>
+            <Grid item xs={12} container spacing={2} alignItems="center">
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Fecha Documento"
+                  type="date"
+                  InputLabelProps={{ shrink: true }}
+                  required
+                />
+              </Grid>
+            </Grid>
+            <Grid item xs={12} container spacing={2} alignItems="center">
+              <Grid item xs={12} sm={6}>
+  
+                  <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Profesional</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={profesional}
+                    label="Profesional"
+                    onChange={handleChange}
+                  >
+                      <MenuItem value="1">SANDRA EUGENIA JELVES MELLA</MenuItem>
+                      <MenuItem value="2">HELEN ANDREA THIERS HERNANDEZ</MenuItem>
+                      <MenuItem value="3">JORGE IVAN GASPONOV ESCUDERO</MenuItem>
+                      <MenuItem value="4">CLAUDIO PEREZ GARCIA</MenuItem>
+                      <MenuItem value="1">PATRICIO LEONARDO SANZANA MANSILLA</MenuItem>
+                      <MenuItem value="2">MARCELO EDUARDO GRANDON PELLET</MenuItem>
+                      <MenuItem value="3">PETER SHARP VARGAS</MenuItem>
+                  </Select>
+              </FormControl>
+              </Grid>
+            </Grid>
 
-          <FormControl variant="outlined">
-  <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
-  <Select
-    native
-    value={age}
-    onChange={handleChange}
-    label="Age"
-    inputProps={{ name: 'age', id: 'outlined-age-native-simple'}}
-    >
-	    <option aria-label="None" value="" />
-	    <option value={10}>Ten</option>
-	    <option value={20}>Twenty</option>
-	    <option value={30}>Thirty</option>
-	 </Select>
-</FormControl>
+        </Grid>  
+  
+  
+         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+         
+          <FormGroup>
+            <FormControlLabel
+               control={<Checkbox color="success" />}
+               label="Solicitar Informacion complementaria del reclamante-reclamado"
+               checked={state.chkItemOne}
+               onChange={handleGrouping}
+               name="chkItem1"
+            />
+            <FormControlLabel
+               control={<Checkbox color="success" />}
+               label="Solicitar audios"
+               checked={state.chkItemTwo}
+               onChange={handleGrouping}
+               name="chkItem2"
+            />
+            <FormControlLabel
+               control={<Checkbox color="success" />}
+               label="Coordinar y/o gestiones de la DR"
+               checked={state.chkItemThree}
+               onChange={handleGrouping}
+               name="chkItem3"
+            />
+            <FormControlLabel
+               control={<Checkbox color="success" />}
+               label="Adjuntar expediente escaneado"
+               checked={state.chkItemFour}
+               onChange={handleGrouping}
+               name="chkItem4"
+            />
+            <FormControlLabel
+               control={<Checkbox color="success" />}
+               label="Otra"
+               checked={state.chkItemFour}
+               onChange={handleGrouping}
+               name="chkItem5"
+            />
+          </FormGroup>
+         </Typography>
 
-          <div style={{ margin: "5%" }}>
-          <FormControlLabel
-              control={
-                <Checkbox name="opcion1" />
-              }
-              label="Solicitar Informacion complementaria del reclamante-reclamado"
-          />
-          <FormControlLabel
-              control={
-                <Checkbox name="opcion2" />
-              }
-              label="Solicitar audios"
-          />
-          <FormControlLabel
-              control={
-                <Checkbox name="opcion3" />
-              }
-              label="Coordinar y/o gestiones de la DR"
-          />
-          <FormControlLabel
-              control={
-                <Checkbox name="opcion4" />
-              }
-              label="Adjuntar expediente escaneado"
-          />
-          <FormControlLabel
-              control={
-                <Checkbox name="opcion5" />
-              }
-              label="Otra"
-          />
-
-
-
-
-    </div>
-   
-
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <div className="edit-container">
-
-              <input type="text" />
-              <label for="">Edit Contact Email</label>
-              <input type="text" />
-              <label for="">Edit Contact Image</label>
-              <input type="file" />
-            </div>
-
-            <button class="edit-btn">Save</button>
-          </Typography>
-            <MenuItem value="" disabled>
-              Seleccione Profesional
-            </MenuItem>
-            <MenuItem value="1">SANDRA EUGENIA JELVES MELLA</MenuItem>
-            <MenuItem value="2">HELEN ANDREA THIERS HERNANDEZ</MenuItem>
-            <MenuItem value="3">JORGE IVAN GASPONOV ESCUDERO</MenuItem>
-            <MenuItem value="4">CLAUDIO PEREZ GARCIA</MenuItem>
-            <MenuItem value="1">PATRICIO LEONARDO SANZANA MANSILLA</MenuItem>
-            <MenuItem value="2">MARCELO EDUARDO GRANDON PELLET</MenuItem>
-            <MenuItem value="3">PETER SHARP VARGAS</MenuItem>
-            
-
+         <DialogActions sx={{ mt: 3 }}>
+            <Button onClick={handleClose} color="secondary" sx={buttonStyles}>
+              Cancelar
+            </Button>
+            <Button onClick={handleSave} color="primary" variant="contained" sx={buttonStyles}>
+              Grabar
+            </Button>
+          </DialogActions>
 
         </Box>
+        
       </Modal>
     </div>
   );
-  };
+};
 export default RegistrarAntecedentesApelacion;

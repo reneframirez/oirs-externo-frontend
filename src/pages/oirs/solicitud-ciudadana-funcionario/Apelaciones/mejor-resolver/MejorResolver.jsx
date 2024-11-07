@@ -24,7 +24,6 @@ const MejorResolver = () => {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertContent, setAlertContent] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
-  const [showResolutionInfo, setShowResolutionInfo] = useState(false);
   const [showResolutionInfo2, setShowResolutionInfo2] = useState(false);
   const [loading, setLoading] = useState(false);
 
