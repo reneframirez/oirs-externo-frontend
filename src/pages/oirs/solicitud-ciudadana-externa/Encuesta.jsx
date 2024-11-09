@@ -1,7 +1,8 @@
-import { Button, Box, Typography, Rating, TextareaAutosize } from '@mui/material'
-import PropTypes from 'prop-types'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Box, Typography, Rating, TextareaAutosize } from '@mui/material';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { BackButton, SendButton } from '../../../components/CustomButtons';
 
 const StarRating = ({ title, value, onChange }) => (
 	<Box>
@@ -10,35 +11,35 @@ const StarRating = ({ title, value, onChange }) => (
 			name={title}
 			value={value}
 			onChange={(event, newValue) => {
-				onChange(newValue)
+				onChange(newValue);
 			}}
 			max={7}
 		/>
 	</Box>
-)
+);
 StarRating.propTypes = {
 	title: PropTypes.string.isRequired,
 	value: PropTypes.number.isRequired,
 	onChange: PropTypes.func.isRequired,
-}
+};
 
 const Encuesta = () => {
-	const navigate = useNavigate()
-	const [accessRating, setAccessRating] = useState(0)
-	const [easeRating, setEaseRating] = useState(0)
-	const [utilityRating, setUtilityRating] = useState(0)
-	const [suggestion, setSuggestion] = useState('')
+	const navigate = useNavigate();
+	const [accessRating, setAccessRating] = useState(0);
+	const [easeRating, setEaseRating] = useState(0);
+	const [utilityRating, setUtilityRating] = useState(0);
+	const [suggestion, setSuggestion] = useState('');
 
 	const handleSubmit = (event) => {
-		event.preventDefault()
+		event.preventDefault();
 		console.log({
 			accessRating,
 			easeRating,
 			utilityRating,
 			suggestion,
-		})
-		navigate('/')
-	}
+		});
+		navigate('/');
+	};
 
 	return (
 		<>
@@ -97,18 +98,15 @@ const Encuesta = () => {
 						/>
 					</Box>
 
+					{/* Botones de navegación */}
 					<Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
-						<Button variant="outlined" onClick={() => navigate(-1)}>
-							Volver
-						</Button>
-						<Button type="submit" variant="contained">
-							Enviar
-						</Button>
+						<BackButton />
+						<SendButton onClick={handleSubmit} />
 					</Box>
 				</Box>
 			</Box>
 		</>
-	)
-}
+	);
+};
 
-export default Encuesta
+export default Encuesta;

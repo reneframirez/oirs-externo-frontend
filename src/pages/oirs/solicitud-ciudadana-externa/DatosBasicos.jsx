@@ -1,15 +1,16 @@
-import { useForm, Controller } from 'react-hook-form'
-import { TextField, Select, MenuItem, Button, InputLabel, FormControl, Box } from '@mui/material'
-import { Person, Badge, Cake, Phone, Email, Home } from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { setFormularioData } from '../../../store/reducer'
-import { useEffect } from 'react'
+import { useForm, Controller } from 'react-hook-form';
+import { TextField, Select, MenuItem, InputLabel, FormControl, Box } from '@mui/material';
+import { Person, Badge, Cake, Phone, Email, Home } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFormularioData } from '../../../store/reducer';
+import { useEffect } from 'react';
+import { BackButton, SaveButton } from '../../../components/CustomButtons';
 
 const DatosBasicos = () => {
-	const navigate = useNavigate()
-	const dispatch = useDispatch()
-	const formularioData = useSelector((state) => state.formularioData)
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const formularioData = useSelector((state) => state.formularioData);
 	const {
 		handleSubmit,
 		control,
@@ -17,17 +18,17 @@ const DatosBasicos = () => {
 		reset,
 	} = useForm({
 		defaultValues: formularioData || {},
-	})
+	});
 
 	const onSubmit = (data) => {
-		console.log(data)
-		dispatch(setFormularioData(data))
-		navigate('/oirs/solicitud-ciudadana-externa/datos-causa')
-	}
+		console.log(data);
+		dispatch(setFormularioData(data));
+		navigate('/oirs/solicitud-ciudadana-externa/datos-causa');
+	};
 
 	useEffect(() => {
-		reset(formularioData)
-	}, [formularioData, reset])
+		reset(formularioData);
+	}, [formularioData, reset]);
 
 	return (
 		<Box sx={{ flex: 1, p: 2, width: '100%' }}>
@@ -335,13 +336,12 @@ const DatosBasicos = () => {
 
 				{/* Botón de Enviar */}
 				<Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4 }}>
-					<Button type="submit" variant="contained" color="primary">
-						Guardar
-					</Button>
+					<BackButton />
+					<SaveButton onClick={handleSubmit(onSubmit)} />
 				</Box>
 			</form>
 		</Box>
-	)
-}
+	);
+};
 
-export default DatosBasicos
+export default DatosBasicos;

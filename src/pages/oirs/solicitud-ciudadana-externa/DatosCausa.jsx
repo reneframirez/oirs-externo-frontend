@@ -1,33 +1,34 @@
-import { useForm, Controller } from 'react-hook-form'
-import { Select, MenuItem, TextField, Button, FormControl, InputLabel, Box } from '@mui/material'
-import { LocationOn, Home, Assignment, Email } from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { setFormularioData } from '../../../store/actions'
-import { useEffect } from 'react'
+import { useForm, Controller } from 'react-hook-form';
+import { Select, MenuItem, TextField, FormControl, InputLabel, Box } from '@mui/material';
+import { LocationOn, Home, Assignment, Email } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFormularioData } from '../../../store/actions';
+import { useEffect } from 'react';
+import { SaveButton, BackButton } from '../../../components/CustomButtons';
 
 const DatosCausa = () => {
-	const dispatch = useDispatch()
-	const navigate = useNavigate()
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
-	const formularioData = useSelector((state) => state.formularioData)
+	const formularioData = useSelector((state) => state.formularioData);
 
 	const {
 		handleSubmit,
 		control,
 		formState: { errors },
 		reset,
-	} = useForm()
+	} = useForm();
 
 	const onSubmit = (data) => {
-		console.log(data)
-		dispatch(setFormularioData(data))
-		navigate('/oirs/solicitud-ciudadana-externa/encuesta')
-	}
+		console.log(data);
+		dispatch(setFormularioData(data));
+		navigate('/oirs/solicitud-ciudadana-externa/encuesta');
+	};
 
 	useEffect(() => {
-		reset(formularioData)
-	}, [formularioData, reset])
+		reset(formularioData);
+	}, [formularioData, reset]);
 
 	return (
 		<Box sx={{ flex: 1, p: 2, width: '100%' }}>
@@ -173,20 +174,12 @@ const DatosCausa = () => {
 
 				{/* Botones de navegación */}
 				<Box className="flex justify-between">
-					<Button
-						variant="contained"
-						color="inherit"
-						onClick={() => navigate('/oirs/solicitud-ciudadana-externa/datos-basicos')}
-					>
-						Volver
-					</Button>
-					<Button variant="contained" color="primary" type="submit">
-						Siguiente
-					</Button>
+					<BackButton />
+					<SaveButton onClick={handleSubmit(onSubmit)} />
 				</Box>
 			</form>
 		</Box>
-	)
-}
+	);
+};
 
-export default DatosCausa
+export default DatosCausa;
