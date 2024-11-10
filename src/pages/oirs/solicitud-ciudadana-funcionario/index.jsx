@@ -88,16 +88,15 @@ const SolicitudCiudadanaFuncionario = () => {
       color: 'success'
     },
     {
-      url: 'responder-mmr',
-      titulo: 'Responder Media por Mejor Resolver',
-      rol: '[Asesor Juridico]',
-      color: 'primary'
-    },
-    {
       url: 'registrar-antecedentes-apelacion',
       titulo: 'Registrar Antecedentes de Apelación',
       rol: '[Profesional DECR]',
       color: 'warning'
+    },    {
+      url: 'responder-mmr',
+      titulo: 'Responder Media por Mejor Resolver',
+      rol: '[Asesor Juridico]',
+      color: 'primary'
     },
     {
       url: 'busqueda-apelaciones-vigentes',
@@ -128,6 +127,21 @@ const SolicitudCiudadanaFuncionario = () => {
     },
   ];
   
+  const felicitacionesCardsData = [
+    {
+      url: '/oirs/solicitud-ciudadana-funcionario/ingreso-solicitud-interno',
+      titulo: 'Ingreso de Solicitud Ciudadana',
+      rol: '[Todos los funcionarios]',
+      color: 'secondary'
+    },
+    {
+      url: '/oirs/solicitud-ciudadana-funcionario/solicitudes-pendientes',
+      titulo: 'Felicitaciones / Opiniones / Consultas',
+      rol: '[AJ - Periodista]',
+      color: 'secondary'
+    }
+  ];
+  
 
   return (
     <Box className="flex flex-col items-center justify-center px-4">
@@ -149,10 +163,10 @@ const SolicitudCiudadanaFuncionario = () => {
             Módulo SIGO - Portal Único
           </Typography>
 
-          <Accordion>
+          <Accordion expanded={true}> 
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="h5" className="text-blue-700">
-                Proceso Reclamo
+                Proceso de reclamo solicitud ciudadana
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -199,10 +213,60 @@ const SolicitudCiudadanaFuncionario = () => {
             </AccordionDetails>
           </Accordion>
 
-          <Accordion>
+          <Accordion expanded={true}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="h5" className="text-blue-700">
+                Solcitudes ciudadanas
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Box className="flex flex-col md:flex-row flex-wrap items-center justify-center gap-8 pt-4">
+                {felicitacionesCardsData.map((card, index) => (
+                  <React.Fragment key={index}>
+                    <Card
+                      variant="outlined"
+                      className="flex flex-col items-center p-4 relative"
+                      sx={{ width: { xs: '100%', sm: '250px' }, height: '160px', borderRadius: '16px' }}
+                    >
+                      <CardContent>
+                        <Box className="absolute top-1 left-1 w-6 h-6 rounded-full bg-gray-200 shadow-md flex items-center justify-center">
+                          <Typography variant="caption" className="text-gray-500">
+                            {index + 1}
+                          </Typography>
+                        </Box>
+                        <Button
+                          variant="contained"
+                          color={card.color}
+                          component={Link}
+                          to={card.url}
+                          startIcon={<AddToPhotosIcon />}
+                          className="mb-4 w-full h-9"
+                        >
+                          {' '}
+                        </Button>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.titulo}
+                        </Typography>
+                        <Typography variant="body2" className="text-center pt-3">
+                          {card.rol}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                    {index < cardsData.length - 1 && (
+                      <Box className="flex items-center justify-center">
+                        <ArrowForwardIcon fontSize="large" className="text-blue-700 hidden md:block" />
+                      </Box>
+                    )}
+                  </React.Fragment>
+                ))}
+              </Box>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion expanded={true}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="h5" className="text-green-700">
-                Proceso de Apelación
+                Apelación de reclamo
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -252,7 +316,7 @@ const SolicitudCiudadanaFuncionario = () => {
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="h5" className="text-purple-700">
-                Apoyo al Proceso
+                Utilidades del sistema
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
