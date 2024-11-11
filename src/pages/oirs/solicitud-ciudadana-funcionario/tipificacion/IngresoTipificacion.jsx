@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Box, FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material';
+import { Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { ChevronDown } from 'lucide-react';
 import AlertDialog from '../../../../components/AlertDialog';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import { SaveButton, BackButton } from '../../../../components/CustomButtons';
+import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
 
 const IngresoTipificacion = () => {
 	const [tipoSolicitud, setTipoSolicitud] = useState('');
@@ -120,11 +121,6 @@ const IngresoTipificacion = () => {
 		setAlertOpen(true);
 	};
 
-	const handleBack = () => {
-		// Logic to navigate back
-		console.log('Volver');
-	};
-
 	return (
 		<Box sx={{ padding: 2, display: 'flex', flexDirection: 'column', gap: 4 }}>
 			<Box
@@ -172,13 +168,11 @@ const IngresoTipificacion = () => {
 				</FormControl>
 			</Box>
 
-			<TextField
+			<MultiLineTextField
 				id="justificacion"
 				label="Justificación de la Especificación"
 				value={justificacion}
 				onChange={handleJustificacionChange}
-				helperText={`${justificacion.length}/500 caracteres`}
-				required
 			/>
 
 			<Box

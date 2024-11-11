@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { TextField, MenuItem, Grid, Typography, Box, DialogActions } from '@mui/material';
+import { TextField, Grid, Typography, Box, DialogActions } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
 

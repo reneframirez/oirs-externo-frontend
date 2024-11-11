@@ -9,11 +9,10 @@ import {
 	Button,
 	Modal,
 } from '@mui/material';
-import UploadButton from '../../../../components/UploadButton';
-import UploadResButton from '../../../../components/ResolucionRespuestaButton';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
+import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
 import DocumentEditor from '../../../../components/DocumentEditor';
 import LoadingModal from '../../../../components/LoadingModal';
 import axios from 'axios';
@@ -144,16 +143,10 @@ const AsignarProfesional = () => {
 					</TextField>
 				</Grid>
 				<Grid item xs={12}>
-					<TextField
-						fullWidth
+					<MultiLineTextField
 						label="Observacion"
 						value={observacion}
 						onChange={(e) => setObservacion(e.target.value)}
-						multiline
-						rows={4}
-						required
-						error={!!errors.observacion}
-						helperText={errors.observacion ? 'Este campo es obligatorio' : ''}
 					/>
 				</Grid>
 			</Grid>

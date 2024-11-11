@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { TextField, MenuItem, Grid, Typography, Box } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
+import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
 import LoadingModal from '../../../../components/LoadingModal';
 import ResolucionSection from '../../../../components/ResolucionSection';
 import axios from 'axios';
@@ -139,16 +140,10 @@ const GenerarRespuesta = () => {
 					</TextField>
 				</Grid>
 				<Grid item xs={12}>
-					<TextField
-						fullWidth
-						label="Fundamento resumido de la decisión"
+					<MultiLineTextField
+						label="Fundamento"
 						value={fundamento}
 						onChange={(e) => setFundamento(e.target.value)}
-						multiline
-						rows={4}
-						required
-						error={!!errors.fundamento}
-						helperText={errors.fundamento ? 'Este campo es obligatorio' : ''}
 					/>
 				</Grid>
 				<Grid item xs={12}>

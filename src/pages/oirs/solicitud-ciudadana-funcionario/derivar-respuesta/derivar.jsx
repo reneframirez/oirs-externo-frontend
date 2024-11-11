@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import {
-	Box,
-	TextField,
-	Select,
-	MenuItem,
-	InputLabel,
-	FormControl,
-	Typography,
-} from '@mui/material';
+import { Box, Select, MenuItem, InputLabel, FormControl, Typography } from '@mui/material';
 import { styled } from '@mui/system';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { SaveButton, BackButton } from '../../../../components/CustomButtons';
+import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
 import { red } from '@mui/material/colors';
 
 const Container = styled(Box)({
@@ -127,20 +120,12 @@ const Derivar = () => {
 					</Select>
 				</FormControl>
 			</Box>
-			<TextField
-				label={
-					<>
-						Fundamento <Asterisk>*</Asterisk>
-					</>
-				}
-				fullWidth
-				multiline
-				rows={4}
-				variant="outlined"
-				margin="dense"
+			<MultiLineTextField
+				label="Fundamento"
 				value={fundamento}
 				onChange={(e) => setFundamento(e.target.value)}
 			/>
+
 			<Box display="flex" justifyContent="space-between" mt={2}>
 				<BackButton />
 				<SaveButton onClick={handleDerivarClick} />

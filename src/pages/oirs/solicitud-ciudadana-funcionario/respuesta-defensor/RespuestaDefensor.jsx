@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
+import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
 
 const RespuestaDefensor = () => {
 	const [respuesta, setRespuesta] = useState('');
@@ -54,17 +55,10 @@ const RespuestaDefensor = () => {
 			<Typography variant="h6" gutterBottom>
 				Generación de Respuesta
 			</Typography>
-			<TextField
+			<MultiLineTextField
 				label="Respuesta"
-				multiline
-				rows={4}
 				value={respuesta}
 				onChange={(e) => setRespuesta(e.target.value)}
-				variant="outlined"
-				fullWidth
-				required
-				error={showError && respuesta.trim() === ''}
-				helperText={showError && respuesta.trim() === '' ? 'Este campo es obligatorio' : ''}
 			/>
 			<UploadButton size="small" sx={{ width: '200px', alignSelf: 'flex-start' }} />
 			<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

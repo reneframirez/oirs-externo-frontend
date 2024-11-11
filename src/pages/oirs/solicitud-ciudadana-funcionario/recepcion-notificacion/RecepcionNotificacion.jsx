@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import UploadResButton from '../../../../components/ResolucionRespuestaButton';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
 import DocumentEditor from '../../../../components/DocumentEditor';

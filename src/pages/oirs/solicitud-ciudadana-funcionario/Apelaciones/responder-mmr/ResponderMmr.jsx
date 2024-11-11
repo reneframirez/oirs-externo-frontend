@@ -13,10 +13,10 @@ import {
 } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import UploadButton from '../../../../../components/UploadButton';
-import UploadResButton from '../../../../../components/ResolucionRespuestaButton';
-import ConfirmDialog from '../../../../../components/ConfirmDialog';
+import { ConfirmDialog } from '../../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../../components/CustomButtons';
+import { MultiLineTextField } from '../../../../../components/CustomFieldTexts';
 import DocumentEditor from '../../../../../components/DocumentEditor';
 import LoadingModal from '../../../../../components/LoadingModal';
 import axios from 'axios';
@@ -231,17 +231,10 @@ const ResponderMmr = ({ datosMmrRespuesta }) => {
 					/>
 				</Grid>
 				<Grid item xs={12}>
-					<TextField
-						disabled
-						fullWidth
-						label=""
+					<MultiLineTextField
+						label="Observacion"
 						value={datosMmrRespuesta.observacion}
 						onChange={(e) => setObservacion(e.target.value)}
-						multiline
-						rows={4}
-						required
-						error={!!errors.observacion}
-						helperText={errors.observacion ? 'Este campo es obligatorio' : ''}
 					/>
 				</Grid>
 			</Grid>

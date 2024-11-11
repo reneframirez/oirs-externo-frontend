@@ -6,18 +6,16 @@ import {
 	Radio,
 	FormControl,
 	FormLabel,
-	TextField,
 	MenuItem,
 	Select,
 	InputLabel,
 	Typography,
 	Grid,
-	InputAdornment,
 } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import { SaveButton, BackButton } from '../../../../components/CustomButtons';
-import { CalendarIcon, FileTextIcon } from 'lucide-react';
-import ConfirmDialog from '../../../../components/ConfirmDialog';
+import { FormTextField, DateTextField } from '../../../../components/CustomFieldTexts';
+import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 
 const EntrevistaBeneficiario = ({ onSubmit }) => {
@@ -88,29 +86,17 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 				<>
 					<Grid container spacing={2} sx={{ my: 2 }}>
 						<Grid item xs={6}>
-							<TextField
+							<DateTextField
 								label="Fecha entrevista"
-								type="date"
-								name="fechaEntrevista"
 								value={entrevista.fechaEntrevista}
 								onChange={handleInputChange}
-								fullWidth
-								InputLabelProps={{ shrink: true }}
-								required
-								InputProps={{
-									startAdornment: (
-										<InputAdornment position="start">
-											<CalendarIcon />
-										</InputAdornment>
-									),
-								}}
 							/>
 						</Grid>
 
 						<Grid item xs={6}>
 							<FormControl fullWidth required>
 								<InputLabel htmlFor="formaRealizacion-select">
-									Forma que se realiza *
+									Forma que se realiza
 								</InputLabel>
 								<Select
 									labelId="formaRealizacion-label"
@@ -126,18 +112,11 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 						</Grid>
 					</Grid>
 
-					<TextField
-						label="Resumen"
+					<FormTextField
 						name="resumen"
+						label="Resumen"
 						value={entrevista.resumen}
 						onChange={handleInputChange}
-						multiline
-						rows={4}
-						fullWidth
-						inputProps={{ maxLength: 400 }}
-						helperText={`Límite de caracteres: ${entrevista.resumen.length} / 400`}
-						required
-						sx={{ my: 2 }}
 					/>
 
 					<Box sx={{ my: 2 }}>
