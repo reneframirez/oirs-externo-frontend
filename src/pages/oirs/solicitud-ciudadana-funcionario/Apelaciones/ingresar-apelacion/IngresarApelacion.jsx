@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ConfirmDialog } from '../../../../../components/ConfirmDialog';
 import UploadButton from '../../../../../components/UploadButton';
-import { TextField, MenuItem, Box } from '@mui/material';
+import { TextField, InputLabel, Box } from '@mui/material';
 import { BackButton, SaveButton } from '../../../../../components/CustomButtons';
-import { MultiLineTextField } from '../../../../../components/CustomFieldTexts';
+import { MultiLineTextField } from '../../../../../components/CustomTextFields';
+import { CustomSelect } from '../../../../../components/CustomSelect';
 
 const IngresarApelacion = () => {
 	const [dialogOpen, setDialogOpen] = useState(false);
@@ -12,6 +13,20 @@ const IngresarApelacion = () => {
 	const [resumen, setResumen] = useState('');
 	const [archivo, setArchivo] = useState(null);
 	const [alertContent, setAlertContent] = useState('');
+
+	const [quienApelaOptions, setQuienApelaOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setQuienApelaOption([
+				{ value: 'Beneficiario', label: 'Beneficiario' },
+				{ value: 'Defensor', label: 'Defensor' },
+			]);
+		};
+
+		fetchData();
+	}, []);
 
 	const handleFileChange = (e) => {
 		setArchivo(e.target.files[0]);
@@ -47,6 +62,7 @@ const IngresarApelacion = () => {
 					InputLabelProps={{ shrink: true }}
 					required
 				/>
+				{/* 
 				<TextField
 					label="¿Quién apela?"
 					select
@@ -58,6 +74,13 @@ const IngresarApelacion = () => {
 					<MenuItem value="Beneficiario">Beneficiario</MenuItem>
 					<MenuItem value="Defensor">Defensor</MenuItem>
 				</TextField>
+				*/}
+				<CustomSelect
+					label="¿Quién apela?"
+					value={quienApela}
+					onChange={(e) => setQuienApela(e.target.value)}
+					options={quienApelaOptions}
+				/>
 			</Box>
 
 			<MultiLineTextField

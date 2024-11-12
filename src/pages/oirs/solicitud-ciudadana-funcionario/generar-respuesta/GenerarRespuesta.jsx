@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { TextField, MenuItem, Grid, Typography, Box } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { TextField, MenuItem, Grid, Typography, Box, InputLabel } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
-import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
+import { MultiLineTextField } from '../../../../components/CustomTextFields';
+import { CustomSelect } from '../../../../components/CustomSelect';
 import LoadingModal from '../../../../components/LoadingModal';
 import ResolucionSection from '../../../../components/ResolucionSection';
 import axios from 'axios';
@@ -32,6 +33,22 @@ const GenerarRespuesta = () => {
 	const [loading, setLoading] = useState(false);
 
 	const [errors, setErrors] = useState({});
+
+	const [decisionOptions, setDecisionOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setDecisionOption([
+				{ value: 'Acoge', label: 'Acoge' },
+				{ value: 'Rechaza', label: 'Rechaza' },
+				{ value: 'Desiste', label: 'Desiste' },
+				{ value: 'Declara inadmisible', label: 'Declara inadmisible' },
+			]);
+		};
+
+		fetchData();
+	}, []);
 
 	const validateFields = () => {
 		let newErrors = {};
@@ -119,6 +136,7 @@ const GenerarRespuesta = () => {
 					buttonStyles={buttonStyles}
 				/>
 				<Grid item xs={12}>
+					{/* 
 					<TextField
 						select
 						fullWidth
@@ -138,6 +156,15 @@ const GenerarRespuesta = () => {
 						<MenuItem value="Desiste">Desiste</MenuItem>
 						<MenuItem value="Declara inadmisible">Declara inadmisible</MenuItem>
 					</TextField>
+					*/}
+					<InputLabel id="decision-label">Decisión</InputLabel>
+					<CustomSelect
+						labelId="decision-label"
+						label="Decisión"
+						value={decision}
+						onChange={(e) => setDecision(e.target.value)}
+						options={decisionOptions}
+					/>
 				</Grid>
 				<Grid item xs={12}>
 					<MultiLineTextField

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	TextField,
 	MenuItem,
@@ -8,11 +8,13 @@ import {
 	DialogActions,
 	Button,
 	Modal,
+	InputLabel,
 } from '@mui/material';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
-import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
+import { MultiLineTextField } from '../../../../components/CustomTextFields';
+import { CustomSelect } from '../../../../components/CustomSelect';
 import DocumentEditor from '../../../../components/DocumentEditor';
 import LoadingModal from '../../../../components/LoadingModal';
 import axios from 'axios';
@@ -36,6 +38,24 @@ const AsignarProfesional = () => {
 	const [loading, setLoading] = useState(false);
 
 	const [errors, setErrors] = useState({});
+
+	const [profesionalOptions, setProfesionalOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setProfesionalOption([
+				{ value: '1', label: 'SANDRA EUGENIA JELVES MELLA' },
+				{ value: '2', label: 'HELEN ANDREA THIERS HERNANDEZ' },
+				{ value: '3', label: 'JORGE IVAN GASPONOV ESCUDERO' },
+				{ value: '4', label: 'CLAUDIO PEREZ GARCIA' },
+				{ value: '5', label: 'PATRICIO LEONARDO SANZANA MANSILLA' },
+				{ value: '6', label: 'MARCELO EDUARDO GRANDON PELLET' },
+				{ value: '7', label: 'PETER SHARP VARGAS' },
+			]);
+		};
+		fetchData();
+	}, []);
 
 	const validateFields = () => {
 		let newErrors = {};
@@ -119,6 +139,7 @@ const AsignarProfesional = () => {
 			<Grid container spacing={2}>
 				<Grid item xs={12} container spacing={2} alignItems="center"></Grid>
 				<Grid item xs={12}>
+					{/* 
 					<TextField
 						select
 						fullWidth
@@ -141,6 +162,14 @@ const AsignarProfesional = () => {
 						<MenuItem value="2">MARCELO EDUARDO GRANDON PELLET</MenuItem>
 						<MenuItem value="3">PETER SHARP VARGAS</MenuItem>
 					</TextField>
+					*/}
+					<InputLabel>Profesional a Asignar</InputLabel>
+					<CustomSelect
+						label="Profesional a Asignar"
+						value={profesional}
+						onChange={(e) => setProfesional(e.target.value)}
+						options={profesionalOptions}
+					/>
 				</Grid>
 				<Grid item xs={12}>
 					<MultiLineTextField

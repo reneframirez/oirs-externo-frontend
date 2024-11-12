@@ -14,6 +14,7 @@ import {
 import { Calendar, FileText, MapPin, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Regions from '../../../../api/useRegion';
 
 const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 	const [tipoIdentificacion, setTipoIdentificacion] = useState('');
@@ -23,24 +24,6 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 	const [etnia, setEtnia] = useState('');
 	const [genero, setGenero] = useState('');
 	const isDisabled = !!Object.keys(datosIniciales).length;
-	const regionsOfChile = [
-		'Arica y Parinacota',
-		'Tarapacá',
-		'Antofagasta',
-		'Atacama',
-		'Coquimbo',
-		'Valparaíso',
-		'Metropolitana de Santiago',
-		'Libertador General Bernardo O´Higgins',
-		'Maule',
-		'Ñuble',
-		'Biobío',
-		'La Araucanía',
-		'Los Ríos',
-		'Los Lagos',
-		'Aysén del General Carlos Ibáñez del Campo',
-		'Magallanes y de la Antártica Chilena',
-	];
 
 	const comunas = [
 		'Santiago',
@@ -388,11 +371,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 							onChange={(e) => setRegionResidencia(e.target.value)}
 							disabled={isDisabled}
 						>
-							{regionsOfChile.map((region) => (
-								<MenuItem key={region} value={region}>
-									{region}
-								</MenuItem>
-							))}
+							<Regions />
 						</Select>
 					</FormControl>
 				</Grid>

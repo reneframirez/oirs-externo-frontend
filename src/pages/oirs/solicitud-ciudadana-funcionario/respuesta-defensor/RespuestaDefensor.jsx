@@ -4,7 +4,7 @@ import UploadButton from '../../../../components/UploadButton';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
-import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
+import { MultiLineTextField } from '../../../../components/CustomTextFields';
 
 const RespuestaDefensor = () => {
 	const [respuesta, setRespuesta] = useState('');

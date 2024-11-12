@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { ChevronDown } from 'lucide-react';
+import { Box, FormControl, InputLabel } from '@mui/material';
 import AlertDialog from '../../../../components/AlertDialog';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import { SaveButton, BackButton } from '../../../../components/CustomButtons';
-import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
+import { MultiLineTextField } from '../../../../components/CustomTextFields';
+import { FormSelect } from '../../../../components/CustomSelect';
 
 const IngresoTipificacion = () => {
 	const [tipoSolicitud, setTipoSolicitud] = useState('');
@@ -133,6 +133,7 @@ const IngresoTipificacion = () => {
 			>
 				<FormControl variant="outlined" sx={{ flex: 1 }} required>
 					<InputLabel id="tipo-solicitud-label">Tipo Solicitud</InputLabel>
+					{/* 
 					<Select
 						labelId="tipo-solicitud-label"
 						id="tipo-solicitud"
@@ -147,10 +148,20 @@ const IngresoTipificacion = () => {
 							</MenuItem>
 						))}
 					</Select>
+					*/}
+					<FormSelect
+						labelId="tipo-solicitud-label"
+						id="tipo-solicitud"
+						value={tipoSolicitud}
+						label="Tipo Solicitud"
+						onChange={handleTipoSolicitudChange}
+						options={tipoSolicitudOptions}
+					/>
 				</FormControl>
 
 				<FormControl variant="outlined" sx={{ flex: 1 }} required>
 					<InputLabel id="especificacion-label">Especificación</InputLabel>
+					{/* 
 					<Select
 						labelId="especificacion-label"
 						id="especificacion"
@@ -165,6 +176,15 @@ const IngresoTipificacion = () => {
 							</MenuItem>
 						))}
 					</Select>
+					*/}
+					<FormSelect
+						labelId="especificacion-label"
+						id="especificacion"
+						value={especificacion}
+						label="Especificación"
+						onChange={handleEspecificacionChange}
+						options={especificacionOptions}
+					/>
 				</FormControl>
 			</Box>
 

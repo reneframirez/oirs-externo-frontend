@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	TextField,
 	Select,
@@ -24,6 +24,7 @@ import {
 } from '@mui/material';
 import { Eye as VisibilityIcon } from 'lucide-react';
 import { SearchButton, ClearFilterButton } from '../../../../../components/CustomButtons';
+import { CustomSelect } from '../../../../../components/CustomSelect';
 
 const initialData = [
 	{
@@ -146,6 +147,23 @@ const DerivarApelacion = () => {
 	const [dialogOpen, setDialogOpen] = useState(false);
 	const [selectedApelacion, setSelectedApelacion] = useState(null);
 
+	const [regionOptions, setRegionOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setRegionOption([
+				{ value: 'Todas', label: 'Todas' },
+				{ value: 'Tarapacá', label: 'Tarapacá' },
+				{ value: 'Antofagasta', label: 'Antofagasta' },
+				{ value: 'Atacama', label: 'Atacama' },
+				{ value: 'Coquimbo', label: 'Coquimbo' },
+			]);
+		};
+
+		fetchData();
+	}, []);
+
 	const handleLimpiarFiltro = () => {
 		setRegion('Todas');
 		setFechaInicio('');
@@ -202,6 +220,7 @@ const DerivarApelacion = () => {
 			>
 				<FormControl variant="outlined" sx={{ minWidth: 300 }}>
 					<InputLabel>Región</InputLabel>
+					{/* 
 					<Select value={region} onChange={(e) => setRegion(e.target.value)}>
 						{['Todas', 'Tarapacá', 'Antofagasta', 'Atacama', 'Coquimbo'].map((reg) => (
 							<MenuItem key={reg} value={reg}>
@@ -209,6 +228,13 @@ const DerivarApelacion = () => {
 							</MenuItem>
 						))}
 					</Select>
+					*/}
+					<CustomSelect
+						label="Región"
+						value={region}
+						onChange={(e) => setRegion(e.target.value)}
+						options={regionOptions}
+					/>
 				</FormControl>
 
 				<TextField

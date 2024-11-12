@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	Box,
 	RadioGroup,
@@ -6,15 +6,14 @@ import {
 	Radio,
 	FormControl,
 	FormLabel,
-	MenuItem,
-	Select,
 	InputLabel,
 	Typography,
 	Grid,
 } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import { SaveButton, BackButton } from '../../../../components/CustomButtons';
-import { FormTextField, DateTextField } from '../../../../components/CustomFieldTexts';
+import { FormTextField, DateTextField } from '../../../../components/CustomTextFields';
+import { FormSelect } from '../../../../components/CustomSelect';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 
@@ -26,8 +25,21 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 		resumen: '',
 		documentos: [],
 	});
+	const [formaRealizacionOptions, setFormaRealizacion] = useState('');
 	const [confirmOpen, setConfirmOpen] = useState(false);
 	const [alertOpen, setAlertOpen] = useState(false);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setFormaRealizacion([
+				{ value: 'Presencial', label: 'Presencial' },
+				{ value: 'Virtual', label: 'Virtual' },
+			]);
+		};
+
+		fetchData();
+	}, []);
 
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
@@ -88,6 +100,7 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 						<Grid item xs={6}>
 							<DateTextField
 								label="Fecha entrevista"
+								name="fechaEntrevista"
 								value={entrevista.fechaEntrevista}
 								onChange={handleInputChange}
 							/>
@@ -98,6 +111,7 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 								<InputLabel htmlFor="formaRealizacion-select">
 									Forma que se realiza
 								</InputLabel>
+								{/* 
 								<Select
 									labelId="formaRealizacion-label"
 									id="formaRealizacion-select"
@@ -108,6 +122,15 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 									<MenuItem value="Presencial">Presencial</MenuItem>
 									<MenuItem value="Virtual">Virtual</MenuItem>
 								</Select>
+								*/}
+								<FormSelect
+									labelId="formaRealizacion-label"
+									id="formaRealizacion-select"
+									name="formaRealizacion"
+									value={entrevista.formaRealizacion}
+									onChange={handleInputChange}
+									options={formaRealizacionOptions}
+								/>
 							</FormControl>
 						</Grid>
 					</Grid>

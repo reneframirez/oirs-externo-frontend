@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	TextField,
-	MenuItem,
 	Grid,
 	Typography,
 	Box,
 	DialogActions,
 	Button,
 	Modal,
+	InputLabel,
 } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import UploadResButton from '../../../../components/ResolucionRespuestaButton';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
+import { CustomSelect } from '../../../../components/CustomSelect';
 import DocumentEditor from '../../../../components/DocumentEditor';
 import LoadingModal from '../../../../components/LoadingModal';
 import axios from 'axios';
@@ -42,6 +43,26 @@ const RecepcionNotificacion = () => {
 	const [loading, setLoading] = useState(false);
 
 	const [errors, setErrors] = useState({});
+
+	const [recepcionOptions, setRecepcionOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setRecepcionOption([
+				{ value: 'Personal', label: 'Personal: Recibida por usuario' },
+				{ value: 'CartaConfirmada', label: 'Carta: Con confirmacion de entrega a usuario' },
+				{
+					value: 'CartaSinConfirmar',
+					label: 'Carta: Sin confirmacion de entrega a usuario',
+				},
+				{ value: 'MailAcuseRecibo', label: 'Mail: Con acuse de recibo del usuario' },
+				{ value: 'MailSinAcuseRecibo', label: 'Mail: Sin acuse de recibo del usuario' },
+				{ value: 'NoHabidoNegacion', label: 'Usuario No habido o niega ser Notificado' },
+			]);
+		};
+		fetchData();
+	}, []);
 
 	const validateFields = () => {
 		let newErrors = {};
@@ -146,6 +167,7 @@ const RecepcionNotificacion = () => {
 					</Grid>
 				</Grid>
 				<Grid item xs={12}>
+					{/* 
 					<TextField
 						select
 						fullWidth
@@ -175,8 +197,17 @@ const RecepcionNotificacion = () => {
 						</MenuItem>
 						<MenuItem value="NoHabidoNegacion">
 							Usuario No habido o niega ser Notificado
-						</MenuItem>{' '}
+						</MenuItem>
 					</TextField>
+					*/}
+					<InputLabel id="tipoderecepcion-label">Tipo de Recepcion</InputLabel>
+					<CustomSelect
+						labelId="tipoderecepcion-label"
+						label="Tipo de Recepcion"
+						value={recepcion}
+						onChange={(e) => setRecepcion(e.target.value)}
+						options={recepcionOptions}
+					/>
 				</Grid>
 				<Grid item xs={12} sm={6}>
 					<Typography variant="body1">

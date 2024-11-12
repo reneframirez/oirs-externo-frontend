@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Select, MenuItem, InputLabel, FormControl, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { SaveButton, BackButton } from '../../../../components/CustomButtons';
-import { MultiLineTextField } from '../../../../components/CustomFieldTexts';
+import { MultiLineTextField } from '../../../../components/CustomTextFields';
+import { CustomSelect, IndexSelect } from '../../../../components/CustomSelect';
 import { red } from '@mui/material/colors';
 
 const Container = styled(Box)({
@@ -33,6 +34,22 @@ const Derivar = () => {
 		Biobío: ['Usuario 3A', 'Usuario 3B'],
 		Coquimbo: ['Usuario 4A', 'Usuario 4B'],
 	};
+
+	const [regionOptions, setRegionOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setRegionOption([
+				{ value: 'Valparaíso', label: 'Valparaíso' },
+				{ value: 'Metropolitana', label: 'Metropolitana' },
+				{ value: 'Biobío', label: 'Biobío' },
+				{ value: 'Coquimbo', label: 'Coquimbo' },
+			]);
+		};
+
+		fetchData();
+	}, []);
 
 	// Maneja la acción de cancelar con confirmación
 	const handleCancelClick = () => {
@@ -88,6 +105,7 @@ const Derivar = () => {
 					<InputLabel htmlFor="region-select">
 						Región <Asterisk>*</Asterisk>
 					</InputLabel>
+					{/* 
 					<Select
 						label="Región"
 						value={selectedRegion}
@@ -100,11 +118,20 @@ const Derivar = () => {
 						<MenuItem value="Biobío">Biobío</MenuItem>
 						<MenuItem value="Coquimbo">Coquimbo</MenuItem>
 					</Select>
+					*/}
+					<CustomSelect
+						label="Región"
+						value={selectedRegion}
+						onChange={handleRegionChange}
+						inputProps={{ id: 'region-select' }}
+						options={regionOptions}
+					/>
 				</FormControl>
 				<FormControl fullWidth variant="outlined" disabled={!selectedRegion}>
 					<InputLabel htmlFor="usuario-select">
 						Usuario <Asterisk>*</Asterisk>
 					</InputLabel>
+					{/* 
 					<Select
 						label="Usuario"
 						value={selectedUsuario}
@@ -118,6 +145,15 @@ const Derivar = () => {
 							</MenuItem>
 						))}
 					</Select>
+					*/}
+					<IndexSelect
+						label="Usuario"
+						value={selectedUsuario}
+						onChange={(e) => setSelectedUsuario(e.target.value)}
+						inputProps={{ id: 'usuario-select' }}
+						options={usuariosPorRegion}
+						selectedOption={selectedRegion}
+					/>
 				</FormControl>
 			</Box>
 			<MultiLineTextField

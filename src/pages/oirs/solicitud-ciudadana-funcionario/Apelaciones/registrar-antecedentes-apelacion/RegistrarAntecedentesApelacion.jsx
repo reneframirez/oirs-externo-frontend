@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -16,6 +16,7 @@ import Grid from '@mui/material/Grid';
 import DialogActions from '@mui/material/DialogActions';
 import LoadingModal from '../../../../../components/LoadingModal';
 import { ConfirmDialogMMR as ConfirmDialog } from '../../../../../components/ConfirmDialog';
+import { FormSelect } from '../../../../../components/CustomSelect';
 
 import { BackButton, SaveButton } from '../../../../../components/CustomButtons';
 
@@ -56,6 +57,25 @@ const RegistrarAntecedentesApelacion = () => {
 	const [step, setStep] = useState(0); // 0: Initial, 1: Confirmed
 
 	const [open, setOpen] = React.useState(false);
+
+	const [profesionalOptions, setProfesionalOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setProfesionalOption([
+				{ value: '1', label: 'SANDRA EUGENIA JELVES MELLA' },
+				{ value: '2', label: 'HELEN ANDREA THIERS HERNANDEZ' },
+				{ value: '3', label: 'JORGE IVAN GASPONOV ESCUDERO' },
+				{ value: '4', label: 'CLAUDIO PEREZ GARCIA' },
+				{ value: '5', label: 'PATRICIO LEONARDO SANZANA MANSILLA' },
+				{ value: '6', label: 'MARCELO EDUARDO GRANDON PELLET' },
+				{ value: '7', label: 'PETER SHARP VARGAS' },
+			]);
+		};
+		fetchData();
+	}, []);
+
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	const handleSave = () => {
@@ -284,6 +304,7 @@ const RegistrarAntecedentesApelacion = () => {
 									<InputLabel id="demo-simple-select-label">
 										Profesional
 									</InputLabel>
+									{/* 
 									<Select
 										labelId="demo-simple-select-label"
 										id="demo-simple-select"
@@ -303,6 +324,15 @@ const RegistrarAntecedentesApelacion = () => {
 										</MenuItem>
 										<MenuItem value="7">PETER SHARP VARGAS</MenuItem>
 									</Select>
+									*/}
+									<FormSelect
+										labelId="demo-simple-select-label"
+										id="demo-simple-select"
+										value={profesional}
+										label="Profesional"
+										onChange={handleChange}
+										options={profesionalOptions}
+									/>
 								</FormControl>
 							</Grid>
 						</Grid>
