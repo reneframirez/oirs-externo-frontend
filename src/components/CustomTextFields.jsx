@@ -45,7 +45,6 @@ export const DateTextField = ({ onChange, name, label, value }) => {
 			name={name}
 			value={value}
 			onChange={onChange}
-			fullWidth
 			InputLabelProps={{ shrink: true }}
 			required
 		/>

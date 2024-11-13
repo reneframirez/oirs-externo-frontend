@@ -4,6 +4,7 @@ import UploadButton from '../../../../components/UploadButton';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
+import { DateTextField } from '../../../../components/CustomTextFields';
 
 const NotificarRespuesta = () => {
 	const [fechaDocumento, setFechaDocumento] = useState('');
@@ -54,16 +55,10 @@ const NotificarRespuesta = () => {
 		>
 			<Grid container spacing={2}>
 				<Grid item xs={12} sm={6}>
-					<TextField
-						fullWidth
+					<DateTextField
 						label="Fecha Documento"
-						type="date"
 						value={fechaDocumento}
 						onChange={(e) => setFechaDocumento(e.target.value)}
-						InputLabelProps={{ shrink: true }}
-						required
-						error={!!errors.fechaDocumento}
-						helperText={errors.fechaDocumento ? 'Este campo es obligatorio' : ''}
 					/>
 				</Grid>
 				<Grid item xs={12}>

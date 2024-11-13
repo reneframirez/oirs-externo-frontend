@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Select, MenuItem, InputLabel, FormControl, Typography } from '@mui/material';
+import { Box, InputLabel, FormControl, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { SaveButton, BackButton } from '../../../../components/CustomButtons';
 import { MultiLineTextField } from '../../../../components/CustomTextFields';
-import { CustomSelect, IndexSelect } from '../../../../components/CustomSelect';
+import { FormSelect, IndexSelect } from '../../../../components/CustomSelect';
 import { red } from '@mui/material/colors';
 
 const Container = styled(Box)({
@@ -105,21 +105,7 @@ const Derivar = () => {
 					<InputLabel htmlFor="region-select">
 						Región <Asterisk>*</Asterisk>
 					</InputLabel>
-					{/* 
-					<Select
-						label="Región"
-						value={selectedRegion}
-						onChange={handleRegionChange}
-						inputProps={{ id: 'region-select' }}
-					>
-						<MenuItem value="">Seleccionar...</MenuItem>
-						<MenuItem value="Valparaíso">Valparaíso</MenuItem>
-						<MenuItem value="Metropolitana">Metropolitana</MenuItem>
-						<MenuItem value="Biobío">Biobío</MenuItem>
-						<MenuItem value="Coquimbo">Coquimbo</MenuItem>
-					</Select>
-					*/}
-					<CustomSelect
+					<FormSelect
 						label="Región"
 						value={selectedRegion}
 						onChange={handleRegionChange}
@@ -131,21 +117,6 @@ const Derivar = () => {
 					<InputLabel htmlFor="usuario-select">
 						Usuario <Asterisk>*</Asterisk>
 					</InputLabel>
-					{/* 
-					<Select
-						label="Usuario"
-						value={selectedUsuario}
-						onChange={(e) => setSelectedUsuario(e.target.value)}
-						inputProps={{ id: 'usuario-select' }}
-					>
-						<MenuItem value="">Seleccionar...</MenuItem>
-						{usuariosPorRegion[selectedRegion]?.map((usuario, index) => (
-							<MenuItem key={index} value={usuario}>
-								{usuario}
-							</MenuItem>
-						))}
-					</Select>
-					*/}
 					<IndexSelect
 						label="Usuario"
 						value={selectedUsuario}

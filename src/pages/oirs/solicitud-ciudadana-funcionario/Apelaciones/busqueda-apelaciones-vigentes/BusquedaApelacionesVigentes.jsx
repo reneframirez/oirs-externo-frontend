@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	TextField,
 	Select,
@@ -19,7 +19,9 @@ import {
 import { Eye as VisibilityIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
+import { FormSelect } from '../../../../../components/CustomSelect';
 import { SearchButton, ClearFilterButton } from '../../../../../components/CustomButtons';
+import { DateTextField } from '../../../../../components/CustomTextFields';
 
 const initialData = [
 	{
@@ -139,13 +141,29 @@ const Container = styled(Box)({
 });
 
 const BusquedaApelacionesVigentes = () => {
-	const getRegiones = () => ['Todas', 'Tarapacá', 'Antofagasta', 'Atacama', 'Coquimbo'];
 	const [region, setRegion] = useState('Todas');
 	const [fechaInicio, setFechaInicio] = useState('');
 	const [fechaFin, setFechaFin] = useState('');
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 	const [page, setPage] = useState(0);
 	const [filteredData, setFilteredData] = useState(initialData);
+
+	const [regionOptions, setRegionOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setRegionOption([
+				{ value: 'Todas', label: 'Todas' },
+				{ value: 'Tarapacá', label: 'Tarapacá' },
+				{ value: 'Antofagasta', label: 'Antofagasta' },
+				{ value: 'Atacama', label: 'Atacama' },
+				{ value: 'Coquimbo', label: 'Coquimbo' },
+			]);
+		};
+
+		fetchData();
+	}, []);
 
 	const handleLimpiarFiltro = () => {
 		setRegion('Todas');
@@ -187,32 +205,23 @@ const BusquedaApelacionesVigentes = () => {
 			>
 				<FormControl variant="outlined" sx={{ minWidth: 300 }}>
 					<InputLabel htmlFor="region-label">Región </InputLabel>
-					<Select
+					<FormSelect
 						labelId="region-label"
+						label="Región"
 						value={region}
 						onChange={(e) => setRegion(e.target.value)}
-					>
-						{getRegiones().map((reg) => (
-							<MenuItem key={reg} value={reg}>
-								{reg}
-							</MenuItem>
-						))}
-					</Select>
+						options={regionOptions}
+					/>
 				</FormControl>
-
-				<TextField
+				<DateTextField
 					label="Fecha Inicio"
-					type="date"
 					value={fechaInicio}
 					onChange={(e) => setFechaInicio(e.target.value)}
-					InputLabelProps={{ shrink: true }}
 				/>
-				<TextField
+				<DateTextField
 					label="Fecha Fin"
-					type="date"
 					value={fechaFin}
 					onChange={(e) => setFechaFin(e.target.value)}
-					InputLabelProps={{ shrink: true }}
 				/>
 				{/* Botones de busqueda */}
 				<SearchButton onClick={handleSearch} />

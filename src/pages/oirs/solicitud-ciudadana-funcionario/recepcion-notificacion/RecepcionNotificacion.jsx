@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-	TextField,
 	Grid,
 	Typography,
 	Box,
@@ -8,13 +7,15 @@ import {
 	Button,
 	Modal,
 	InputLabel,
+	FormControl,
 } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import UploadResButton from '../../../../components/ResolucionRespuestaButton';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
-import { CustomSelect } from '../../../../components/CustomSelect';
+import { DateTextField } from '../../../../components/CustomTextFields';
+import { FormSelect } from '../../../../components/CustomSelect';
 import DocumentEditor from '../../../../components/DocumentEditor';
 import LoadingModal from '../../../../components/LoadingModal';
 import axios from 'axios';
@@ -153,61 +154,24 @@ const RecepcionNotificacion = () => {
 			<Grid container spacing={2}>
 				<Grid item xs={12} container spacing={2} alignItems="center">
 					<Grid item xs={12} sm={6}>
-						<TextField
-							fullWidth
+						<DateTextField
 							label="Fecha Documento"
-							type="date"
 							value={fechaDocumento}
 							onChange={(e) => setFechaDocumento(e.target.value)}
-							InputLabelProps={{ shrink: true }}
-							required
-							error={!!errors.fechaDocumento}
-							helperText={errors.fechaDocumento ? 'Este campo es obligatorio' : ''}
 						/>
 					</Grid>
 				</Grid>
 				<Grid item xs={12}>
-					{/* 
-					<TextField
-						select
-						fullWidth
-						label="Tipo de Recepcion"
-						value={recepcion}
-						onChange={(e) => setRecepcion(e.target.value)}
-						required
-						error={!!errors.recepcion}
-						helperText={errors.recepcion ? 'Este campo es obligatorio' : ''}
-						defaultValue=""
-					>
-						<MenuItem value="" disabled>
-							Seleccione una opción
-						</MenuItem>
-						<MenuItem value="Personal">Personal: Recibida por usuario</MenuItem>
-						<MenuItem value="CartaConfirmada">
-							Carta: Sin confirmacion de entrega a usuario
-						</MenuItem>
-						<MenuItem value="CartaSinConfirmar">
-							Carta: Sin confirmacion de entrega a usuario
-						</MenuItem>
-						<MenuItem value="MailAcuseRecibo">
-							Mail: Con acuse de recibo del usuario
-						</MenuItem>
-						<MenuItem value="MailSinAcuseRecibo">
-							Mail: Sin acuse de recibo del usuario
-						</MenuItem>
-						<MenuItem value="NoHabidoNegacion">
-							Usuario No habido o niega ser Notificado
-						</MenuItem>
-					</TextField>
-					*/}
-					<InputLabel id="tipoderecepcion-label">Tipo de Recepcion</InputLabel>
-					<CustomSelect
-						labelId="tipoderecepcion-label"
-						label="Tipo de Recepcion"
-						value={recepcion}
-						onChange={(e) => setRecepcion(e.target.value)}
-						options={recepcionOptions}
-					/>
+					<FormControl fullWidth>
+						<InputLabel id="tipoderecepcion-label">Tipo de Recepcion</InputLabel>
+						<FormSelect
+							labelId="tipoderecepcion-label"
+							label="Tipo de Recepcion"
+							value={recepcion}
+							onChange={(e) => setRecepcion(e.target.value)}
+							options={recepcionOptions}
+						/>
+					</FormControl>
 				</Grid>
 				<Grid item xs={12} sm={6}>
 					<Typography variant="body1">

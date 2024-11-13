@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-	TextField,
-	MenuItem,
 	Grid,
 	Typography,
 	Box,
@@ -9,12 +7,13 @@ import {
 	Button,
 	Modal,
 	InputLabel,
+	FormControl,
 } from '@mui/material';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
 import { MultiLineTextField } from '../../../../components/CustomTextFields';
-import { CustomSelect } from '../../../../components/CustomSelect';
+import { FormSelect } from '../../../../components/CustomSelect';
 import DocumentEditor from '../../../../components/DocumentEditor';
 import LoadingModal from '../../../../components/LoadingModal';
 import axios from 'axios';
@@ -139,37 +138,16 @@ const AsignarProfesional = () => {
 			<Grid container spacing={2}>
 				<Grid item xs={12} container spacing={2} alignItems="center"></Grid>
 				<Grid item xs={12}>
-					{/* 
-					<TextField
-						select
-						fullWidth
-						label="Profesional a Asignar"
-						value={profesional}
-						onChange={(e) => setProfesional(e.target.value)}
-						required
-						error={!!errors.profesional}
-						helperText={errors.preofesional ? 'Este campo es obligatorio' : ''}
-						defaultValue=""
-					>
-						<MenuItem value="" disabled>
-							Seleccione una opción
-						</MenuItem>
-						<MenuItem value="1">SANDRA EUGENIA JELVES MELLA</MenuItem>
-						<MenuItem value="2">HELEN ANDREA THIERS HERNANDEZ</MenuItem>
-						<MenuItem value="3">JORGE IVAN GASPONOV ESCUDERO</MenuItem>
-						<MenuItem value="4">CLAUDIO PEREZ GARCIA</MenuItem>
-						<MenuItem value="1">PATRICIO LEONARDO SANZANA MANSILLA</MenuItem>
-						<MenuItem value="2">MARCELO EDUARDO GRANDON PELLET</MenuItem>
-						<MenuItem value="3">PETER SHARP VARGAS</MenuItem>
-					</TextField>
-					*/}
-					<InputLabel>Profesional a Asignar</InputLabel>
-					<CustomSelect
-						label="Profesional a Asignar"
-						value={profesional}
-						onChange={(e) => setProfesional(e.target.value)}
-						options={profesionalOptions}
-					/>
+					<FormControl fullWidth>
+						<InputLabel id="profesionalasignar-label">Profesional a Asignar</InputLabel>
+						<FormSelect
+							labelId="profesionalasignar-label"
+							label="Profesional a Asignar"
+							value={profesional}
+							onChange={(e) => setProfesional(e.target.value)}
+							options={profesionalOptions}
+						/>
+					</FormControl>
 				</Grid>
 				<Grid item xs={12}>
 					<MultiLineTextField

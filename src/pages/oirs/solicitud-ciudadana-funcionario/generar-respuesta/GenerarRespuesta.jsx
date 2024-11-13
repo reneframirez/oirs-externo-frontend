@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, MenuItem, Grid, Typography, Box, InputLabel } from '@mui/material';
+import { Grid, Typography, Box, InputLabel, FormControl } from '@mui/material';
 import UploadButton from '../../../../components/UploadButton';
 import { ConfirmDialog } from '../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../components/CustomButtons';
 import { MultiLineTextField } from '../../../../components/CustomTextFields';
-import { CustomSelect } from '../../../../components/CustomSelect';
+import { FormSelect } from '../../../../components/CustomSelect';
 import LoadingModal from '../../../../components/LoadingModal';
 import ResolucionSection from '../../../../components/ResolucionSection';
 import axios from 'axios';
@@ -135,36 +135,17 @@ const GenerarRespuesta = () => {
 					handleSendResolution={handleSendResolution}
 					buttonStyles={buttonStyles}
 				/>
-				<Grid item xs={12}>
-					{/* 
-					<TextField
-						select
-						fullWidth
-						label="Decisión"
-						value={decision}
-						onChange={(e) => setDecision(e.target.value)}
-						required
-						error={!!errors.decision}
-						helperText={errors.decision ? 'Este campo es obligatorio' : ''}
-						defaultValue=""
-					>
-						<MenuItem value="" disabled>
-							Seleccione una opción
-						</MenuItem>
-						<MenuItem value="Acoge">Acoge</MenuItem>
-						<MenuItem value="Rechaza">Rechaza</MenuItem>
-						<MenuItem value="Desiste">Desiste</MenuItem>
-						<MenuItem value="Declara inadmisible">Declara inadmisible</MenuItem>
-					</TextField>
-					*/}
-					<InputLabel id="decision-label">Decisión</InputLabel>
-					<CustomSelect
-						labelId="decision-label"
-						label="Decisión"
-						value={decision}
-						onChange={(e) => setDecision(e.target.value)}
-						options={decisionOptions}
-					/>
+				<Grid item xs={2}>
+					<FormControl fullWidth>
+						<InputLabel id="decision-label">Decisión *</InputLabel>
+						<FormSelect
+							labelId="decision-label"
+							label="Decisión"
+							value={decision}
+							onChange={(e) => setDecision(e.target.value)}
+							options={decisionOptions}
+						/>
+					</FormControl>
 				</Grid>
 				<Grid item xs={12}>
 					<MultiLineTextField

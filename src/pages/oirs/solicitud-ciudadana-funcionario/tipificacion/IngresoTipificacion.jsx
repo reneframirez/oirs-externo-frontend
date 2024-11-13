@@ -133,22 +133,6 @@ const IngresoTipificacion = () => {
 			>
 				<FormControl variant="outlined" sx={{ flex: 1 }} required>
 					<InputLabel id="tipo-solicitud-label">Tipo Solicitud</InputLabel>
-					{/* 
-					<Select
-						labelId="tipo-solicitud-label"
-						id="tipo-solicitud"
-						value={tipoSolicitud}
-						label="Tipo Solicitud"
-						onChange={handleTipoSolicitudChange}
-						IconComponent={ChevronDown}
-					>
-						{tipoSolicitudOptions.map((option) => (
-							<MenuItem key={option.value} value={option.value}>
-								{option.label}
-							</MenuItem>
-						))}
-					</Select>
-					*/}
 					<FormSelect
 						labelId="tipo-solicitud-label"
 						id="tipo-solicitud"
@@ -161,22 +145,6 @@ const IngresoTipificacion = () => {
 
 				<FormControl variant="outlined" sx={{ flex: 1 }} required>
 					<InputLabel id="especificacion-label">Especificación</InputLabel>
-					{/* 
-					<Select
-						labelId="especificacion-label"
-						id="especificacion"
-						value={especificacion}
-						label="Especificación"
-						onChange={handleEspecificacionChange}
-						IconComponent={ChevronDown}
-					>
-						{especificacionOptions.map((option) => (
-							<MenuItem key={option.value} value={option.value}>
-								{option.label}
-							</MenuItem>
-						))}
-					</Select>
-					*/}
 					<FormSelect
 						labelId="especificacion-label"
 						id="especificacion"

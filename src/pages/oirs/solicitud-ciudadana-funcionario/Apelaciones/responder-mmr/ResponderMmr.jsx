@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-	TextField,
-	MenuItem,
+	InputLabel,
 	Grid,
 	Typography,
 	Box,
@@ -10,12 +9,14 @@ import {
 	Modal,
 	FormControlLabel,
 	FormGroup,
+	FormControl,
 } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import UploadButton from '../../../../../components/UploadButton';
 import { ConfirmDialog } from '../../../../../components/ConfirmDialog';
 import AlertDialog from '../../../../../components/AlertDialog';
 import { BackButton, SaveButton } from '../../../../../components/CustomButtons';
+import { FormSelect } from '../../../../../components/CustomSelect';
 import { MultiLineTextField } from '../../../../../components/CustomTextFields';
 import DocumentEditor from '../../../../../components/DocumentEditor';
 import LoadingModal from '../../../../../components/LoadingModal';
@@ -42,6 +43,24 @@ const ResponderMmr = ({ datosMmrRespuesta }) => {
 	const [loading, setLoading] = useState(false);
 
 	const [errors, setErrors] = useState({});
+
+	const [profesionalOptions, setProfesionalOption] = useState([]);
+
+	useEffect(() => {
+		// Simulate fetching data
+		const fetchData = () => {
+			setProfesionalOption([
+				{ value: '1', label: 'SANDRA EUGENIA JELVES MELLA' },
+				{ value: '2', label: 'HELEN ANDREA THIERS HERNANDEZ' },
+				{ value: '3', label: 'JORGE IVAN GASPONOV ESCUDERO' },
+				{ value: '4', label: 'CLAUDIO PEREZ GARCIA' },
+				{ value: '5', label: 'PATRICIO LEONARDO SANZANA MANSILLA' },
+				{ value: '6', label: 'MARCELO EDUARDO GRANDON PELLET' },
+				{ value: '7', label: 'PETER SHARP VARGAS' },
+			]);
+		};
+		fetchData();
+	}, []);
 
 	const [state, setState] = React.useState({
 		chkItem1: false,
@@ -147,22 +166,17 @@ const ResponderMmr = ({ datosMmrRespuesta }) => {
 					</Grid>
 				</Grid>
 				<Grid item xs={12}>
-					<TextField
-						id="select"
-						fullWidth
-						label="Solicitada a"
-						value={datosMmrRespuesta.profesional}
-						select
-						disabled
-					>
-						<MenuItem value="1">SANDRA EUGENIA JELVES MELLA</MenuItem>
-						<MenuItem value="2">HELEN ANDREA THIERS HERNANDEZ</MenuItem>
-						<MenuItem value="3">JORGE IVAN GASPONOV ESCUDERO</MenuItem>
-						<MenuItem value="4">CLAUDIO PEREZ GARCIA</MenuItem>
-						<MenuItem value="5">PATRICIO LEONARDO SANZANA MANSILLA</MenuItem>
-						<MenuItem value="6">MARCELO EDUARDO GRANDON PELLET</MenuItem>
-						<MenuItem value="7">PETER SHARP VARGAS</MenuItem>
-					</TextField>
+					<FormControl disabled>
+						<InputLabel id="select">Solicitada a</InputLabel>
+						<FormSelect
+							id="select"
+							labelId="select"
+							label="Solicitada a"
+							value={datosMmrRespuesta.profesional}
+							onChange={(e) => setProfesional(e.target.value)}
+							options={profesionalOptions}
+						/>
+					</FormControl>
 				</Grid>
 				<Grid item xs={12}>
 					<Typography variant="body1">
@@ -231,11 +245,13 @@ const ResponderMmr = ({ datosMmrRespuesta }) => {
 					/>
 				</Grid>
 				<Grid item xs={12}>
-					<MultiLineTextField
-						label="Observacion"
-						value={datosMmrRespuesta.observacion}
-						onChange={(e) => setObservacion(e.target.value)}
-					/>
+					<FormControl fullWidth disabled>
+						<MultiLineTextField
+							label="Observacion"
+							value={datosMmrRespuesta.observacion}
+							onChange={(e) => setObservacion(e.target.value)}
+						/>
+					</FormControl>
 				</Grid>
 			</Grid>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>

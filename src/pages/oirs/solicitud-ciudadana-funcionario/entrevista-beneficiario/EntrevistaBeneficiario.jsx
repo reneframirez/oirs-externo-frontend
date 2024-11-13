@@ -111,20 +111,9 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 								<InputLabel htmlFor="formaRealizacion-select">
 									Forma que se realiza
 								</InputLabel>
-								{/* 
-								<Select
-									labelId="formaRealizacion-label"
-									id="formaRealizacion-select"
-									name="formaRealizacion"
-									value={entrevista.formaRealizacion}
-									onChange={handleInputChange}
-								>
-									<MenuItem value="Presencial">Presencial</MenuItem>
-									<MenuItem value="Virtual">Virtual</MenuItem>
-								</Select>
-								*/}
 								<FormSelect
 									labelId="formaRealizacion-label"
+									label="Forma que se realiza"
 									id="formaRealizacion-select"
 									name="formaRealizacion"
 									value={entrevista.formaRealizacion}

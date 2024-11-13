@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { ConfirmDialog } from '../../../../../components/ConfirmDialog';
 import UploadButton from '../../../../../components/UploadButton';
-import { TextField, InputLabel, Box } from '@mui/material';
+import { InputLabel, Box, FormControl } from '@mui/material';
 import { BackButton, SaveButton } from '../../../../../components/CustomButtons';
-import { MultiLineTextField } from '../../../../../components/CustomTextFields';
-import { CustomSelect } from '../../../../../components/CustomSelect';
+import { MultiLineTextField, DateTextField } from '../../../../../components/CustomTextFields';
+import { FormSelect } from '../../../../../components/CustomSelect';
 
 const IngresarApelacion = () => {
 	const [dialogOpen, setDialogOpen] = useState(false);
@@ -54,33 +54,21 @@ const IngresarApelacion = () => {
 			sx={{ display: 'flex', flexDirection: 'column', gap: 4, width: '100%' }}
 		>
 			<Box sx={{ display: 'flex', gap: 8, mt: 2 }}>
-				<TextField
+				<DateTextField
 					label="Fecha recepción"
-					type="date"
 					value={fechaRecepcion}
 					onChange={(e) => setFechaRecepcion(e.target.value)}
-					InputLabelProps={{ shrink: true }}
-					required
 				/>
-				{/* 
-				<TextField
-					label="¿Quién apela?"
-					select
-					value={quienApela}
-					onChange={(e) => setQuienApela(e.target.value)}
-					required
-					sx={{ width: 300 }}
-				>
-					<MenuItem value="Beneficiario">Beneficiario</MenuItem>
-					<MenuItem value="Defensor">Defensor</MenuItem>
-				</TextField>
-				*/}
-				<CustomSelect
-					label="¿Quién apela?"
-					value={quienApela}
-					onChange={(e) => setQuienApela(e.target.value)}
-					options={quienApelaOptions}
-				/>
+				<FormControl>
+					<InputLabel id="quienapela-label">¿Quién apela?*</InputLabel>
+					<FormSelect
+						labelId="quienapela-label"
+						label="¿Quién apela?"
+						value={quienApela}
+						onChange={(e) => setQuienApela(e.target.value)}
+						options={quienApelaOptions}
+					/>
+				</FormControl>
 			</Box>
 
 			<MultiLineTextField

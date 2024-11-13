@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
 	TextField,
-	Select,
-	MenuItem,
 	FormControl,
 	InputLabel,
 	Box,
@@ -24,7 +22,8 @@ import {
 } from '@mui/material';
 import { Eye as VisibilityIcon } from 'lucide-react';
 import { SearchButton, ClearFilterButton } from '../../../../../components/CustomButtons';
-import { CustomSelect } from '../../../../../components/CustomSelect';
+import { DateTextField } from '../../../../../components/CustomTextFields';
+import { FormSelect } from '../../../../../components/CustomSelect';
 
 const initialData = [
 	{
@@ -220,36 +219,22 @@ const DerivarApelacion = () => {
 			>
 				<FormControl variant="outlined" sx={{ minWidth: 300 }}>
 					<InputLabel>Región</InputLabel>
-					{/* 
-					<Select value={region} onChange={(e) => setRegion(e.target.value)}>
-						{['Todas', 'Tarapacá', 'Antofagasta', 'Atacama', 'Coquimbo'].map((reg) => (
-							<MenuItem key={reg} value={reg}>
-								{reg}
-							</MenuItem>
-						))}
-					</Select>
-					*/}
-					<CustomSelect
+					<FormSelect
 						label="Región"
 						value={region}
 						onChange={(e) => setRegion(e.target.value)}
 						options={regionOptions}
 					/>
 				</FormControl>
-
-				<TextField
+				<DateTextField
 					label="Fecha Inicio"
-					type="date"
 					value={fechaInicio}
 					onChange={(e) => setFechaInicio(e.target.value)}
-					InputLabelProps={{ shrink: true }}
 				/>
-				<TextField
+				<DateTextField
 					label="Fecha Fin"
-					type="date"
 					value={fechaFin}
 					onChange={(e) => setFechaFin(e.target.value)}
-					InputLabelProps={{ shrink: true }}
 				/>
 				{/* Botones de busqueda */}
 				<SearchButton onClick={handleSearch} />
