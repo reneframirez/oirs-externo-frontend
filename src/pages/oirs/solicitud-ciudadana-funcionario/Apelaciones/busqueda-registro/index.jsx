@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <div style={{ width: '100%', height: '100%', padding: '16px', boxSizing: 'border-box' }}>
       {secciones.map((seccion, index) => (
-      <Accordion key={index} defaultExpanded={index === 0} sx={{ my: 1 }}>
+      <Accordion key={index} defaultExpanded sx={{ my: 1 }}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${index}-content`}

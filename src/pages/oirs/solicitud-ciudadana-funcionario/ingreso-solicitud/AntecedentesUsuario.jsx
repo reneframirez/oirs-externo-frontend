@@ -14,15 +14,11 @@ import {
 import { Calendar, FileText, MapPin, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Regions from '../../../../api/useRegion';
+import axios from 'axios';
 
 const AntecedentesUsuario = ({ datosIniciales = {} }) => {
-	const [tipoIdentificacion, setTipoIdentificacion] = useState('');
-	const [regionResidencia, setRegionResidencia] = useState('');
-	const [comunaResidencia, setComunaResidencia] = useState('');
-	const [escolaridad, setEscolaridad] = useState('');
-	const [etnia, setEtnia] = useState('');
-	const [genero, setGenero] = useState('');
+	const [formValues, setFormValues] = useState({ ...datosIniciales });
+	const [regiones, setRegiones] = useState([]);
 	const isDisabled = !!Object.keys(datosIniciales).length;
 
 	const comunas = [
@@ -68,15 +64,38 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 	const generos = ['Masculino', 'Femenino', 'Otro'];
 
 	useEffect(() => {
-		if (datosIniciales) {
-			setTipoIdentificacion(datosIniciales.tipoIdentificacion || '');
-			setRegionResidencia(datosIniciales.regionResidencia || '');
-			setComunaResidencia(datosIniciales.comunaResidencia || '');
-			setEscolaridad(datosIniciales.escolaridad || '');
-			setEtnia(datosIniciales.etnia || '');
-			setGenero(datosIniciales.genero || '');
-		}
-	}, [datosIniciales]);
+		const fetchRegiones = async () => {
+			try {
+				const response = await axios.get('https://api.shipit.cl/v/regions');
+				setRegiones(response.data);
+			} catch (error) {
+				console.error('Error fetching regions:', error);
+			}
+		};
+		fetchRegiones();
+	}, []);
+
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setFormValues((prevValues) => ({
+			...prevValues,
+			[name]: value,
+		}));
+	};
+
+	const commonTextFieldStyles = {
+		'& .Mui-disabled': {
+			color: '#000000',
+			WebkitTextFillColor: '#000000',
+		},
+		'& .MuiInputLabel-root.Mui-disabled': {
+			color: '#000000',
+		},
+		'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline': {
+			borderColor: '#000000',
+		},
+	};
+
 	return (
 		<>
 			<Grid container spacing={2} pb={1}>
@@ -87,17 +106,14 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 								<FormLabel component="legend">Tipo de Persona</FormLabel>
 							</Grid>
 							<Grid item xs={9} md={10}>
-								<RadioGroup row defaultValue="natural">
-									<FormControlLabel
-										value="natural"
-										control={<Radio />}
-										label="Natural"
-									/>
-									<FormControlLabel
-										value="juridica"
-										control={<Radio />}
-										label="Jurídica"
-									/>
+								<RadioGroup
+									row
+									defaultValue={formValues.tipoPersona || 'natural'}
+									onChange={handleInputChange}
+									name="tipoPersona"
+								>
+									<FormControlLabel value="natural" control={<Radio />} label="Natural" />
+									<FormControlLabel value="juridica" control={<Radio />} label="Jurídica" />
 								</RadioGroup>
 							</Grid>
 						</Grid>
@@ -111,10 +127,10 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						<InputLabel id="tipo-identificacion-label">Tipo identificación</InputLabel>
 						<Select
 							labelId="tipo-identificacion-label"
-							id="tipo-identificacion"
-							value={tipoIdentificacion}
 							label="Tipo identificación"
-							onChange={(e) => setTipoIdentificacion(e.target.value)}
+							name="tipoIdentificacion"
+							value={formValues.tipoIdentificacion || ''}
+							onChange={handleInputChange}
 							disabled={isDisabled}
 						>
 							<MenuItem value="rut">RUT</MenuItem>
@@ -131,99 +147,45 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						fullWidth
 						required
 						size="small"
-						value={datosIniciales.numeroIdentificacion}
+						name="numeroIdentificacion"
+						value={formValues.numeroIdentificacion || ''}
+						onChange={handleInputChange}
 						disabled={isDisabled}
 						InputProps={{
 							startAdornment: <FileText className="mr-2 text-muted-foreground" />,
 						}}
+						sx={commonTextFieldStyles}
 					/>
 				</Grid>
 			</Grid>
 
 			<Grid container spacing={2} pb={3}>
-				<Grid item xs={12} md={4}>
-					<TextField
-						id="nombres"
-						label="Nombres"
-						variant="outlined"
-						fullWidth
-						required
-						size="small"
-						value={datosIniciales.nombres}
-						disabled={isDisabled}
-						InputProps={{
-							startAdornment: <User className="mr-2 text-muted-foreground" />,
-						}}
-						sx={{
-							'& .Mui-disabled': {
-								color: '#000000', // Cambia el color del texto
-								WebkitTextFillColor: '#000000', // Asegura que el color del texto sea negro en todos los navegadores
-							},
-							'& .MuiInputLabel-root.Mui-disabled': {
-								color: '#000000', // Cambia el color del label
-							},
-							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
-								{
-									borderColor: '#000000', // Cambia el color del borde
-								},
-						}}
-					/>
-				</Grid>
-				<Grid item xs={12} md={4}>
-					<TextField
-						id="apellido-paterno"
-						label="Apellido Paterno"
-						variant="outlined"
-						fullWidth
-						required
-						size="small"
-						value={datosIniciales.apellidoPaterno}
-						disabled={isDisabled}
-						InputProps={{
-							startAdornment: <User className="mr-2 text-muted-foreground" />,
-						}}
-						sx={{
-							'& .Mui-disabled': {
-								color: '#000000', // Cambia el color del texto
-								WebkitTextFillColor: '#000000', // Asegura que el color del texto sea negro en todos los navegadores
-							},
-							'& .MuiInputLabel-root.Mui-disabled': {
-								color: '#000000', // Cambia el color del label
-							},
-							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
-								{
-									borderColor: '#000000', // Cambia el color del borde
-								},
-						}}
-					/>
-				</Grid>
-				<Grid item xs={12} md={4}>
-					<TextField
-						id="apellido-materno"
-						label="Apellido Materno"
-						variant="outlined"
-						fullWidth
-						size="small"
-						value={datosIniciales.apellidoMaterno}
-						disabled={isDisabled}
-						InputProps={{
-							startAdornment: <User className="mr-2 text-muted-foreground" />,
-						}}
-						sx={{
-							'& .Mui-disabled': {
-								color: '#000000', // Cambia el color del texto
-								WebkitTextFillColor: '#000000', // Asegura que el color del texto sea negro en todos los navegadores
-							},
-							'& .MuiInputLabel-root.Mui-disabled': {
-								color: '#000000', // Cambia el color del label
-							},
-							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
-								{
-									borderColor: '#000000', // Cambia el color del borde
-								},
-						}}
-					/>
-				</Grid>
+				{['nombres', 'apellidoPaterno', 'apellidoMaterno'].map((field, index) => (
+					<Grid item xs={12} md={4} key={field}>
+						<TextField
+							id={field}
+							label={
+								field === 'nombres'
+									? 'Nombres'
+								: field === 'apellidoPaterno'
+								? 'Apellido Paterno'
+								: 'Apellido Materno'
+						}
+							variant="outlined"
+							fullWidth
+							required={field !== 'apellidoMaterno'}
+							size="small"
+							name={field}
+							value={formValues[field] || ''}
+							onChange={handleInputChange}
+							disabled={isDisabled}
+							InputProps={{
+								startAdornment: <User className="mr-2 text-muted-foreground" />, 
+							}}
+							sx={commonTextFieldStyles}
+						/>
+					</Grid>
+				))}
 
 				<Grid item xs={12} md={4}>
 					<FormControl fullWidth size="small">
@@ -231,9 +193,10 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						<Select
 							labelId="genero-label"
 							id="genero"
-							value={genero}
 							label="Género"
-							onChange={(e) => setGenero(e.target.value)}
+							name="genero"
+							value={formValues.genero || ''}
+							onChange={handleInputChange}
 							disabled={!!datosIniciales.genero}
 						>
 							{generos.map((genero) => (
@@ -252,113 +215,53 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						variant="outlined"
 						fullWidth
 						size="small"
-						value={datosIniciales.fechaNacimiento}
+						name="fechaNacimiento"
+						value={formValues.fechaNacimiento || ''}
+						onChange={handleInputChange}
 						disabled={isDisabled}
 						InputLabelProps={{ shrink: true }}
 						InputProps={{
 							startAdornment: <Calendar className="mr-2 text-muted-foreground" />,
 						}}
-						sx={{
-							'& .Mui-disabled': {
-								color: '#000000', // Cambia el color del texto
-								WebkitTextFillColor: '#000000', // Asegura que el color del texto sea negro en todos los navegadores
-							},
-							'& .MuiInputLabel-root.Mui-disabled': {
-								color: '#000000', // Cambia el color del label
-							},
-							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
-								{
-									borderColor: '#000000', // Cambia el color del borde
-								},
-						}}
+						sx={commonTextFieldStyles}
 					/>
 				</Grid>
 			</Grid>
 
 			<Grid container spacing={2} pb={3}>
-				<Grid item xs={12} md={4}>
-					<TextField
-						id="telefono"
-						label="Teléfono"
-						variant="outlined"
-						fullWidth
-						size="small"
-						value={datosIniciales.telefono}
-						disabled={isDisabled}
-						InputProps={{
-							startAdornment: <Phone className="mr-2 text-muted-foreground" />,
-						}}
-						sx={{
-							'& .Mui-disabled': {
-								color: '#000000', // Cambia el color del texto
-								WebkitTextFillColor: '#000000', // Asegura que el color del texto sea negro en todos los navegadores
-							},
-							'& .MuiInputLabel-root.Mui-disabled': {
-								color: '#000000', // Cambia el color del label
-							},
-							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
-								{
-									borderColor: '#000000', // Cambia el color del borde
-								},
-						}}
-					/>
-				</Grid>
-				<Grid item xs={12} md={4}>
-					<TextField
-						id="email"
-						label="E-mail"
-						type="email"
-						variant="outlined"
-						fullWidth
-						size="small"
-						value={datosIniciales.email}
-						disabled={isDisabled}
-						InputProps={{
-							startAdornment: <Mail className="mr-2 text-muted-foreground" />,
-						}}
-						sx={{
-							'& .Mui-disabled': {
-								color: '#000000', // Cambia el color del texto
-								WebkitTextFillColor: '#000000', // Asegura que el color del texto sea negro en todos los navegadores
-							},
-							'& .MuiInputLabel-root.Mui-disabled': {
-								color: '#000000', // Cambia el color del label
-							},
-							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
-								{
-									borderColor: '#000000', // Cambia el color del borde
-								},
-						}}
-					/>
-				</Grid>
-
-				<Grid item xs={12} md={4}>
-					<TextField
-						id="direccion"
-						label="Dirección"
-						variant="outlined"
-						fullWidth
-						size="small"
-						value={datosIniciales.direccion}
-						disabled={isDisabled}
-						InputProps={{
-							startAdornment: <MapPin className="mr-2 text-muted-foreground" />,
-						}}
-						sx={{
-							'& .Mui-disabled': {
-								color: '#000000', // Cambia el color del texto
-								WebkitTextFillColor: '#000000', // Asegura que el color del texto sea negro en todos los navegadores
-							},
-							'& .MuiInputLabel-root.Mui-disabled': {
-								color: '#000000', // Cambia el color del label
-							},
-							'& .MuiOutlinedInput-root.Mui-disabled .MuiOutlinedInput-notchedOutline':
-								{
-									borderColor: '#000000', // Cambia el color del borde
-								},
-						}}
-					/>
-				</Grid>
+				{['telefono', 'email', 'direccion'].map((field, index) => (
+					<Grid item xs={12} md={4} key={field}>
+						<TextField
+							id={field}
+							label={
+								field === 'telefono'
+									? 'Teléfono'
+								: field === 'email'
+								? 'E-mail'
+								: 'Dirección'
+						}
+							type={field === 'email' ? 'email' : 'text'}
+							variant="outlined"
+							fullWidth
+							size="small"
+							name={field}
+							value={formValues[field] || ''}
+							onChange={handleInputChange}
+							disabled={isDisabled}
+							InputProps={{
+								startAdornment:
+									field === 'telefono' ? (
+										<Phone className="mr-2 text-muted-foreground" />
+									) : field === 'email' ? (
+										<Mail className="mr-2 text-muted-foreground" />
+									) : (
+										<MapPin className="mr-2 text-muted-foreground" />
+									),
+							}}
+							sx={commonTextFieldStyles}
+						/>
+					</Grid>
+				))}
 
 				<Grid item xs={12} md={4}>
 					<FormControl fullWidth size="small">
@@ -366,78 +269,53 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 						<Select
 							labelId="region-residencia-label"
 							id="region-residencia"
-							value={regionResidencia}
 							label="Región residencia"
-							onChange={(e) => setRegionResidencia(e.target.value)}
+							name="regionResidencia"
+							value={formValues.regionResidencia || ''}
+							onChange={handleInputChange} // Añadir onChange
 							disabled={isDisabled}
 						>
-							<Regions />
+							{regiones.map((region) => (
+								<MenuItem key={region.id} value={region.name}>
+									{region.name}
+								</MenuItem>
+							))}
 						</Select>
+
 					</FormControl>
 				</Grid>
 
-				<Grid item xs={12} md={4}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="comuna-residencia-label">Comuna residencia</InputLabel>
-						<Select
-							labelId="comuna-residencia-label"
-							id="comuna-residencia"
-							value={comunaResidencia}
-							label="Comuna residencia"
-							onChange={(e) => setComunaResidencia(e.target.value)}
-							disabled={isDisabled}
-						>
-							{comunas.map((comuna) => (
-								<MenuItem key={comuna} value={comuna}>
-									{comuna}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-
-				<Grid item xs={12} md={4}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="escolaridad-label">Escolaridad</InputLabel>
-						<Select
-							labelId="escolaridad-label"
-							id="escolaridad"
-							value={escolaridad}
-							label="Escolaridad"
-							onChange={(e) => setEscolaridad(e.target.value)}
-							disabled={isDisabled}
-						>
-							{escolaridades.map((nivel) => (
-								<MenuItem key={nivel} value={nivel}>
-									{nivel}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
-				<Grid item xs={12} md={4}>
-					<FormControl fullWidth size="small">
-						<InputLabel id="etnia-label">Etnia</InputLabel>
-						<Select
-							labelId="etnia-label"
-							id="etnia"
-							value={etnia}
-							label="Etnia"
-							onChange={(e) => setEtnia(e.target.value)}
-							disabled={isDisabled}
-						>
-							{etnias.map((grupo) => (
-								<MenuItem key={grupo} value={grupo}>
-									{grupo}
-								</MenuItem>
-							))}
-						</Select>
-					</FormControl>
-				</Grid>
+				{[
+					{ id: 'comuna-residencia', label: 'Comuna residencia', options: comunas },
+					{ id: 'escolaridad', label: 'Escolaridad', options: escolaridades },
+					{ id: 'etnia', label: 'Etnia', options: etnias },
+				].map(({ id, label, options }) => (
+					<Grid item xs={12} md={4} key={id}>
+						<FormControl fullWidth size="small">
+							<InputLabel id={`${id}-label`}>{label}</InputLabel>
+							<Select
+								labelId={`${id}-label`}
+								id={id}
+								label={label}
+								name={id}
+								value={formValues[id] || ''}
+								onChange={handleInputChange}
+								disabled={isDisabled}
+							>
+								{options.map((option) => (
+									<MenuItem key={option} value={option}>
+										{option}
+									</MenuItem>
+								))}
+							</Select>
+						</FormControl>
+					</Grid>
+				))}
 			</Grid>
 		</>
 	);
 };
+
 AntecedentesUsuario.propTypes = {
 	datosIniciales: PropTypes.shape({
 		tipoIdentificacion: PropTypes.string,

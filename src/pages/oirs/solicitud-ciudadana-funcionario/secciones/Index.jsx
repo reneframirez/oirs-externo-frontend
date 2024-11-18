@@ -75,7 +75,7 @@ const SeccionesOrdenadas = () => {
 			{secciones.map((seccion, index) => (
 				<Accordion
                     key={index} 
-                    defaultExpanded={true}
+                    defaultExpanded
                     sx={{ my: 1 }}
                 >
 					<AccordionSummary

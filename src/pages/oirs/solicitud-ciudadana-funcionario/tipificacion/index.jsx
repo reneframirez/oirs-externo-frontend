@@ -76,7 +76,7 @@ export default function Tipificaciones() {
 	return (
 		<div>
 			{secciones.map((seccion, index) => (
-				<Accordion key={index} expanded={true} sx={{ my: 1 }}>
+				<Accordion key={index} defaultExpanded sx={{ my: 1 }}>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls={`panel${index}-content`}

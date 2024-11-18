@@ -52,10 +52,10 @@ const Index = () => {
     };
   
     const secciones = [
-        {
-            titulo: 'Antecedentes de la Apelación',
-            componente: <IngresarApelacion />,
-          },
+      {
+        titulo: 'Antecedentes de la Apelación',
+        componente: <IngresarApelacion />,
+      },
       {
         titulo: 'Antecedentes del Usuario',
         componente: <AntUsuario datosUsuario={datosDelUsuario} />,
@@ -77,7 +77,7 @@ const Index = () => {
     return (
       <div>
         {secciones.map((seccion, index) => (
-        <Accordion key={index} defaultExpanded={index === 0} sx={{ my: 1 }}>
+        <Accordion key={index} defaultExpanded sx={{ my: 1 }}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`panel${index}-content`}

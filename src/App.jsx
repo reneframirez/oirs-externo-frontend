@@ -41,22 +41,13 @@ function App() {
 				
 				<Route path="/oirs" element={<DefaultLayout />}>
 					<Route index element={<Oirs />} />
-					<Route
-						path="solicitud-ciudadana-externa"
-						element={<SolicitudCiudadanaExterna />}
-					>
+					<Route path="solicitud-ciudadana-externa" element={<SolicitudCiudadanaExterna />}>
 						<Route path="datos-basicos" element={<DatosBasicos />} />
 						<Route path="datos-causa" element={<DatosCausa />} />
 						<Route path="encuesta" element={<Encuesta />} />
 					</Route>
-					<Route
-						path="solicitud-ciudadana-funcionario"
-						element={<SolicitudCiudadanaFuncionario />}
-					>
-						<Route
-							path="ingreso-solicitud-interno"
-							element={<IngresoSolicitudInterno />}
-						/>
+					<Route path="solicitud-ciudadana-funcionario" element={<SolicitudCiudadanaFuncionario />} >
+						<Route path="ingreso-solicitud-interno" element={<IngresoSolicitudInterno />} />
 						<Route path="solicitudes-pendientes" element={<SolicitudesPendientes />} />
 						<Route path="secciones" element={<SeccionesOrdenadas />} />
                         <Route path="tipificaciones" element ={<Tipificaciones/>} />

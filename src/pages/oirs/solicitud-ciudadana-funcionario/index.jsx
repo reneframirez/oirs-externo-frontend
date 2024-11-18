@@ -144,6 +144,7 @@ const SolicitudCiudadanaFuncionario = () => {
 			rol: '[Todos los funcionarios]',
 			color: 'secondary',
 		},
+/*
 		{
 			url: '/oirs/solicitud-ciudadana-funcionario/solicitudes-pendientes',
 			titulo: 'Felicitaciones / Opiniones / Consultas',
@@ -156,6 +157,7 @@ const SolicitudCiudadanaFuncionario = () => {
 			rol: '[AJ - Periodista]',
 			color: 'success',
 		},
+*/
 		{
 			url: 'derivar-respuesta',
 			titulo: 'Derivar Solicitud',
@@ -214,7 +216,7 @@ const SolicitudCiudadanaFuncionario = () => {
 						Módulo SIGO - Portal Único
 					</Typography>
 
-					<Accordion expanded={true}>
+					<Accordion defaultExpanded>
 						<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 							<Typography variant="h5" className="text-blue-700">
 								Proceso de reclamo solicitud ciudadana
@@ -280,7 +282,7 @@ const SolicitudCiudadanaFuncionario = () => {
 						</AccordionDetails>
 					</Accordion>
 
-					<Accordion expanded={true}>
+					<Accordion defaultExpanded>
 						<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 							<Typography variant="h5" className="text-blue-700">
 								Solcitudes ciudadanas
@@ -346,7 +348,7 @@ const SolicitudCiudadanaFuncionario = () => {
 						</AccordionDetails>
 					</Accordion>
 
-					<Accordion expanded={true}>
+					<Accordion defaultExpanded>
 						<AccordionSummary expandIcon={<ExpandMoreIcon />}>
 							<Typography variant="h5" className="text-green-700">
 								Apelación de reclamo

@@ -63,22 +63,6 @@ const Index = () => {
 			componente: <GenerarRespuesta />,
 		},
 		{
-			titulo: 'Tipificación Ingresada',
-			componente: <IngresoTipificacion />,
-		},
-		{
-			titulo: 'Entrevista del Beneficiario',
-			componente: <EntrevistaBeneficiario />,
-		},
-		{
-			titulo: 'Solicitud Derivada',
-			componente: <Derivar />,
-		},
-		{
-			titulo: 'Repuesta del Defensor',
-			componente: <RespuestaDefensor />,
-		},
-		{
 			titulo: 'Antecedentes del Usuario',
 			componente: <AntUsuario datosUsuario={datosDelUsuario} />,
 		},
@@ -99,7 +83,7 @@ const Index = () => {
 	return (
 		<div>
 			{secciones.map((seccion, index) => (
-				<Accordion key={index} expanded={true} sx={{ my: 1 }}>
+				<Accordion key={index} defaultExpanded sx={{ my: 1 }}>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls={`panel${index}-content`}

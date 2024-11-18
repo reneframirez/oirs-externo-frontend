@@ -20,6 +20,7 @@ const DefaultLayout = () => {
 	const hideNav =
 		location.pathname === '/' ||
 		location.pathname === '/home' ||
+		location.pathname === '/oirs' ||
 		location.pathname.startsWith('/oirs/solicitud-ciudadana-funcionario'); // Ocultar si la ruta es oirs/solicitud-ciudadana-funcionario o sus hijos
 
 	const isActive = (path) => location.pathname === path;

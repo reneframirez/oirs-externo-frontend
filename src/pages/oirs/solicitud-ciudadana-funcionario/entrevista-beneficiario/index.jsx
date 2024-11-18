@@ -62,12 +62,6 @@ const EntrevistaBeneficiarioPage = () => {
 			titulo: 'Entrevista Beneficiario',
 			componente: <EntrevistaBeneficiario />,
 		},
-
-		{
-			titulo: 'Tipificación Ingresada',
-			componente: <IngresoTipificacion />,
-		},
-
 		{
 			titulo: 'Antecedentes del Usuario',
 			componente: <AntUsuario datosUsuario={datosDelUsuario} />,
@@ -89,7 +83,7 @@ const EntrevistaBeneficiarioPage = () => {
 	return (
 		<div>
 			{secciones.map((seccion, index) => (
-				<Accordion key={index} expanded={true} sx={{ my: 1 }}>
+				<Accordion key={index} defaultExpanded sx={{ my: 1 }}>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls={`panel${index}-content`}
