@@ -15,10 +15,11 @@ import { Calendar, FileText, MapPin, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import useRegions from '../../../../api/useRegion';
 
 const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 	const [formValues, setFormValues] = useState({ ...datosIniciales });
-	const [regiones, setRegiones] = useState([]);
+	const regiones = useRegions();
 	const isDisabled = !!Object.keys(datosIniciales).length;
 
 	const comunas = [
@@ -63,18 +64,6 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 
 	const generos = ['Masculino', 'Femenino', 'Otro'];
 
-	useEffect(() => {
-		const fetchRegiones = async () => {
-			try {
-				const response = await axios.get('https://api.shipit.cl/v/regions');
-				setRegiones(response.data);
-			} catch (error) {
-				console.error('Error fetching regions:', error);
-			}
-		};
-		fetchRegiones();
-	}, []);
-
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setFormValues((prevValues) => ({
@@ -112,8 +101,16 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 									onChange={handleInputChange}
 									name="tipoPersona"
 								>
-									<FormControlLabel value="natural" control={<Radio />} label="Natural" />
-									<FormControlLabel value="juridica" control={<Radio />} label="Jurídica" />
+									<FormControlLabel
+										value="natural"
+										control={<Radio />}
+										label="Natural"
+									/>
+									<FormControlLabel
+										value="juridica"
+										control={<Radio />}
+										label="Jurídica"
+									/>
 								</RadioGroup>
 							</Grid>
 						</Grid>
@@ -167,10 +164,10 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 							label={
 								field === 'nombres'
 									? 'Nombres'
-								: field === 'apellidoPaterno'
-								? 'Apellido Paterno'
-								: 'Apellido Materno'
-						}
+									: field === 'apellidoPaterno'
+									? 'Apellido Paterno'
+									: 'Apellido Materno'
+							}
 							variant="outlined"
 							fullWidth
 							required={field !== 'apellidoMaterno'}
@@ -180,7 +177,7 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 							onChange={handleInputChange}
 							disabled={isDisabled}
 							InputProps={{
-								startAdornment: <User className="mr-2 text-muted-foreground" />, 
+								startAdornment: <User className="mr-2 text-muted-foreground" />,
 							}}
 							sx={commonTextFieldStyles}
 						/>
@@ -236,10 +233,10 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 							label={
 								field === 'telefono'
 									? 'Teléfono'
-								: field === 'email'
-								? 'E-mail'
-								: 'Dirección'
-						}
+									: field === 'email'
+									? 'E-mail'
+									: 'Dirección'
+							}
 							type={field === 'email' ? 'email' : 'text'}
 							variant="outlined"
 							fullWidth
@@ -275,13 +272,12 @@ const AntecedentesUsuario = ({ datosIniciales = {} }) => {
 							onChange={handleInputChange} // Añadir onChange
 							disabled={isDisabled}
 						>
-							{regiones.map((region) => (
-								<MenuItem key={region.id} value={region.name}>
+							{regiones.map((region, index) => (
+								<MenuItem key={index} value={region.name}>
 									{region.name}
 								</MenuItem>
 							))}
 						</Select>
-
 					</FormControl>
 				</Grid>
 
