@@ -7,13 +7,11 @@ import AntUsuario from '../secciones/AntUsuario';
 import AntRequerimiento from '../secciones/AntRequerimiento';
 import AntImputado from '../secciones/AntImputado';
 import InfoAdicional from '../secciones/InfoAdicional';
+import AntDerivacion from '../secciones/AntDerivacion';
+import AntAnulacion from '../secciones/AntAnulacion';
+import AntEntrevista from '../secciones/AntEntrevista';
 
 import GenerarRespuesta from './GenerarRespuesta';
-import RespuestaDefensor from '../respuesta-defensor/RespuestaDefensor';
-import Derivar from '../derivar-respuesta/derivar';
-import IngresoTipificacion from '../tipificacion/IngresoTipificacion';
-import EntrevistaBeneficiario from '../entrevista-beneficiario/EntrevistaBeneficiario';
-
 const Index = () => {
 	const datosDelUsuario = {
 		nombres: 'Juan',
@@ -35,11 +33,13 @@ const Index = () => {
 	const datosDelRequerimiento = {
 		region: 'Región Metropolitana',
 		comuna: 'Santiago',
-		tipoSolicitud: 'Reclamo',
+		tipoSolicitud: 'Reclamo por Defensa',
 		tipoRecepcion: 'Correo Electrónico',
 		responderVia: 'Correo Electrónico',
 		institucionPublica: 'Ministerio de Salud',
 		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
+		especificacion: 'Otro reclamo por defensa',
+		justificacion: 'Justificacion',
 	};
 
 	const imputadoData = {
@@ -55,6 +55,25 @@ const Index = () => {
 		ruc: '54321',
 		tribunal: 'Tribunal de Justicia de Santiago',
 		rit: 'RIT-1234-2023',
+	};
+
+	const derivacionData = {
+		funcionario: 'Marcela Tapia Silva',
+		fechaDerivacion: '2024-10-03 08:40:54',
+		fundamentoDervivacion: 'Fundamento',
+	};
+
+	const anulacionData = {
+		funcionario: '',
+		fechaAnulacion: '',
+		fundamentoAnulacion: '',
+	};
+
+	const entrevistaData = {
+		entrevista: 'Si',
+		fechaEntrevista: '07-10-2024',
+		forma: 'Presencial',
+		resumen: 'Resumen',
 	};
 
 	const secciones = [
@@ -77,6 +96,18 @@ const Index = () => {
 		{
 			titulo: 'Información Adicional',
 			componente: <InfoAdicional />,
+		},
+		{
+			titulo: 'Antecedentes de la Derivación',
+			componente: <AntDerivacion derivacionData={derivacionData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Anulación',
+			componente: <AntAnulacion anulacionData={anulacionData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Entrevista',
+			componente: <AntEntrevista entrevistaData={entrevistaData} />,
 		},
 	];
 

@@ -2,13 +2,15 @@ import React from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
+
 import AntUsuario from '../secciones/AntUsuario';
 import AntRequerimiento from '../secciones/AntRequerimiento';
 import AntImputado from '../secciones/AntImputado';
 import InfoAdicional from '../secciones/InfoAdicional';
+import AntEntrevista from '../secciones/AntEntrevista';
+
 import Derivar from './derivar';
-import IngresoTipificacion from '../tipificacion/IngresoTipificacion';
-import EntrevistaBeneficiario from '../entrevista-beneficiario/EntrevistaBeneficiario';
+
 const Index = () => {
 	const datosDelUsuario = {
 		nombres: 'Juan',
@@ -30,11 +32,13 @@ const Index = () => {
 	const datosDelRequerimiento = {
 		region: 'Región Metropolitana',
 		comuna: 'Santiago',
-		tipoSolicitud: 'Reclamo',
+		tipoSolicitud: 'Reclamo por Defensa',
 		tipoRecepcion: 'Correo Electrónico',
 		responderVia: 'Correo Electrónico',
 		institucionPublica: 'Ministerio de Salud',
 		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
+		especificacion: 'Otro reclamo por defensa',
+		justificacion: 'Justificacion',
 	};
 
 	const imputadoData = {
@@ -50,6 +54,13 @@ const Index = () => {
 		ruc: '54321',
 		tribunal: 'Tribunal de Justicia de Santiago',
 		rit: 'RIT-1234-2023',
+	};
+
+	const entrevistaData = {
+		entrevista: 'Si',
+		fechaEntrevista: '07-10-2024',
+		forma: 'Presencial',
+		resumen: 'Resumen',
 	};
 
 	const secciones = [
@@ -72,6 +83,10 @@ const Index = () => {
 		{
 			titulo: 'Información Adicional',
 			componente: <InfoAdicional />,
+		},
+		{
+			titulo: 'Antecedentes de la Entrevista',
+			componente: <AntEntrevista entrevistaData={entrevistaData} />,
 		},
 	];
 

@@ -3,11 +3,11 @@ import { Box, Typography, Accordion, AccordionSummary, AccordionDetails } from '
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import UserIcon from '@mui/icons-material/Person';
 import EntrevistaBeneficiario from './EntrevistaBeneficiario';
+
 import AntUsuario from '../secciones/AntUsuario';
 import AntRequerimiento from '../secciones/AntRequerimiento';
 import AntImputado from '../secciones/AntImputado';
 import InfoAdicional from '../secciones/InfoAdicional';
-import IngresoTipificacion from '../tipificacion/IngresoTipificacion';
 
 const EntrevistaBeneficiarioPage = () => {
 	const handleEntrevistaSubmit = (data) => {
@@ -35,11 +35,13 @@ const EntrevistaBeneficiarioPage = () => {
 	const datosDelRequerimiento = {
 		region: 'Región Metropolitana',
 		comuna: 'Santiago',
-		tipoSolicitud: 'Reclamo',
+		tipoSolicitud: 'Reclamo por Defensa',
 		tipoRecepcion: 'Correo Electrónico',
 		responderVia: 'Correo Electrónico',
 		institucionPublica: 'Ministerio de Salud',
 		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
+		especificacion: 'Otro reclamo por defensa',
+		justificacion: 'Justificacion',
 	};
 
 	const imputadoData = {

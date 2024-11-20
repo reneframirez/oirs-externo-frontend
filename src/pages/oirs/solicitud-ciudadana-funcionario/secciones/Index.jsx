@@ -2,9 +2,18 @@ import AntUsuario from './AntUsuario';
 import AntRequerimiento from './AntRequerimiento';
 import AntImputado from './AntImputado';
 import InfoAdicional from './InfoAdicional';
+import AntDerivacion from './AntDerivacion';
+import AntAnulacion from './AntAnulacion';
+import AntEntrevista from './AntEntrevista';
+import AntRepuesta from './AntRepuesta';
+import AntEmision from './AntEmision';
+import AntNotificacion from './AntNotificacion';
+import AntRecepcion from './AntRecepcion';
+import AntApelacion from './AntApelacion';
+import AntResolver from './AntResolver';
+import AntMMR from './AntMMR';
 
-
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
 
@@ -29,11 +38,13 @@ const SeccionesOrdenadas = () => {
 	const datosDelRequerimiento = {
 		region: 'Región Metropolitana',
 		comuna: 'Santiago',
-		tipoSolicitud: 'Reclamo',
+		tipoSolicitud: 'Reclamo por Defensa',
 		tipoRecepcion: 'Correo Electrónico',
 		responderVia: 'Correo Electrónico',
 		institucionPublica: 'Ministerio de Salud',
 		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
+		especificacion: 'Otro reclamo por defensa',
+		justificacion: 'Justificacion',
 	};
 
 	const imputadoData = {
@@ -49,6 +60,73 @@ const SeccionesOrdenadas = () => {
 		ruc: '54321',
 		tribunal: 'Tribunal de Justicia de Santiago',
 		rit: 'RIT-1234-2023',
+	};
+
+	const derivacionData = {
+		funcionario: 'Marcela Tapia Silva',
+		fechaDerivacion: '2024-10-03 08:40:54',
+		fundamentoDervivacion: 'Fundamento',
+	};
+
+	const anulacionData = {
+		funcionario: '',
+		fechaAnulacion: '',
+		fundamentoAnulacion: '',
+	};
+
+	const entrevistaData = {
+		entrevista: 'Si',
+		fechaEntrevista: '07-10-2024',
+		forma: 'Presencial',
+		resumen: 'Resumen',
+	};
+
+	const respuestaData = {
+		funcionario: 'Malu Rodriguez Sepulveda',
+		tipoRespuesta: '',
+		fechaDocumento: '22-10-2024',
+		nroDocumento: 109,
+		documento: <Button>Abrir Archivo</Button>,
+		respuesta: 'Respuesta',
+	};
+
+	const emisionData = {
+		fechaDocumento: '23-10-2024',
+		tipoDocumento: 'Oficio',
+		nroDocumento: 148,
+		documento: <Button>Abrir Archivo</Button>,
+	};
+
+	const notificacionData = {
+		fechaNotificacion: '23-10-2024',
+		documento: <Button>Abrir Archivo</Button>,
+	};
+
+	const recepcionData = {
+		fechaRecepcion: '23-10-2024',
+		tipoRecepcion: 'Mail: Con acuse del recibo al usuario',
+		documento: <Button>Abrir Archivo</Button>,
+	};
+
+	const apelacionData = {
+		fechaApelacion: '23-10-2024',
+		fechaAsignacion: '28-10-2024',
+		quienApela: 'Beneficiario',
+		archivo: <Button>Abrir Archivo</Button>,
+		expediente: <Button>Abrir Archivo</Button>,
+		estadoRegistro: 'Analisis profesional DECR',
+		resumen: 'Resumen',
+	};
+
+	const resolverData = {
+		fechaSolicitud: '',
+		profesional: '',
+	};
+
+	const mmrData = {
+		fechaMMR: '',
+		documento: <Button>Abrir Archivo</Button>,
+		observacion: '',
 	};
 
 	const secciones = [
@@ -68,16 +146,52 @@ const SeccionesOrdenadas = () => {
 			titulo: 'Información Adicional',
 			componente: <InfoAdicional />,
 		},
+		{
+			titulo: 'Antecedentes de la Derivación',
+			componente: <AntDerivacion derivacionData={derivacionData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Anulación',
+			componente: <AntAnulacion anulacionData={anulacionData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Entrevista',
+			componente: <AntEntrevista entrevistaData={entrevistaData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Respuesta',
+			componente: <AntRepuesta respuestaData={respuestaData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Emisión de la Respuesta',
+			componente: <AntEmision emisionData={emisionData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Respuesta Notificada al usuario',
+			componente: <AntNotificacion notificacionData={notificacionData} />,
+		},
+		{
+			titulo: 'Registro de Recepción de Respuesta al Usuario',
+			componente: <AntRecepcion recepcionData={recepcionData} />,
+		},
+		{
+			titulo: 'Antecedentes de la Apelación',
+			componente: <AntApelacion apelacionData={apelacionData} />,
+		},
+		{
+			titulo: 'Antecedentes de Medidas por Mejor Resolver Requeridas',
+			componente: <AntResolver resolverData={resolverData} />,
+		},
+		{
+			titulo: 'Antecedentes la Respuesta a Requerimiento de MMR',
+			componente: <AntMMR mmrData={mmrData} />,
+		},
 	];
 
 	return (
 		<div>
 			{secciones.map((seccion, index) => (
-				<Accordion
-                    key={index} 
-                    defaultExpanded
-                    sx={{ my: 1 }}
-                >
+				<Accordion key={index} defaultExpanded sx={{ my: 1 }}>
 					<AccordionSummary
 						expandIcon={<ExpandMoreIcon />}
 						aria-controls={`panel${index}-content`}
