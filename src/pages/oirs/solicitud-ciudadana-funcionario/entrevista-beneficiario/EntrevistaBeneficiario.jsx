@@ -80,7 +80,12 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 	};
 
 	return (
-		<Box component="form" noValidate autoComplete="off" sx={{ p: 3 }}>
+		<Box
+			component="form"
+			noValidate
+			autoComplete="off"
+			sx={{ p: 3, display: 'flex', flexDirection: 'column' }}
+		>
 			<FormControl component="fieldset" required>
 				<FormLabel component="legend">¿Se realiza entrevista?</FormLabel>
 				<RadioGroup
@@ -96,19 +101,30 @@ const EntrevistaBeneficiario = ({ onSubmit }) => {
 
 			{entrevista.seRealiza === 'Si' && (
 				<>
-					<Grid container spacing={2} sx={{ my: 2 }}>
+					<Grid
+						container
+						spacing={2}
+						sx={{
+							my: 2,
+							display: 'flex',
+							flexDirection: { xs: 'column', sm: 'row' },
+							alignItems: { xs: 'stretch', sm: 'center' },
+						}}
+					>
 						<Grid item xs={6}>
-							<DateTextField
-								label="Fecha entrevista"
-								name="fechaEntrevista"
-								value={entrevista.fechaEntrevista}
-								onChange={handleInputChange}
-							/>
+							<FormControl variant="outlined" sx={{ flex: 1 }} fullWidth required>
+								<DateTextField
+									label="Fecha entrevista"
+									name="fechaEntrevista"
+									value={entrevista.fechaEntrevista}
+									onChange={handleInputChange}
+								/>
+							</FormControl>
 						</Grid>
 
 						<Grid item xs={6}>
-							<FormControl fullWidth required>
-								<InputLabel htmlFor="formaRealizacion-select">
+							<FormControl variant="outlined" sx={{ flex: 1 }} fullWidth required>
+								<InputLabel id="formaRealizacion-label">
 									Forma que se realiza
 								</InputLabel>
 								<FormSelect

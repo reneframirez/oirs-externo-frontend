@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-	TextField,
-	Select,
-	MenuItem,
 	FormControl,
 	InputLabel,
 	Box,
@@ -193,10 +190,11 @@ const BusquedaApelacionesVigentes = () => {
 	};
 
 	return (
-		<Container>
+		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 			<Box
-				style={{
+				sx={{
 					display: 'flex',
+					flexDirection: { xs: 'column', sm: 'row' },
 					gap: '1rem',
 					marginTop: '1rem',
 					marginBottom: '1rem',
@@ -311,7 +309,7 @@ const BusquedaApelacionesVigentes = () => {
 				rowsPerPageOptions={[5, 10, 20]}
 				labelRowsPerPage="Filas por página:"
 			/>
-		</Container>
+		</Box>
 	);
 };
 

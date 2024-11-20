@@ -94,14 +94,21 @@ const Derivar = () => {
 	};
 
 	return (
-		<Container>
+		<Container sx={{ padding: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
 			<Typography variant="body2" color="textSecondary" gutterBottom>
 				Recuerde que la primera gestión es la entrevista al usuario, y solo una vez
 				efectuada aquella, puede solicitar el informe al defensor reclamado, diligencia
 				conque empieza a finalizar el plazo de investigación.
 			</Typography>
-			<Box display="flex" gap={2} mb={2}>
-				<FormControl fullWidth variant="outlined">
+			<Box
+				sx={{
+					display: 'flex',
+					flexDirection: { xs: 'column', sm: 'row' },
+					alignItems: { xs: 'stretch', sm: 'center' },
+					gap: 2,
+				}}
+			>
+				<FormControl variant="outlined" sx={{ flex: 1 }}>
 					<InputLabel htmlFor="region-select">
 						Región <Asterisk>*</Asterisk>
 					</InputLabel>
@@ -113,7 +120,7 @@ const Derivar = () => {
 						options={regionOptions}
 					/>
 				</FormControl>
-				<FormControl fullWidth variant="outlined" disabled={!selectedRegion}>
+				<FormControl variant="outlined" disabled={!selectedRegion} sx={{ flex: 1 }}>
 					<InputLabel htmlFor="usuario-select">
 						Usuario <Asterisk>*</Asterisk>
 					</InputLabel>
