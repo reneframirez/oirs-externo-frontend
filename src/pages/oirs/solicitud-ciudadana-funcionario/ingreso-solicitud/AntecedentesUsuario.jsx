@@ -12,9 +12,8 @@ import {
 	TextField,
 } from '@mui/material';
 import { Calendar, FileText, MapPin, User } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import useRegions from '../../../../api/useRegion';
 
 const AntecedentesUsuario = ({ datosIniciales = {} }) => {
@@ -329,5 +328,4 @@ AntecedentesUsuario.propTypes = {
 		direccion: PropTypes.string,
 	}),
 };
-
 export default AntecedentesUsuario;

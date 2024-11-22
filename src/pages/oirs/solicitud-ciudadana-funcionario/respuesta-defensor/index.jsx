@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import UserIcon from '@mui/icons-material/Person';
 
@@ -13,69 +13,45 @@ import AntEntrevista from '../secciones/AntEntrevista';
 
 import RespuestaDefensor from './RespuestaDefensor';
 
+import {
+	fetchAnulaciones,
+	fetchDerivaciones,
+	fetchEntrevistas,
+	fetchImputados,
+	fetchRequerimientos,
+	fetchUsuarios,
+} from '../../../../api/fetchApi';
+
 const Index = () => {
-	const datosDelUsuario = {
-		nombres: 'Juan',
-		apellidoPaterno: 'Pérez',
-		apellidoMaterno: 'González',
-		tipoIdentificacion: 'RUT',
-		numeroIdentificacion: '12345678-9',
-		fechaNacimiento: '01-01-1990',
-		telefono: '+56912345678',
-		email: 'juan.perez@example.com',
-		direccion: 'Calle Falsa 123',
-		regionResidencia: 'Metropolitana de Santiago',
-		comunaResidencia: 'Santiago',
-		escolaridad: 'Educación Universitaria Completa',
-		etnia: 'Mapuche',
-		genero: 'Masculino',
-	};
+	const [usuario, setUsuario] = useState([]);
+	const [imputado, setImputado] = useState([]);
+	const [requerimientos, setRequerimientos] = useState([]);
+	const [derivacion, setDerivacion] = useState([]);
+	const [anulacion, setAnulacion] = useState([]);
+	const [entrevista, setEntrevista] = useState([]);
+	const [error, setError] = useState(null);
 
-	const datosDelRequerimiento = {
-		region: 'Región Metropolitana',
-		comuna: 'Santiago',
-		tipoSolicitud: 'Reclamo por Defensa',
-		tipoRecepcion: 'Correo Electrónico',
-		responderVia: 'Correo Electrónico',
-		institucionPublica: 'Ministerio de Salud',
-		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
-		especificacion: 'Otro reclamo por defensa',
-		justificacion: 'Justificacion',
-	};
-
-	const imputadoData = {
-		run: '12345678-9',
-		nombreImputado: 'Carlos',
-		apellidoPaterno: 'Sanchez',
-		apellidoMaterno: 'Lopez',
-		fechaNacimiento: '1985-06-15',
-		genero: 'Masculino',
-		nivelEscolaridad: 'Educación Secundaria Completa',
-		nacionalidad: 'Chilena',
-		rustPeticion: '12345',
-		ruc: '54321',
-		tribunal: 'Tribunal de Justicia de Santiago',
-		rit: 'RIT-1234-2023',
-	};
-
-	const derivacionData = {
-		funcionario: 'Marcela Tapia Silva',
-		fechaDerivacion: '2024-10-03 08:40:54',
-		fundamentoDervivacion: 'Fundamento',
-	};
-
-	const anulacionData = {
-		funcionario: '',
-		fechaAnulacion: '',
-		fundamentoAnulacion: '',
-	};
-
-	const entrevistaData = {
-		entrevista: 'Si',
-		fechaEntrevista: '07-10-2024',
-		forma: 'Presencial',
-		resumen: 'Resumen',
-	};
+	useEffect(() => {
+		const loadFetch = async () => {
+			try {
+				const usuarioData = await fetchUsuarios(0);
+				const requerimientoData = await fetchRequerimientos(0);
+				const imputadoData = await fetchImputados(0);
+				const derivacionData = await fetchDerivaciones(0);
+				const anulacionData = await fetchAnulaciones(0);
+				const entrevistaData = await fetchEntrevistas(0);
+				setUsuario(usuarioData);
+				setRequerimientos(requerimientoData);
+				setImputado(imputadoData);
+				setDerivacion(derivacionData);
+				setAnulacion(anulacionData);
+				setEntrevista(entrevistaData);
+			} catch (err) {
+				setError(err.message);
+			}
+		};
+		loadFetch();
+	}, []);
 
 	const secciones = [
 		{
@@ -84,15 +60,15 @@ const Index = () => {
 		},
 		{
 			titulo: 'Antecedentes del Usuario',
-			componente: <AntUsuario datosUsuario={datosDelUsuario} />,
+			componente: <AntUsuario datosUsuario={usuario} />,
 		},
 		{
 			titulo: 'Antecedentes del Requerimiento',
-			componente: <AntRequerimiento datosRequerimiento={datosDelRequerimiento} />,
+			componente: <AntRequerimiento datosRequerimiento={requerimientos} />,
 		},
 		{
 			titulo: 'Antecedentes del Imputado',
-			componente: <AntImputado imputadoData={imputadoData} />,
+			componente: <AntImputado imputadoData={imputado} />,
 		},
 		{
 			titulo: 'Información Adicional',
@@ -100,15 +76,15 @@ const Index = () => {
 		},
 		{
 			titulo: 'Antecedentes de la Derivación',
-			componente: <AntDerivacion derivacionData={derivacionData} />,
+			componente: <AntDerivacion derivacionData={derivacion} />,
 		},
 		{
 			titulo: 'Antecedentes de la Anulación',
-			componente: <AntAnulacion anulacionData={anulacionData} />,
+			componente: <AntAnulacion anulacionData={anulacion} />,
 		},
 		{
 			titulo: 'Antecedentes de la Entrevista',
-			componente: <AntEntrevista entrevistaData={entrevistaData} />,
+			componente: <AntEntrevista entrevistaData={entrevista} />,
 		},
 	];
 

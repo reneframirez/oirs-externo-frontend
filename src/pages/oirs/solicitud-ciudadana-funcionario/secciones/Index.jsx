@@ -5,7 +5,7 @@ import InfoAdicional from './InfoAdicional';
 import AntDerivacion from './AntDerivacion';
 import AntAnulacion from './AntAnulacion';
 import AntEntrevista from './AntEntrevista';
-import AntRepuesta from './AntRepuesta';
+import AntRespuesta from './AntRespuesta';
 import AntEmision from './AntEmision';
 import AntNotificacion from './AntNotificacion';
 import AntRecepcion from './AntRecepcion';
@@ -13,134 +13,90 @@ import AntApelacion from './AntApelacion';
 import AntResolver from './AntResolver';
 import AntMMR from './AntMMR';
 
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Button } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import {
+	fetchAnulaciones,
+	fetchApelaciones,
+	fetchDerivaciones,
+	fetchEmisiones,
+	fetchEntrevistas,
+	fetchImputados,
+	fetchMMR,
+	fetchNotificaciones,
+	fetchRecepciones,
+	fetchRequerimientos,
+	fetchResolvers,
+	fetchRespuestas,
+	fetchUsuarios,
+} from '../../../../api/fetchApi';
 
 const SeccionesOrdenadas = () => {
-	const datosDelUsuario = {
-		nombres: 'Juan',
-		apellidoPaterno: 'Pérez',
-		apellidoMaterno: 'González',
-		tipoIdentificacion: 'RUT',
-		numeroIdentificacion: '12345678-9',
-		fechaNacimiento: '01-01-1990',
-		telefono: '+56912345678',
-		email: 'juan.perez@example.com',
-		direccion: 'Calle Falsa 123',
-		regionResidencia: 'Metropolitana de Santiago',
-		comunaResidencia: 'Santiago',
-		escolaridad: 'Educación Universitaria Completa',
-		etnia: 'Mapuche',
-		genero: 'Masculino',
-	};
+	const [usuario, setUsuario] = useState([]);
+	const [imputado, setImputado] = useState([]);
+	const [requerimientos, setRequerimientos] = useState([]);
+	const [derivacion, setDerivacion] = useState([]);
+	const [anulacion, setAnulacion] = useState([]);
+	const [entrevista, setEntrevista] = useState([]);
+	const [respuesta, setRespuesta] = useState([]);
+	const [emision, setEmision] = useState([]);
+	const [notificacion, setNotificacion] = useState([]);
+	const [recepcion, setRecepcion] = useState([]);
+	const [apelacion, setApelacion] = useState([]);
+	const [resolver, setResolver] = useState([]);
+	const [mmr, setMMR] = useState([]);
+	const [error, setError] = useState(null);
 
-	const datosDelRequerimiento = {
-		region: 'Región Metropolitana',
-		comuna: 'Santiago',
-		tipoSolicitud: 'Reclamo por Defensa',
-		tipoRecepcion: 'Correo Electrónico',
-		responderVia: 'Correo Electrónico',
-		institucionPublica: 'Ministerio de Salud',
-		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
-		especificacion: 'Otro reclamo por defensa',
-		justificacion: 'Justificacion',
-	};
-
-	const imputadoData = {
-		run: '12345678-9',
-		nombreImputado: 'Carlos',
-		apellidoPaterno: 'Sanchez',
-		apellidoMaterno: 'Lopez',
-		fechaNacimiento: '1985-06-15',
-		genero: 'Masculino',
-		nivelEscolaridad: 'Educación Secundaria Completa',
-		nacionalidad: 'Chilena',
-		rustPeticion: '12345',
-		ruc: '54321',
-		tribunal: 'Tribunal de Justicia de Santiago',
-		rit: 'RIT-1234-2023',
-	};
-
-	const derivacionData = {
-		funcionario: 'Marcela Tapia Silva',
-		fechaDerivacion: '2024-10-03 08:40:54',
-		fundamentoDervivacion: 'Fundamento',
-	};
-
-	const anulacionData = {
-		funcionario: '',
-		fechaAnulacion: '',
-		fundamentoAnulacion: '',
-	};
-
-	const entrevistaData = {
-		entrevista: 'Si',
-		fechaEntrevista: '07-10-2024',
-		forma: 'Presencial',
-		resumen: 'Resumen',
-	};
-
-	const respuestaData = {
-		funcionario: 'Malu Rodriguez Sepulveda',
-		tipoRespuesta: '',
-		fechaDocumento: '22-10-2024',
-		nroDocumento: 109,
-		documento: <Button>Abrir Archivo</Button>,
-		respuesta: 'Respuesta',
-	};
-
-	const emisionData = {
-		fechaDocumento: '23-10-2024',
-		tipoDocumento: 'Oficio',
-		nroDocumento: 148,
-		documento: <Button>Abrir Archivo</Button>,
-	};
-
-	const notificacionData = {
-		fechaNotificacion: '23-10-2024',
-		documento: <Button>Abrir Archivo</Button>,
-	};
-
-	const recepcionData = {
-		fechaRecepcion: '23-10-2024',
-		tipoRecepcion: 'Mail: Con acuse del recibo al usuario',
-		documento: <Button>Abrir Archivo</Button>,
-	};
-
-	const apelacionData = {
-		fechaApelacion: '23-10-2024',
-		fechaAsignacion: '28-10-2024',
-		quienApela: 'Beneficiario',
-		archivo: <Button>Abrir Archivo</Button>,
-		expediente: <Button>Abrir Archivo</Button>,
-		estadoRegistro: 'Analisis profesional DECR',
-		resumen: 'Resumen',
-	};
-
-	const resolverData = {
-		fechaSolicitud: '',
-		profesional: '',
-	};
-
-	const mmrData = {
-		fechaMMR: '',
-		documento: <Button>Abrir Archivo</Button>,
-		observacion: '',
-	};
+	useEffect(() => {
+		const loadFetch = async () => {
+			try {
+				const usuarioData = await fetchUsuarios(0);
+				const requerimientoData = await fetchRequerimientos(0);
+				const imputadoData = await fetchImputados(0);
+				const derivacionData = await fetchDerivaciones(0);
+				const anulacionData = await fetchAnulaciones(0);
+				const entrevistaData = await fetchEntrevistas(0);
+				const respuestaData = await fetchRespuestas(0);
+				const emisionData = await fetchEmisiones(0);
+				const notificacionData = await fetchNotificaciones(0);
+				const recepcionData = await fetchRecepciones(0);
+				const apelacionData = await fetchApelaciones(0);
+				const resolverData = await fetchResolvers(0);
+				const mmrData = await fetchMMR(0);
+				setUsuario(usuarioData);
+				setRequerimientos(requerimientoData);
+				setImputado(imputadoData);
+				setDerivacion(derivacionData);
+				setAnulacion(anulacionData);
+				setEntrevista(entrevistaData);
+				setRespuesta(respuestaData);
+				setEmision(emisionData);
+				setNotificacion(notificacionData);
+				setRecepcion(recepcionData);
+				setApelacion(apelacionData);
+				setResolver(resolverData);
+				setMMR(mmrData);
+			} catch (err) {
+				setError(err.message);
+			}
+		};
+		loadFetch();
+	}, []);
 
 	const secciones = [
 		{
 			titulo: 'Antecedentes del Usuario',
-			componente: <AntUsuario datosUsuario={datosDelUsuario} />,
+			componente: <AntUsuario datosUsuario={usuario} />,
 		},
 		{
 			titulo: 'Antecedentes del Requerimiento',
-			componente: <AntRequerimiento datosRequerimiento={datosDelRequerimiento} />,
+			componente: <AntRequerimiento datosRequerimiento={requerimientos} />,
 		},
 		{
 			titulo: 'Antecedentes del Imputado',
-			componente: <AntImputado imputadoData={imputadoData} />,
+			componente: <AntImputado imputadoData={imputado} />,
 		},
 		{
 			titulo: 'Información Adicional',
@@ -148,43 +104,43 @@ const SeccionesOrdenadas = () => {
 		},
 		{
 			titulo: 'Antecedentes de la Derivación',
-			componente: <AntDerivacion derivacionData={derivacionData} />,
+			componente: <AntDerivacion derivacionData={derivacion} />,
 		},
 		{
 			titulo: 'Antecedentes de la Anulación',
-			componente: <AntAnulacion anulacionData={anulacionData} />,
+			componente: <AntAnulacion anulacionData={anulacion} />,
 		},
 		{
 			titulo: 'Antecedentes de la Entrevista',
-			componente: <AntEntrevista entrevistaData={entrevistaData} />,
+			componente: <AntEntrevista entrevistaData={entrevista} />,
 		},
 		{
 			titulo: 'Antecedentes de la Respuesta',
-			componente: <AntRepuesta respuestaData={respuestaData} />,
+			componente: <AntRespuesta respuestaData={respuesta} />,
 		},
 		{
 			titulo: 'Antecedentes de la Emisión de la Respuesta',
-			componente: <AntEmision emisionData={emisionData} />,
+			componente: <AntEmision emisionData={emision} />,
 		},
 		{
 			titulo: 'Antecedentes de la Respuesta Notificada al usuario',
-			componente: <AntNotificacion notificacionData={notificacionData} />,
+			componente: <AntNotificacion notificacionData={notificacion} />,
 		},
 		{
 			titulo: 'Registro de Recepción de Respuesta al Usuario',
-			componente: <AntRecepcion recepcionData={recepcionData} />,
+			componente: <AntRecepcion recepcionData={recepcion} />,
 		},
 		{
 			titulo: 'Antecedentes de la Apelación',
-			componente: <AntApelacion apelacionData={apelacionData} />,
+			componente: <AntApelacion apelacionData={apelacion} />,
 		},
 		{
 			titulo: 'Antecedentes de Medidas por Mejor Resolver Requeridas',
-			componente: <AntResolver resolverData={resolverData} />,
+			componente: <AntResolver resolverData={resolver} />,
 		},
 		{
 			titulo: 'Antecedentes la Respuesta a Requerimiento de MMR',
-			componente: <AntMMR mmrData={mmrData} />,
+			componente: <AntMMR mmrData={mmr} />,
 		},
 	];
 
