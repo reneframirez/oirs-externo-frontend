@@ -53,7 +53,15 @@ const IngresarApelacion = () => {
 			component="form"
 			sx={{ display: 'flex', flexDirection: 'column', gap: 4, width: '100%' }}
 		>
-			<Box sx={{ display: 'flex', gap: 8, mt: 2 }}>
+			<Box
+				sx={{
+					display: 'flex',
+					flexDirection: { xs: 'column', sm: 'row' },
+					alignItems: { xs: 'stretch', sm: 'center' },
+					gap: 4,
+					mt: 2,
+				}}
+			>
 				<DateTextField
 					label="Fecha recepción"
 					value={fechaRecepcion}

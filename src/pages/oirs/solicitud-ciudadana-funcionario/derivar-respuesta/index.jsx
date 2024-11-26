@@ -1,56 +1,47 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
+
 import AntUsuario from '../secciones/AntUsuario';
 import AntRequerimiento from '../secciones/AntRequerimiento';
 import AntImputado from '../secciones/AntImputado';
 import InfoAdicional from '../secciones/InfoAdicional';
+import AntEntrevista from '../secciones/AntEntrevista';
+
 import Derivar from './derivar';
-import IngresoTipificacion from '../tipificacion/IngresoTipificacion';
-import EntrevistaBeneficiario from '../entrevista-beneficiario/EntrevistaBeneficiario';
+
+import {
+	fetchEntrevistas,
+	fetchImputados,
+	fetchRequerimientos,
+	fetchUsuarios,
+} from '../../../../api/fetchApi';
+
 const Index = () => {
-	const datosDelUsuario = {
-		nombres: 'Juan',
-		apellidoPaterno: 'Pérez',
-		apellidoMaterno: 'González',
-		tipoIdentificacion: 'RUT',
-		numeroIdentificacion: '12345678-9',
-		fechaNacimiento: '01-01-1990',
-		telefono: '+56912345678',
-		email: 'juan.perez@example.com',
-		direccion: 'Calle Falsa 123',
-		regionResidencia: 'Metropolitana de Santiago',
-		comunaResidencia: 'Santiago',
-		escolaridad: 'Educación Universitaria Completa',
-		etnia: 'Mapuche',
-		genero: 'Masculino',
-	};
+	const [usuario, setUsuario] = useState([]);
+	const [imputado, setImputado] = useState([]);
+	const [requerimientos, setRequerimientos] = useState([]);
+	const [entrevista, setEntrevista] = useState([]);
+	const [error, setError] = useState(null);
 
-	const datosDelRequerimiento = {
-		region: 'Región Metropolitana',
-		comuna: 'Santiago',
-		tipoSolicitud: 'Reclamo',
-		tipoRecepcion: 'Correo Electrónico',
-		responderVia: 'Correo Electrónico',
-		institucionPublica: 'Ministerio de Salud',
-		requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
-	};
-
-	const imputadoData = {
-		run: '12345678-9',
-		nombreImputado: 'Carlos',
-		apellidoPaterno: 'Sanchez',
-		apellidoMaterno: 'Lopez',
-		fechaNacimiento: '1985-06-15',
-		genero: 'Masculino',
-		nivelEscolaridad: 'Educación Secundaria Completa',
-		nacionalidad: 'Chilena',
-		rustPeticion: '12345',
-		ruc: '54321',
-		tribunal: 'Tribunal de Justicia de Santiago',
-		rit: 'RIT-1234-2023',
-	};
+	useEffect(() => {
+		const loadFetch = async () => {
+			try {
+				const usuarioData = await fetchUsuarios(0);
+				const requerimientoData = await fetchRequerimientos(0);
+				const imputadoData = await fetchImputados(0);
+				const entrevistaData = await fetchEntrevistas(0);
+				setUsuario(usuarioData);
+				setRequerimientos(requerimientoData);
+				setImputado(imputadoData);
+				setEntrevista(entrevistaData);
+			} catch (err) {
+				setError(err.message);
+			}
+		};
+		loadFetch();
+	}, []);
 
 	const secciones = [
 		{
@@ -59,19 +50,23 @@ const Index = () => {
 		},
 		{
 			titulo: 'Antecedentes del Usuario',
-			componente: <AntUsuario datosUsuario={datosDelUsuario} />,
+			componente: <AntUsuario datosUsuario={usuario} />,
 		},
 		{
 			titulo: 'Antecedentes del Requerimiento',
-			componente: <AntRequerimiento datosRequerimiento={datosDelRequerimiento} />,
+			componente: <AntRequerimiento datosRequerimiento={requerimientos} />,
 		},
 		{
 			titulo: 'Antecedentes del Imputado',
-			componente: <AntImputado imputadoData={imputadoData} />,
+			componente: <AntImputado imputadoData={imputado} />,
 		},
 		{
 			titulo: 'Información Adicional',
 			componente: <InfoAdicional />,
+		},
+		{
+			titulo: 'Antecedentes de la Entrevista',
+			componente: <AntEntrevista entrevistaData={entrevista} />,
 		},
 	];
 

@@ -13,22 +13,6 @@ import { Grid, TextField } from '@mui/material';
 import { CalendarMonth } from '@mui/icons-material';
 import InformacionAdicional from './InformacionAdicional';
 
-/*const datosIniciales = {
-	tipoIdentificacion: 'RUT',
-	regionResidencia: 'Metropolitana de Santiago',
-	comunaResidencia: 'Santiago',
-	escolaridad: 'Educación Básica Incompleta',
-	etnia: 'Mapuche',
-	numeroIdentificacion: '12345678-9',
-	nombres: 'Juanito',
-	apellidoPaterno: 'Pérez',
-	apellidoMaterno: 'González',
-	fechaNacimiento: '1990-01-01',
-	telefono: '+56912345678',
-	email: 'prueba@prueba.cl',
-	direccion: 'Calle Falsa 123',
-};*/
-
 const Finalizacion = () => {
 	return <Typography>¡Gracias por ingresar la solicitud! Se ha creado con éxito.</Typography>;
 };

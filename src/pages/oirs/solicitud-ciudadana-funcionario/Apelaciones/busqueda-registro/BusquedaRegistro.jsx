@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TablePagination } from '@mui/material';
+import { Box, TablePagination } from '@mui/material';
 import {
 	TextField,
 	Table,
@@ -135,22 +135,25 @@ const BusquedaRegistro = () => {
 	};
 
 	return (
-		<div>
-			<div
-				style={{
+		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+			<Box
+				sx={{
 					display: 'flex',
+					flexDirection: { xs: 'column', sm: 'row' },
 					gap: '1rem',
 					marginBottom: '1rem',
 					justifyContent: 'space-between',
 				}}
 			>
 				<TextField
+					sx={{ flex: 1 }}
 					label="Nombre usuario"
 					variant="outlined"
 					value={nombreUsuario}
 					onChange={(e) => setNombreUsuario(e.target.value)}
 				/>
 				<TextField
+					sx={{ flex: 1 }}
 					label="N° OIRS"
 					variant="outlined"
 					value={numeroOirs}
@@ -159,7 +162,7 @@ const BusquedaRegistro = () => {
 				{/* Botones de busqueda */}
 				<SearchButton onClick={handleSearch} />
 				<ClearFilterButton onClick={handleLimpiarFiltro} />
-			</div>
+			</Box>
 			<TableContainer
 				component={Paper}
 				style={{
@@ -251,7 +254,7 @@ const BusquedaRegistro = () => {
 				rowsPerPageOptions={[5, 10, 20]}
 				labelRowsPerPage="Filas por página:"
 			/>
-		</div>
+		</Box>
 	);
 };
 

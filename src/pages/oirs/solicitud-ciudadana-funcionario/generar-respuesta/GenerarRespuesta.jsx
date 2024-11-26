@@ -135,7 +135,7 @@ const GenerarRespuesta = () => {
 					handleSendResolution={handleSendResolution}
 					buttonStyles={buttonStyles}
 				/>
-				<Grid item xs={2}>
+				<Grid item xs={4}>
 					<FormControl fullWidth>
 						<InputLabel id="decision-label">Decisión *</InputLabel>
 						<FormSelect

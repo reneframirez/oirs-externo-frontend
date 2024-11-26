@@ -1,98 +1,146 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { UserIcon } from 'lucide-react';
+
 import AntUsuario from '../../secciones/AntUsuario';
 import AntRequerimiento from '../../secciones/AntRequerimiento';
 import AntImputado from '../../secciones/AntImputado';
 import InfoAdicional from '../../secciones/InfoAdicional';
+import AntDerivacion from '../../secciones/AntDerivacion';
+import AntAnulacion from '../../secciones/AntAnulacion';
+import AntEntrevista from '../../secciones/AntEntrevista';
+import AntEmision from '../../secciones/AntEmision';
+import AntRespuesta from '../../secciones/AntRespuesta';
+import AntNotificacion from '../../secciones/AntNotificacion';
+import AntRecepcion from '../../secciones/AntRecepcion';
 import IngresarApelacion from './IngresarApelacion';
 
+import {
+	fetchAnulaciones,
+	fetchDerivaciones,
+	fetchEmisiones,
+	fetchEntrevistas,
+	fetchImputados,
+	fetchNotificaciones,
+	fetchRecepciones,
+	fetchRequerimientos,
+	fetchRespuestas,
+	fetchUsuarios,
+} from '../../../../../api/fetchApi';
+
 const Index = () => {
-    const datosDelUsuario = {
-      nombres: 'Juan',
-      apellidoPaterno: 'Pérez',
-      apellidoMaterno: 'González',
-      tipoIdentificacion: 'RUT',
-      numeroIdentificacion: '12345678-9',
-      fechaNacimiento: '01-01-1990',
-      telefono: '+56912345678',
-      email: 'juan.perez@example.com',
-      direccion: 'Calle Falsa 123',
-      regionResidencia: 'Metropolitana de Santiago',
-      comunaResidencia: 'Santiago',
-      escolaridad: 'Educación Universitaria Completa',
-      etnia: 'Mapuche',
-      genero: 'Masculino',
-    };
-  
-    const datosDelRequerimiento = {
-      region: 'Región Metropolitana',
-      comuna: 'Santiago',
-      tipoSolicitud: 'Reclamo',
-      tipoRecepcion: 'Correo Electrónico',
-      responderVia: 'Correo Electrónico',
-      institucionPublica: 'Ministerio de Salud',
-      requerimiento: 'Solicito que se revise el caso relacionado con mi causa.',
-    };
-  
-    const imputadoData = {
-      run: '12345678-9',
-      nombreImputado: 'Carlos',
-      apellidoPaterno: 'Sanchez',
-      apellidoMaterno: 'Lopez',
-      fechaNacimiento: '1985-06-15',
-      genero: 'Masculino',
-      nivelEscolaridad: 'Educación Secundaria Completa',
-      nacionalidad: 'Chilena',
-      rustPeticion: '12345',
-      ruc: '54321',
-      tribunal: 'Tribunal de Justicia de Santiago',
-      rit: 'RIT-1234-2023',
-    };
-  
-    const secciones = [
-      {
-        titulo: 'Antecedentes de la Apelación',
-        componente: <IngresarApelacion />,
-      },
-      {
-        titulo: 'Antecedentes del Usuario',
-        componente: <AntUsuario datosUsuario={datosDelUsuario} />,
-      },
-      {
-        titulo: 'Antecedentes del Requerimiento',
-        componente: <AntRequerimiento datosRequerimiento={datosDelRequerimiento} />,
-      },
-      {
-        titulo: 'Antecedentes del Imputado',
-        componente: <AntImputado imputadoData={imputadoData} />,
-      },
-      {
-        titulo: 'Información Adicional',
-        componente: <InfoAdicional />,
-      },
-    ];
-  
-    return (
-      <div>
-        {secciones.map((seccion, index) => (
-        <Accordion key={index} defaultExpanded sx={{ my: 1 }}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={`panel${index}-content`}
-              id={`panel${index}-header`}
-              style={{ backgroundColor: '#00274d', borderRadius: '8px' }}
-            >
-              <UserIcon style={{ color: 'white', marginRight: '8px' }} />
-              <Typography style={{ color: 'white' }}>{seccion.titulo}</Typography>
-            </AccordionSummary>
-            <AccordionDetails>{seccion.componente}</AccordionDetails>
-          </Accordion>
-        ))}
-      </div>
-    );
-  };
-  
-  export default Index;
-  
+	const [usuario, setUsuario] = useState([]);
+	const [imputado, setImputado] = useState([]);
+	const [requerimientos, setRequerimientos] = useState([]);
+	const [derivacion, setDerivacion] = useState([]);
+	const [anulacion, setAnulacion] = useState([]);
+	const [entrevista, setEntrevista] = useState([]);
+	const [respuesta, setRespuesta] = useState([]);
+	const [emision, setEmision] = useState([]);
+	const [notificacion, setNotificacion] = useState([]);
+	const [recepcion, setRecepcion] = useState([]);
+	const [error, setError] = useState(null);
+
+	useEffect(() => {
+		const loadFetch = async () => {
+			try {
+				const usuarioData = await fetchUsuarios(0);
+				const requerimientoData = await fetchRequerimientos(0);
+				const imputadoData = await fetchImputados(0);
+				const derivacionData = await fetchDerivaciones(0);
+				const anulacionData = await fetchAnulaciones(0);
+				const entrevistaData = await fetchEntrevistas(0);
+				const respuestaData = await fetchRespuestas(0);
+				const emisionData = await fetchEmisiones(0);
+				const notificacionData = await fetchNotificaciones(0);
+				const recepcionData = await fetchRecepciones(0);
+				setUsuario(usuarioData);
+				setRequerimientos(requerimientoData);
+				setImputado(imputadoData);
+				setDerivacion(derivacionData);
+				setAnulacion(anulacionData);
+				setEntrevista(entrevistaData);
+				setRespuesta(respuestaData);
+				setEmision(emisionData);
+				setNotificacion(notificacionData);
+				setRecepcion(recepcionData);
+			} catch (err) {
+				setError(err.message);
+			}
+		};
+		loadFetch();
+	}, []);
+
+	const secciones = [
+		{
+			titulo: 'Antecedentes de la Apelación',
+			componente: <IngresarApelacion />,
+		},
+		{
+			titulo: 'Antecedentes del Usuario',
+			componente: <AntUsuario datosUsuario={usuario} />,
+		},
+		{
+			titulo: 'Antecedentes del Requerimiento',
+			componente: <AntRequerimiento datosRequerimiento={requerimientos} />,
+		},
+		{
+			titulo: 'Antecedentes del Imputado',
+			componente: <AntImputado imputadoData={imputado} />,
+		},
+		{
+			titulo: 'Información Adicional',
+			componente: <InfoAdicional />,
+		},
+		{
+			titulo: 'Antecedentes de la Derivación',
+			componente: <AntDerivacion derivacionData={derivacion} />,
+		},
+		{
+			titulo: 'Antecedentes de la Anulación',
+			componente: <AntAnulacion anulacionData={anulacion} />,
+		},
+		{
+			titulo: 'Antecedentes de la Entrevista',
+			componente: <AntEntrevista entrevistaData={entrevista} />,
+		},
+		{
+			titulo: 'Antecedentes de la Respuesta',
+			componente: <AntRespuesta respuestaData={respuesta} />,
+		},
+		{
+			titulo: 'Antecedentes de la Emisión de la Respuesta',
+			componente: <AntEmision emisionData={emision} />,
+		},
+		{
+			titulo: 'Antecedentes de la Respuesta Notificada al usuario',
+			componente: <AntNotificacion notificacionData={notificacion} />,
+		},
+		{
+			titulo: 'Registro de Recepción de Respuesta al Usuario',
+			componente: <AntRecepcion recepcionData={recepcion} />,
+		},
+	];
+
+	return (
+		<div>
+			{secciones.map((seccion, index) => (
+				<Accordion key={index} defaultExpanded sx={{ my: 1 }}>
+					<AccordionSummary
+						expandIcon={<ExpandMoreIcon />}
+						aria-controls={`panel${index}-content`}
+						id={`panel${index}-header`}
+						style={{ backgroundColor: '#00274d', borderRadius: '8px' }}
+					>
+						<UserIcon style={{ color: 'white', marginRight: '8px' }} />
+						<Typography style={{ color: 'white' }}>{seccion.titulo}</Typography>
+					</AccordionSummary>
+					<AccordionDetails>{seccion.componente}</AccordionDetails>
+				</Accordion>
+			))}
+		</div>
+	);
+};
+
+export default Index;

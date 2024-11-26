@@ -207,10 +207,11 @@ const DerivarApelacion = () => {
 	};
 
 	return (
-		<Box>
+		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 			<Box
-				style={{
+				sx={{
 					display: 'flex',
+					flexDirection: { xs: 'column', sm: 'row' },
 					gap: '1rem',
 					marginTop: '1rem',
 					marginBottom: '1rem',

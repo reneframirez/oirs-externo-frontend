@@ -1,29 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { MenuItem } from '@mui/material';
-function Regions() {
+function useRegions() {
 	const [regions, setRegions] = useState([]);
 
 	useEffect(() => {
-		axios
-			.get('https://api.shipit.cl/v/regions')
-			.then((response) => {
+		const fetchRegions = async () => {
+			try {
+				const response = await axios.get('https://api.shipit.cl/v/regions');
 				setRegions(response.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+			} catch (error) {
+				console.error('Error fetching regions:', error);
+			}
+		};
+		fetchRegions();
 	}, []);
 
-	return (
-		<div>
-			{regions.map((region) => (
-				<MenuItem key={region.id} value={region.name}>
-					{region.name}
-				</MenuItem>
-			))}
-		</div>
-	);
+	return regions;
 }
 
-export default Regions;
+export default useRegions;

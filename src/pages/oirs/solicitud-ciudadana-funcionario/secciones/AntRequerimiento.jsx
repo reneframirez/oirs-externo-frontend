@@ -55,11 +55,27 @@ const AntecedentesRequerimiento = ({ datosRequerimiento }) => {
 			</Grid>
 
 			{/* Requerimiento */}
-			<Grid item xs={12}>
+			<Grid item xs={12} md={6} lg={4}>
 				<Typography variant="subtitle2" color="primary">
 					Requerimiento
 				</Typography>
 				<Typography variant="body2">{datosRequerimiento.requerimiento || 'N/A'}</Typography>
+			</Grid>
+			{/* Especificación */}
+			<Grid item xs={12} md={6} lg={4}>
+				<Typography variant="subtitle2" color="primary">
+					Especificación
+				</Typography>
+				<Typography variant="body2">
+					{datosRequerimiento.especificacion || 'N/A'}
+				</Typography>
+			</Grid>
+			{/* Justificación */}
+			<Grid item xs={12}>
+				<Typography variant="subtitle2" color="primary">
+					Justificacion de la Especificación
+				</Typography>
+				<Typography variant="body2">{datosRequerimiento.justificacion || 'N/A'}</Typography>
 			</Grid>
 		</Grid>
 	);
@@ -74,6 +90,8 @@ AntecedentesRequerimiento.propTypes = {
 		responderVia: PropTypes.string,
 		institucionPublica: PropTypes.string,
 		requerimiento: PropTypes.string,
+		especificacion: PropTypes.string,
+		justificacion: PropTypes.string,
 	}),
 };
 
