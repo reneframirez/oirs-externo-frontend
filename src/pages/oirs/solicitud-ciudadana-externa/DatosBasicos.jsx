@@ -334,6 +334,85 @@ const DatosBasicos = () => {
 					</FormControl>
 				</Box>
 
+				<Box
+					sx={{
+						display: 'grid',
+						gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' },
+						gap: 2,
+					}}
+					>
+					<FormControl fullWidth error={!!errors.regionResidencia}>
+						<InputLabel id="escolaridad-label">Nacionalidad *</InputLabel>
+					<Controller
+						name="nacionalidad"
+						control={control}
+						defaultValue=""
+						rules={{ required: 'Este campo es obligatorio' }}
+						render={({ field }) => (
+							<Select
+							{...field}
+							labelId="nacionalidad-label"
+							label="Nacionalidad *"
+							>
+									<MenuItem value="region1">Chilena</MenuItem>
+									<MenuItem value="region2">Argentina</MenuItem>
+									<MenuItem value="region2">...</MenuItem>
+								</Select>
+						)}
+					/>
+						{errors.nacionalidad && (
+							<p className="text-red-600">{errors.nacionalidad.message}</p>
+						)}					
+					</FormControl>	
+
+					<FormControl fullWidth error={!!errors.regionResidencia}>
+						<InputLabel id="escolaridad-label">Escolaridad *</InputLabel>
+						<Controller
+							name="escolaridad"
+							control={control}
+							defaultValue=""
+							rules={{ required: 'Este campo es obligatorio' }}
+							render={({ field }) => (
+								<Select
+									{...field}
+									labelId="escolaridad-label"
+									label="Escolaridad *"
+								>
+									<MenuItem value="region1">Basica</MenuItem>
+									<MenuItem value="region2">Completa</MenuItem>
+									<MenuItem value="region2">...</MenuItem>
+								</Select>
+							)}
+						/>
+						{errors.escolaridad && (
+							<p className="text-red-600">{errors.escolaridad.message}</p>
+						)}
+					</FormControl>
+
+					<FormControl fullWidth error={!!errors.comunaResidencia}>
+						<InputLabel id="etnia-label">Etnia *</InputLabel>
+						<Controller
+							name="etnia"
+							control={control}
+							defaultValue=""
+							rules={{ required: 'Este campo es obligatorio' }}
+							render={({ field }) => (
+								<Select
+									{...field}
+									labelId="etnia-label"
+									label="Etnia *"
+								>
+									<MenuItem value="comuna1">Aimara</MenuItem>
+									<MenuItem value="comuna2">Mapuche</MenuItem>
+								</Select>
+							)}
+						/>
+						{errors.etnia && (
+							<p className="text-red-600">{errors.etnia.message}</p>
+						)}
+					</FormControl>
+				</Box>
+
 				{/* Botón de Enviar */}
 				<Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4 }}>
 					<BackButton />
