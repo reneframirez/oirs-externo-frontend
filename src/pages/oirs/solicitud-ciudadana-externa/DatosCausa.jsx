@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFormularioData } from '../../../store/actions';
 import { useEffect } from 'react';
-import { SaveButton, BackButton } from '../../../components/CustomButtons';
+import { BackButton, NextButton } from '../../../components/CustomButtons';
 
 const DatosCausa = () => {
 	const dispatch = useDispatch();
@@ -175,7 +175,7 @@ const DatosCausa = () => {
 				{/* Botones de navegación */}
 				<Box className="flex justify-between">
 					<BackButton />
-					<SaveButton onClick={handleSubmit(onSubmit)} />
+					<NextButton onClick={handleSubmit(onSubmit)} />
 				</Box>
 			</form>
 		</Box>
