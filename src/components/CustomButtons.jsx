@@ -5,6 +5,7 @@ import {
 	SaveIcon,
 	SendIcon,
 	ArrowLeft,
+	ArrowRight,
 	SearchIcon,
 	SearchX,
 	CheckIcon,
@@ -106,6 +107,20 @@ export const BackButton = ({ onClick }) => {
 			onClick={() => window.history.back()}
 		>
 			Volver
+		</Button>
+	);
+};
+
+export const NextButton = ({ onClick }) => {
+	return (
+		<Button
+			variant="contained"
+			sx={{ mx: 1 }}
+			color="primary"
+			startIcon={<ArrowRight />}
+			onClick={onClick}
+		>
+			Siguiente
 		</Button>
 	);
 };
