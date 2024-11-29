@@ -19,8 +19,12 @@ import { fetchGeneros } from '../../../api/fetchGeneros';
 import { fetchNacionalidades } from '../../../api/fetchNacionalidades';
 import { fetchEscolaridades } from '../../../api/fetchEscolaridades';
 import { fetchEtnias } from '../../../api/fetchEtnias';
+import { fetchTiposId } from '../../../api/fetchTiposId';
 
 const DatosBasicos = () => {
+	const [tiposId, setTiposId] = useState([]);
+	const [selectedTipoId, setSelectedTipoId] = useState('');
+	const [run, setRun] = useState('');
 	const [generos, setGeneros] = useState([]);
 	const [regiones, setRegiones] = useState([]);
 	const [selectedRegion, setSelectedRegion] = useState('');
@@ -38,8 +42,6 @@ const DatosBasicos = () => {
 		control,
 		formState: { errors },
 		reset,
-		getFieldState,
-		getValues,
 	} = useForm({
 		defaultValues: formularioData || {},
 	});
@@ -54,6 +56,8 @@ const DatosBasicos = () => {
 		reset(formularioData);
 		const loadFetchData = async () => {
 			try {
+				const tiposIdData = await fetchTiposId();
+				setTiposId(tiposIdData);
 				const generosData = await fetchGeneros();
 				setGeneros(generosData);
 				const regionesData = await fetchRegiones();
@@ -116,9 +120,6 @@ const DatosBasicos = () => {
 							name="tipoIdentificacion"
 							control={control}
 							defaultValue=""
-							onChange={(e) =>
-								formularioData.tipoIdentificacion.value(e.target.value)
-							}
 							rules={{ required: 'Este campo es obligatorio' }}
 							render={({ field }) => (
 								<Select
@@ -126,12 +127,14 @@ const DatosBasicos = () => {
 									name="tipoIdentificacion"
 									labelId="tipo-identificacion-select-label"
 									label="Tipo de identificación *"
+									onChange={(e) => setSelectedTipoId(e.target.value)}
+									value={selectedTipoId}
 								>
-									<MenuItem value="run">Run</MenuItem>
-									<MenuItem value="passport">Pasaporte</MenuItem>
-									<MenuItem value="dni">DNI</MenuItem>
-									<MenuItem value="indocumentado">Indocumentado</MenuItem>
-									<MenuItem value="otro">Otro</MenuItem>
+									{tiposId.map((tipoId) => (
+										<MenuItem key={tipoId.id} value={tipoId.value}>
+											{tipoId.label}
+										</MenuItem>
+									))}
 								</Select>
 							)}
 						/>
@@ -139,7 +142,7 @@ const DatosBasicos = () => {
 							<p className="text-red-600">{errors.tipoIdentificacion.message}</p>
 						)}
 					</FormControl>
-					{formularioData.tipoIdentificacion === 'run' ? (
+					{selectedTipoId !== 'run' ? (
 						<Controller
 							name="numeroIdentificacion"
 							control={control}
@@ -175,7 +178,7 @@ const DatosBasicos = () => {
 							rules={{
 								required: 'Este campo es obligatorio',
 								minLength: 9,
-								maxLength: 9,
+								maxLength: 10,
 							}}
 							render={({ field }) => (
 								<TextField
@@ -183,7 +186,6 @@ const DatosBasicos = () => {
 									label="Número de identificación *"
 									variant="outlined"
 									fullWidth
-									disabled
 									error={!!errors.numeroIdentificacion}
 									helperText={
 										errors.numeroIdentificacion
@@ -193,6 +195,8 @@ const DatosBasicos = () => {
 									InputProps={{
 										startAdornment: <Badge className="text-gray-400 mr-2" />,
 									}}
+									onChange={(e) => setRun(e.target.value)}
+									value={run}
 								/>
 							)}
 						/>
@@ -207,7 +211,31 @@ const DatosBasicos = () => {
 						gap: 2,
 					}}
 				>
-					{formularioData.numeroIdentificacion === '111111111' ? (
+					{run !== '208509330' ? (
+						<Controller
+							name="nombres"
+							control={control}
+							defaultValue=""
+							rules={{
+								required: 'Este campo es obligatorio',
+								minLength: 2,
+								maxLength: 20,
+							}}
+							render={({ field }) => (
+								<TextField
+									{...field}
+									label="Nombres *"
+									variant="outlined"
+									fullWidth
+									error={!!errors.nombres}
+									helperText={errors.nombres ? errors.nombres.message : ''}
+									InputProps={{
+										startAdornment: <Person className="text-gray-400 mr-2" />,
+									}}
+								/>
+							)}
+						/>
+					) : (
 						<Controller
 							name="nombres"
 							control={control}
@@ -223,31 +251,8 @@ const DatosBasicos = () => {
 									label="Nombres *"
 									variant="outlined"
 									fullWidth
+									value="Diego"
 									disabled
-									error={!!errors.nombres}
-									helperText={errors.nombres ? errors.nombres.message : ''}
-									InputProps={{
-										startAdornment: <Person className="text-gray-400 mr-2" />,
-									}}
-								/>
-							)}
-						/>
-					) : (
-						<Controller
-							name="nombres"
-							control={control}
-							defaultValue=""
-							rules={{
-								required: 'Este campo es obligatorio',
-								minLength: 2,
-								maxLength: 20,
-							}}
-							render={({ field }) => (
-								<TextField
-									{...field}
-									label="Nombres *"
-									variant="outlined"
-									fullWidth
 									error={!!errors.nombres}
 									helperText={errors.nombres ? errors.nombres.message : ''}
 									InputProps={{
@@ -258,34 +263,7 @@ const DatosBasicos = () => {
 						/>
 					)}
 
-					{formularioData.numeroIdentificacion === '222' ? (
-						<Controller
-							name="apellidoPaterno"
-							control={control}
-							defaultValue="a"
-							rules={{
-								required: 'Este campo es obligatorio',
-								minLength: 2,
-								maxLength: 20,
-							}}
-							render={({ field }) => (
-								<TextField
-									{...field}
-									label="Apellido Paterno *"
-									variant="outlined"
-									fullWidth
-									disabled
-									error={!!errors.apellidoPaterno}
-									helperText={
-										errors.apellidoPaterno ? errors.apellidoPaterno.message : ''
-									}
-									InputProps={{
-										startAdornment: <Person className="text-gray-400 mr-2" />,
-									}}
-								/>
-							)}
-						/>
-					) : (
+					{run !== '208509330' ? (
 						<Controller
 							name="apellidoPaterno"
 							control={control}
@@ -311,13 +289,41 @@ const DatosBasicos = () => {
 								/>
 							)}
 						/>
+					) : (
+						<Controller
+							name="apellidoPaterno"
+							control={control}
+							defaultValue="Cortes"
+							rules={{
+								required: 'Este campo es obligatorio',
+								minLength: 2,
+								maxLength: 20,
+							}}
+							render={({ field }) => (
+								<TextField
+									{...field}
+									label="Apellido Paterno *"
+									variant="outlined"
+									fullWidth
+									disabled
+									value="Cortes"
+									error={!!errors.apellidoPaterno}
+									helperText={
+										errors.apellidoPaterno ? errors.apellidoPaterno.message : ''
+									}
+									InputProps={{
+										startAdornment: <Person className="text-gray-400 mr-2" />,
+									}}
+								/>
+							)}
+						/>
 					)}
 
-					{formularioData.numeroIdentificacion === '222' ? (
+					{run !== '208509330' ? (
 						<Controller
 							name="apellidoMaterno"
 							control={control}
-							defaultValue="a"
+							defaultValue=""
 							rules={{ required: 'Este campo es obligatorio' }}
 							render={({ field }) => (
 								<TextField
@@ -325,7 +331,6 @@ const DatosBasicos = () => {
 									label="Apellido Materno *"
 									variant="outlined"
 									fullWidth
-									disabled
 									error={!!errors.apellidoMaterno}
 									helperText={
 										errors.apellidoMaterno ? errors.apellidoMaterno.message : ''
@@ -340,7 +345,7 @@ const DatosBasicos = () => {
 						<Controller
 							name="apellidoMaterno"
 							control={control}
-							defaultValue=""
+							defaultValue="Jeraldino"
 							rules={{ required: 'Este campo es obligatorio' }}
 							render={({ field }) => (
 								<TextField
@@ -348,6 +353,8 @@ const DatosBasicos = () => {
 									label="Apellido Materno *"
 									variant="outlined"
 									fullWidth
+									disabled
+									value="Jeraldino"
 									error={!!errors.apellidoMaterno}
 									helperText={
 										errors.apellidoMaterno ? errors.apellidoMaterno.message : ''
@@ -369,32 +376,7 @@ const DatosBasicos = () => {
 						gap: 2,
 					}}
 				>
-					{formularioData.numeroIdentificacion === '222' ? (
-						<Controller
-							name="edad"
-							control={control}
-							defaultValue="22"
-							rules={{
-								required: 'Este campo es obligatorio',
-								minLength: 1,
-								maxLength: 2,
-							}}
-							render={({ field }) => (
-								<TextField
-									{...field}
-									label="Edad *"
-									variant="outlined"
-									fullWidth
-									disabled
-									error={!!errors.edad}
-									helperText={errors.edad ? errors.edad.message : ''}
-									InputProps={{
-										startAdornment: <Cake className="text-gray-400 mr-2" />,
-									}}
-								/>
-							)}
-						/>
-					) : (
+					{run !== '208509330' ? (
 						<Controller
 							name="edad"
 							control={control}
@@ -418,22 +400,47 @@ const DatosBasicos = () => {
 								/>
 							)}
 						/>
+					) : (
+						<Controller
+							name="edad"
+							control={control}
+							defaultValue="22"
+							rules={{
+								required: 'Este campo es obligatorio',
+								minLength: 1,
+								maxLength: 2,
+							}}
+							render={({ field }) => (
+								<TextField
+									{...field}
+									label="Edad *"
+									variant="outlined"
+									fullWidth
+									disabled
+									value="22"
+									error={!!errors.edad}
+									helperText={errors.edad ? errors.edad.message : ''}
+									InputProps={{
+										startAdornment: <Cake className="text-gray-400 mr-2" />,
+									}}
+								/>
+							)}
+						/>
 					)}
 
-					{formularioData.numeroIdentificacion === '222' ? (
+					{run !== '208509330' ? (
 						<FormControl fullWidth error={!!errors.genero}>
 							<InputLabel id="genero-select-label">Género *</InputLabel>
 							<Controller
 								name="genero"
 								control={control}
-								defaultValue="Masculino"
+								defaultValue=""
 								rules={{ required: 'Este campo es obligatorio' }}
 								render={({ field }) => (
 									<Select
 										{...field}
 										labelId="genero-select-label"
 										label="Género *"
-										disabled
 									>
 										{generos.map((genero) => (
 											<MenuItem key={genero.id} value={genero.value}>
@@ -453,13 +460,15 @@ const DatosBasicos = () => {
 							<Controller
 								name="genero"
 								control={control}
-								defaultValue=""
+								defaultValue="Masculino"
 								rules={{ required: 'Este campo es obligatorio' }}
 								render={({ field }) => (
 									<Select
 										{...field}
 										labelId="genero-select-label"
 										label="Género *"
+										disabled
+										value="Masculino"
 									>
 										{generos.map((genero) => (
 											<MenuItem key={genero.id} value={genero.value}>
@@ -590,7 +599,9 @@ const DatosBasicos = () => {
 									label="Comuna de residencia *"
 								>
 									{comunas.map((commune, index) => (
-										<MenuItem key={index}>{commune}</MenuItem>
+										<MenuItem key={index} value={commune}>
+											{commune}
+										</MenuItem>
 									))}
 								</Select>
 							)}
